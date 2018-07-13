@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Answers from '../components/Answers';
-// import { fetchQuestion } from '../actions';
+import { isRightAnswer } from '../actions';
 
 export const mapStateToProps = reduxStore => {
     return {
@@ -8,13 +8,13 @@ export const mapStateToProps = reduxStore => {
     };
 };
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         requestQuestion: () => dispatch(fetchQuestion())
-//     }
-// };
+const mapDispatchToProps = dispatch => {
+    return {
+        isRightAnswer: isRight => dispatch(isRightAnswer(isRight))
+    }
+};
 
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(Answers);

@@ -6,6 +6,13 @@ export function receiveQuestion(result) {
   }
 }
 
+export function isRightAnswer(questionAnswer) {
+  return {
+    type: 'RECEIVE_ANSWER',
+    questionAnswer
+  }
+}
+
 export function fetchQuestion() {
   return function (dispatch) {
     fetch(`https://opentdb.com/api.php?amount=1&type=multiple`)
