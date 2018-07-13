@@ -1,13 +1,15 @@
 import React from 'react';
 import Header from './Header';
-import GameContainer from '../containers/GameContainer'
+import QuestionContainer from '../containers/QuestionContainer';
+
+import '../static/styles/style.scss';
 
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="quiz-wrapper">
         <Header />
-        <GameContainer />
+        <QuestionContainer />
       </div>
     )
   }

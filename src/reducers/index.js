@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import placeholder from './placeholder';
+import quizQuestion from './quizQuestion';
 
 export default combineReducers({
-  placeholder
+  quizQuestion
 });
