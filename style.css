@@ -1,3 +1,30 @@
+*{
+  box-sizing: border-box;
+}
+a {color: inherit;
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: rgb(36, 36, 77);
+
+  color: whitesmoke;
+}
+
+.header{
+  margin:30px;
+  text-align: center;
+}
+
+.imageArea{
+  text-align:center
+}
+.question{
+text-align:center;
+font-size:30px;
+}
 .voting-button {
   color: #550527;
   font-size: 24px;
