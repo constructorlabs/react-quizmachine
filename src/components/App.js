@@ -1,10 +1,13 @@
 import React from 'react';
+import Header from './Header';
+import GameContainer from '../containers/GameContainer'
 
 class App extends React.Component {
-  render(){
+  render() {
     return (
       <div>
-        App contents go here
+        <Header />
+        <GameContainer />
       </div>
     )
   }
