@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import ScoreContainer from '../containers/ScoreContainer';
 import QuestionContainer from '../containers/QuestionContainer';
 import AnswersContainer from '../containers/AnswersContainer';
 import MessageContainer from '../containers/MessageContainer';
@@ -12,6 +13,7 @@ class App extends React.Component {
     return (
       <div className="quiz-wrapper">
         <Header />
+        <ScoreContainer />
         <QuestionContainer />
         <AnswersContainer />
         <MessageContainer />
