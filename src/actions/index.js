@@ -15,7 +15,7 @@ export function isRightAnswer(questionAnswer) {
 
 export function fetchQuestion() {
   return function (dispatch) {
-    fetch(`https://opentdb.com/api.php?amount=1&type=multiple`)
+    fetch(`https://opentdb.com/api.php?amount=1&type=multiple&encode=url3986`)
       .then(response => response.json())
       .then(result => {
         dispatch(receiveQuestion(result));
