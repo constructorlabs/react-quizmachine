@@ -15,10 +15,25 @@ export function fetchQuestionFromAPI() {
   }
 };
 
-export function receiveQuestion(json) {
+export function receiveQuestion(questionData) {
   console.log("Step 4 - creating RECEIVE_QUESTION question ARRAY")
   return {
     type: 'RECEIVE_QUESTION',
-    payload: json
+    payload: questionData
+  }
+}
+
+export function correctAnswer() {
+
+  return {
+    type: 'CORRECT_ANSWER'
+
+  }
+}
+export function incorrectAnswer() {
+
+  return {
+    type: 'INCORRECT_ANSWER'
+
   }
 }
