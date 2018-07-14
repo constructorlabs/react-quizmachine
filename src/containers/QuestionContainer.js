@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import Question from "../components/Question";
-import { fetchQuestionFromAPI, correctAnswer, incorrectAnswer } from "../actions";
+import { fetchQuestionFromAPI, correctAnswer, incorrectAnswer, endQuestions, endGame } from "../actions";
+
 
 
 const mapStateToProps = (reduxState) => {
@@ -10,7 +11,8 @@ const mapStateToProps = (reduxState) => {
 
   return {
     question: reduxState.question,
-    money: reduxState.money
+    money: reduxState.money,
+    status: reduxState.endGame
   };
 };
 
@@ -22,7 +24,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(correctAnswer()),
         dispatch(fetchQuestionFromAPI())
     },
-    incorrectAnswerFn: () => dispatch(incorrectAnswer())
+    incorrectAnswerFn: () => {
+      dispatch(incorrectAnswer()),
+        dispatch(endQuestions()),
+        dispatch(endGame())
+    }
   }
 
 }

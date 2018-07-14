@@ -7,15 +7,10 @@ class App extends React.Component {
     return (
       <div className="app">
         <header className="header">
-          <h1>Who wants to be a Bazillionaire?</h1>
+          <h1>Who wants to be a Minionaire?</h1>
         </header>
 
-        {/* <section className="imageArea">
-          <img src="http://placepuppy.net/150/200" />
-        </section> */}
-
         <QuestionContainer />
-
 
       </div>
     )

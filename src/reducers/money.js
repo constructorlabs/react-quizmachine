@@ -4,9 +4,17 @@ function money(state = 0, action) {
 
   switch (action.type) {
     case 'CORRECT_ANSWER':
-      return state + 1000000
+      return state + 100000
     case 'INCORRECT_ANSWER':
-      return 0
+      //Implement breakpoints
+      if (state < 300000) {
+        return 0
+      }
+      else if (state >= 300000 && state < 500000) {
+        return 300000
+      } else {
+        return 500000
+      }
     default:
       return state;
   }

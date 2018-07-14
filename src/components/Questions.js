@@ -1,8 +1,9 @@
 import React from "react";
+// import { lookupService } from "dns";
 
-function Questions({ quizItem, correctAnswerFn, incorrectAnswerFn, }) {
+function Questions({ quizItem, correctAnswerFn, incorrectAnswerFn, result }) {
 
-  let letters = ["Blah", "A ", "B ", "C ", "D "];
+  let letters = ["Blah", "(A) ", "(B) ", "(C) ", "(D) "];
   const currentQuestion = decodeURIComponent(quizItem.question);
   const rightAnswer = decodeURIComponent(quizItem.correct_answer);
   const incorrectAnswer1 = decodeURIComponent(quizItem.incorrect_answers[0]);
@@ -17,11 +18,12 @@ function Questions({ quizItem, correctAnswerFn, incorrectAnswerFn, }) {
 
     if (answer === rightAnswer) {
       correctAnswerFn()
+      result(true)
     } else {
       incorrectAnswerFn()
+      result(false)
     }
-    // internalCounter++;
-    // console.log("Counter ", internalCounter)
+
   }
 
   return (
@@ -38,11 +40,8 @@ function Questions({ quizItem, correctAnswerFn, incorrectAnswerFn, }) {
             onClick={event => { checkAnswer(event.target.value) }}>
 
             {letters[0]} {currentAnswer}</button>
-
         )
-
-      })
-      }
+      })}
 
     </section>
   )

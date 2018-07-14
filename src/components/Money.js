@@ -1,13 +1,12 @@
 import React from "react";
 
-function Money({ score }) {
+function Money({ score, result }) {
 
   let AskAFriend = true;
   let fiftyfifty = true;
   let AsktheClass = true;
 
   function lifeline(event) {
-
     if (event.target.name === "friend") {
       console.log("You used your friend lifeline")
     }
@@ -17,12 +16,13 @@ function Money({ score }) {
     else {
       console.log("You used your class lifeline")
     }
-
   }
+
+
 
   return (
     <div className="score__money">
-      £{score.toLocaleString()}
+
       <button
         className="score__money--lifeline"
         name="fifty"
@@ -43,6 +43,12 @@ function Money({ score }) {
         onClick={event => { lifeline(event) }}>
 
         Ask a Friend</button>
+      <br />
+      <br />
+      £{score.toLocaleString()}
+      <br />
+      <br />
+
     </div>
   );
 }
