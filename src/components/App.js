@@ -4,7 +4,7 @@ import ScoreContainer from '../containers/ScoreContainer';
 import QuestionContainer from '../containers/QuestionContainer';
 import AnswersContainer from '../containers/AnswersContainer';
 import MessageContainer from '../containers/MessageContainer';
-import ButtonNextContainer from '../containers/ButtonNextContainer';
+import ButtonSkipQuestionContainer from '../containers/ButtonSkipQuestionContainer';
 
 import '../static/styles/style.scss';
 
@@ -17,7 +17,7 @@ class App extends React.Component {
         <QuestionContainer />
         <AnswersContainer />
         <MessageContainer />
-        <ButtonNextContainer />
+        <ButtonSkipQuestionContainer />
       </div>
     )
   }
