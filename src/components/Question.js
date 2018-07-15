@@ -1,4 +1,5 @@
 import React from 'react';
+import "../static/styles/question.scss";
 
 class Question extends React.Component {
     constructor(props) {
@@ -12,11 +13,12 @@ class Question extends React.Component {
     render() {
         const { quizQuestion } = this.props;
         return (
-            <div>
+            <div className="question">
                 {
                     quizQuestion
                         ? quizQuestion.results.map(result => {
-                            return <p key={result.question}>
+                            return <p className="question__text"
+                                key={result.question}>
                                 {decodeURIComponent(result.question)}
                             </p>
 

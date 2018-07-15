@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Answers from '../components/Answers';
-import { isRightAnswer, scoreUpdate } from '../actions';
+import { isRightAnswer, scoreUpdate, fetchQuestion } from '../actions';
 
 export const mapStateToProps = reduxStore => {
     return {
@@ -11,6 +11,7 @@ export const mapStateToProps = reduxStore => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        requestQuestion: () => dispatch(fetchQuestion()),
         scoreUpdate: score => dispatch(scoreUpdate(score)),
         isRightAnswer: isRight => dispatch(isRightAnswer(isRight))
     }

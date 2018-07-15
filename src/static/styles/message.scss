@@ -1,0 +1,51 @@
+.message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    font-size: 36px;
+    transform: rotate(-4deg) translate(-50%, -60%);
+    font-family: 'Bitter', serif;
+
+    background-color: #fcaa02;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    z-index: 9999;
+    display: none;
+
+    // &.visible {
+    //     display: block;
+    // }
+
+    &:after {
+        content: "";
+        background-color: #fcaa02;
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+        transform: rotate(30deg);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &:before {
+        content: "";
+        background-color: #fcaa02;
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+        transform: rotate(60deg);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .message__text {
+        z-index: 99999;
+        position: absolute;
+        top: 33%;
+        left: 6%;
+    }
+}

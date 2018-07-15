@@ -1,3 +1,14 @@
-h1 {
-    color: pink;
+.main-header__logo {
+    font-size: 7rem;
+    text-align: center;
+    color: #fff;
+    font-family: 'Dancing Script', cursive;
+    margin: 0;
+}
+.main-header__subtext {
+    font-size: 1.8rem;
+    text-align: center;
+    color: #fff;
+    font-family: 'Dancing Script', cursive;
+    margin: -20px 0 30px 10px;
 }
