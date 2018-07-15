@@ -1,9 +1,9 @@
-function score(state = 50, action) {
+function score(score = 50, action) {
     switch (action.type) {
         case 'RECEIVE_SCORE':
             return action.score
         default:
-            return state
+            return score
     }
 }
 

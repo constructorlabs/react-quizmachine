@@ -5,7 +5,9 @@ import Score from '../components/Score';
 
 export const mapStateToProps = reduxStore => {
     return {
-        score: reduxStore.score
+        score: reduxStore.score,
+        categoryName: reduxStore.optionsCategoryName,
+        difficulty: reduxStore.optionsDifficulty
     };
 };
 

@@ -1,0 +1,83 @@
+.options {
+    .options__list {
+        display: none;
+    
+        &.visible {
+            display: block;
+        }
+    }
+    
+    .options__toggle {
+        display: flex;
+        justify-content: flex-end;
+    
+        .options__toggle__button {
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+            padding: 0;
+            margin-bottom: 10px;
+            color: #fff;
+
+            &:hover {
+                cursor: pointer;
+                opacity: .8;
+            }
+        }
+    }
+
+    .options__button-update {
+        padding: 10px 20px;
+        background-color: var(--tertiary-color);
+        border: none;
+        color: #fff;
+        margin-bottom: 20px;
+        width: 100%;
+
+        &:hover {
+            cursor: pointer;
+            opacity: .8;
+        }
+    }
+}
+
+.custom-select {
+    background-color: var(--secondary-color);
+    border: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin-bottom: 10px;
+
+    &:after {
+        content: "▾";
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        color: var(--primary-color);
+    }
+ 
+    select {
+        padding: 8px;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        background-image: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        color: #fff;
+        font-size: 0.8rem;
+    
+        &:focus {
+            border: 0;
+            box-shadow: none !important;
+        }
+ 
+        option {
+            width: 100%;
+        }
+    } 
+}

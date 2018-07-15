@@ -5,13 +5,15 @@ import { isRightAnswer, scoreUpdate, fetchQuestion } from '../actions';
 export const mapStateToProps = reduxStore => {
     return {
         answers: reduxStore.quizQuestion,
-        score: reduxStore.score
+        score: reduxStore.score,
+        category: reduxStore.optionsCategory,
+        difficulty: reduxStore.optionsDifficulty
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        requestQuestion: () => dispatch(fetchQuestion()),
+        requestQuestion: (category, difficulty) => dispatch(fetchQuestion(category, difficulty)),
         scoreUpdate: score => dispatch(scoreUpdate(score)),
         isRightAnswer: isRight => dispatch(isRightAnswer(isRight))
     }

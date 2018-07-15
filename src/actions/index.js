@@ -20,28 +20,30 @@ export function scoreUpdate(score) {
   }
 }
 
-export function fetchQuestion() {
+export function optionsCategory(optionsCategory) {
+  return {
+    type: 'RECEIVE_OPTIONS_CATEGORY',
+    optionsCategory
+  }
+}
+
+export function optionsCategoryName(optionsCategoryName) {
+  return {
+    type: 'RECEIVE_OPTIONS_CATEGORY_NAME',
+    optionsCategoryName
+  }
+}
+
+export function optionsDifficulty(optionsDifficulty) {
+  return {
+    type: 'RECEIVE_OPTIONS_DIFFICULTY',
+    optionsDifficulty
+  }
+}
+
+export function fetchQuestion(category = '', difficulty = '') {
   return function (dispatch) {
-    // dispatch(receiveQuestion({
-
-    //   "response_code": 0,
-    //   "results": [
-    //     {
-    //       "category": "Entertainment: Television",
-    //       "type": "multiple",
-    //       "difficulty": "medium",
-    //       "question": "In Star Trek, what is the Ferengi's First Rule of Acquisition?",
-    //       "correct_answer": "Once you have their money, you never give it back. ",
-    //       "incorrect_answers": [
-    //         "Never place friendship above profit",
-    //         "Greed is Eternal",
-    //         "Never allow family to stand in the way of opportunity"
-    //       ]
-    //     }
-    //   ]
-
-    // }));
-    fetch(`https://opentdb.com/api.php?amount=1&type=multiple&encode=url3986`)
+    fetch(`https://opentdb.com/api.php?amount=1&type=multiple&category=${category}&difficulty=${difficulty}&encode=url3986`)
       .then(response => response.json())
       .then(result => {
         dispatch(receiveQuestion(result));
@@ -50,4 +52,22 @@ export function fetchQuestion() {
         console.log(error);
       });
   }
+  // dispatch(receiveQuestion({
+  //   "response_code": 0,
+  //   "results": [
+  //     {
+  //       "category": "Entertainment: Television",
+  //       "type": "multiple",
+  //       "difficulty": "medium",
+  //       "question": "In Star Trek, what is the Ferengi's First Rule of Acquisition?",
+  //       "correct_answer": "Once you have their money, you never give it back. ",
+  //       "incorrect_answers": [
+  //         "Never place friendship above profit",
+  //         "Greed is Eternal",
+  //         "Never allow family to stand in the way of opportunity"
+  //       ]
+  //     }
+  //   ]
+
+  // }));
 }

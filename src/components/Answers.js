@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import '../static/styles/answers.scss';
 
-function Answers({ answers, isRightAnswer, score, scoreUpdate, requestQuestion }) {
+function Answers({ answers, isRightAnswer, score, scoreUpdate, requestQuestion, category, difficulty }) {
 
     const question_answers = answers
         ? [...answers.results[0].incorrect_answers, answers.results[0].correct_answer]
@@ -13,23 +13,17 @@ function Answers({ answers, isRightAnswer, score, scoreUpdate, requestQuestion }
     function verifyAnswer(e, answer) {
         e.preventDefault();
         if (answer === answers.results[0].correct_answer) {
-            console.log("Correct!");
             isRightAnswer(true);
             scoreUpdate(score + 10);
-            e.target.classList.add('answers__button--correct-answer');
-            e.target.classList.add('animated');
-            e.target.classList.add('pulse');
+            e.target.classList.add('animated', 'pulse', 'answers__button--correct-answer');
             setTimeout(() => {
-                requestQuestion();
+                requestQuestion(category, difficulty);
                 isRightAnswer(false);
             }, 2000)
         } else {
-            console.log("Wrong!");
             isRightAnswer(false);
             scoreUpdate(score - 10);
-            e.target.classList.add('animated');
-            e.target.classList.add('shake');
-            e.target.classList.add('answers__button--wrong-answer');
+            e.target.classList.add('animated', 'shake', 'answers__button--wrong-answer');
             e.target.setAttribute("disabled", "disabled");
         }
     }
@@ -40,7 +34,10 @@ function Answers({ answers, isRightAnswer, score, scoreUpdate, requestQuestion }
             {shuffled_answers.map(answer => {
                 return <button
                     type="button"
-                    onClick={(e) => verifyAnswer(e, answer)}
+                    onClick={(e) => {
+                        verifyAnswer(e, answer);
+                        requestQuestions(category, difficulty);
+                    }}
                     key={answer}
                     className={cx('answers__button', {
                         "answers__button--disabled": false
