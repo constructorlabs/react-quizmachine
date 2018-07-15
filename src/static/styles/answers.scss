@@ -14,7 +14,7 @@
         background-color: #fff;
         color: var(--background-color);
 
-        &:hover {
+        &:not([disabled]):hover {
             cursor: pointer;
             opacity: .8;
         }

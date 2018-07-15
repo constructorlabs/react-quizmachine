@@ -30,6 +30,7 @@ function Answers({ answers, isRightAnswer, score, scoreUpdate, requestQuestion }
             e.target.classList.add('animated');
             e.target.classList.add('shake');
             e.target.classList.add('answers__button--wrong-answer');
+            e.target.setAttribute("disabled", "disabled");
         }
     }
 
