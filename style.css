@@ -34,8 +34,8 @@ margin:auto;
   height:60px;
   width:80px;
   background-color:rgb(36, 36, 77,0.6);
-  color: whitesmoke;
-  border:2px solid whitesmoke;
+  /* color: whitesmoke; */
+  /* border:2px solid whitesmoke; */
   border-radius:30%;
   margin:50px;
 
@@ -45,17 +45,13 @@ margin:auto;
   flex-direction:row;
 }
 .main__score--image{
-  /* flex:1; */
-  /* text-align:center;
-  height:auto;
-  width: 20%; */
+  
   margin-right:80px;
   width: 350px;
     height: 250px;
-    /* background-image: url('minion.jpg'); */
     background-repeat: no-repeat;
     background-size: contain;
-    border: 1px solid red;
+    border: 5px groove grey;
 }
 
 .main__score--money{
@@ -63,17 +59,8 @@ margin:auto;
   font-size:30px;
 }
 
-.questions{
-  /* display:flex;
-  flex-direction:column; */
-  /* flex:2; */
-}
-.questions__buttons{
-  /* flex-direction:row;
-  flex-wrap:wrap;
-  align-content: space-between; */
-  /* flex:1; */
 
+.questions__buttons{
   width:500px;
   height:60px;
   background-color:rgb(36, 36, 77,0.6);

@@ -1,23 +1,24 @@
 import { connect } from "react-redux";
 import Question from "../components/Question";
-import { fetchQuestionFromAPI, correctAnswer, incorrectAnswer, endQuestions, endGame } from "../actions";
+import { fetchQuestionFromAPI, correctAnswer, incorrectAnswer, endQuestions, endGame, lifeline } from "../actions";
 
 
 
 const mapStateToProps = (reduxState) => {
 
   console.log("Step 6 - calling mapStateToProps in QuestionContainer", reduxState["question"])
-  console.log("Step 6 - money", reduxState.money)
+  console.log("Step 6 - lifeline", reduxState.lifeLine)
 
   return {
     question: reduxState.question,
     money: reduxState.money,
-    status: reduxState.endGame
+    status: reduxState.endGame,
+    lifeLine: reduxState.lifeLine
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  console.log("Step 2: getting action creator");
+
   return {
     fetchQuestion: () => dispatch(fetchQuestionFromAPI()),
     correctAnswerFn: () => {
@@ -28,7 +29,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(incorrectAnswer()),
         dispatch(endQuestions()),
         dispatch(endGame())
-    }
+    },
+    lifelineFn: () => { dispatch(lifeline()) }
   }
 
 }

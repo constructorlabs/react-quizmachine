@@ -10,8 +10,9 @@ function question(state = [], action) {
     case 'RECEIVE_QUESTION':
       return action.payload
     case 'GAME_OVER':
-    default:
       return [];
+    default:
+      return state;
   }
 
 }

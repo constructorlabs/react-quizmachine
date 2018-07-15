@@ -5,7 +5,6 @@ import Questions from './Questions';
 class Question extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   componentDidMount() {
@@ -15,19 +14,7 @@ class Question extends React.Component {
     }
   }
 
-  result(winner) {
-    while (winner !== undefined) {
-      console.log("winner", winner)
-      let insertResult;
-      if (winner === true) {
-        insertResult = <span> You won! </span>
-      } else if (winner === false) {
-        insertResult = <span> You go home ! </span>
-      }
-      return (insertResult)
-    }
-  }
-  render() {
+  result() {
     let image;
     if (this.props.status === "lose") {
       image = <iframe src="https://giphy.com/embed/gGn9eq3prU6m4" width="480" height="320" frameBorder="1" margin="150" class="giphy-embed" allowFullScreen></iframe>
@@ -36,23 +23,26 @@ class Question extends React.Component {
     } else {
       image = <img className="main__score--image" src='minion.jpg' />
     }
+    return image;
+  }
+
+  render() {
 
     return (
       <main className="main">
         <section className="main__score">
           <section className="main__score--money">
             <Money score={this.props.money}
-              result={this.result} />
-            {this.insertResult}
+              status={this.props.status}
+              lifeLine={this.props.lifeLine}
+              lifelineFn={this.props.lifelineFn} />
           </section>
 
-          {image}
-
+          {this.result()}
         </section>
+
         {this.props.question.map(quizItem => {
-
           return (
-
             <Questions
               key={quizItem}
               quizItem={quizItem}
