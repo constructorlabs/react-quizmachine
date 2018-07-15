@@ -3,7 +3,7 @@ import React from "react";
 
 function Questions({ quizItem, correctAnswerFn, incorrectAnswerFn, result }) {
 
-  let letters = ["Blah", "(A) ", "(B) ", "(C) ", "(D) "];
+  let letters = ["Minion", "A: ", "B: ", "C: ", "D: "];
   const currentQuestion = decodeURIComponent(quizItem.question);
   const rightAnswer = decodeURIComponent(quizItem.correct_answer);
   const incorrectAnswer1 = decodeURIComponent(quizItem.incorrect_answers[0]);

@@ -15,18 +15,31 @@ body {
   color: whitesmoke;
 }
 
-.header{
-  margin:30px;
-  text-align: center;
-}
-
 .main{
-
-
+margin-top:10px;
 text-align:center;
 font-size:30px;
 }
 
+.score__money{
+  display:flex;
+  flex-direction: row;
+  margin-left:20px;
+}
+.score__money--money{
+margin:auto;
+}
+
+.score__money--lifeline{
+  height:60px;
+  width:80px;
+  background-color:rgb(36, 36, 77,0.6);
+  color: whitesmoke;
+  border:2px solid whitesmoke;
+  border-radius:30%;
+  margin:50px;
+
+}
 .main__score{
   display:flex;
   flex-direction:row;
@@ -36,7 +49,7 @@ font-size:30px;
   /* text-align:center;
   height:auto;
   width: 20%; */
-  margin-right:150px;
+  margin-right:80px;
   width: 350px;
     height: 250px;
     /* background-image: url('minion.jpg'); */

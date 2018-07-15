@@ -45,6 +45,7 @@ class Question extends React.Component {
               result={this.result} />
             {this.insertResult}
           </section>
+
           {image}
 
         </section>
