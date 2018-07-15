@@ -17,9 +17,9 @@ class Question extends React.Component {
   result() {
     let image;
     if (this.props.status === "lose") {
-      image = <iframe src="https://giphy.com/embed/gGn9eq3prU6m4" width="480" height="320" frameBorder="1" margin="150" class="giphy-embed" allowFullScreen></iframe>
+      image = <iframe src="https://giphy.com/embed/gGn9eq3prU6m4" width="480" height="320" frameBorder="1" margin="150" className="main__score--image" allowFullScreen></iframe>
     } else if (this.props.status === "win") {
-      <iframe src="https://giphy.com/embed/MOWPkhRAUbR7i" width="480" height="320" frameBorder="1" class="giphy-embed" allowFullScreen></iframe>
+      <iframe src="https://giphy.com/embed/MOWPkhRAUbR7i" width="480" height="320" frameBorder="1" className="main__score--image" allowFullScreen></iframe>
     } else {
       image = <img className="main__score--image" src='minion.jpg' />
     }
@@ -40,6 +40,7 @@ class Question extends React.Component {
               friendLine={this.props.friendLine}
               audienceLine={this.props.audienceLine}
               fiftyLine={this.props.fiftyLine}
+              incorrectAnswerFn={this.props.incorrectAnswerFn}
             />
           </section>
 
@@ -55,6 +56,8 @@ class Question extends React.Component {
               incorrectAnswerFn={this.props.incorrectAnswerFn}
               score={this.props.money}
               result={this.result}
+              fifty={this.props.fifty}
+              friend={this.props.friend}
             />
           );
         })}

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Money({ score, status, friend, audience, fifty, friendLine, audienceLine, fiftyLine }) {
+function Money({ score, status, friend, audience, fifty, friendLine, audienceLine, fiftyLine, incorrectAnswerFn }) {
 
 
 
@@ -15,6 +15,9 @@ function Money({ score, status, friend, audience, fifty, friendLine, audienceLin
     else if (event.target.name === "AUDIENCE") {
       console.log("You used your Audience lifeline")
       audienceLine(event.target.name);
+    }
+    else {
+      incorrectAnswerFn()
     }
   }
 
@@ -73,7 +76,7 @@ function Money({ score, status, friend, audience, fifty, friendLine, audienceLin
             className="score__money--lifeline"
             src="leave.png"
             name="walk"
-            onClick={event => { useLifeline(event) }} />
+            onClick={event => useLifeline(event)} />
 
         </div>
         <div className="score__money--money">
