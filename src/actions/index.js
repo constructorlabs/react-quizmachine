@@ -41,9 +41,23 @@ export function optionsDifficulty(optionsDifficulty) {
   }
 }
 
-export function fetchQuestion(category = '', difficulty = '') {
+export function currentQuestion(currentQuestion) {
+  return {
+    type: 'RECEIVE_CURRENT_QUESTION',
+    currentQuestion
+  }
+}
+
+export function updateReduxQuestionsAmount(questionsAmount) {
+  return {
+    type: 'RECEIVE_QUESTION_AMOUNT',
+    updateReduxQuestionsAmount: questionsAmount
+  }
+}
+
+export function fetchQuestion(category = '', difficulty = '', amount = 1) {
   return function (dispatch) {
-    fetch(`https://opentdb.com/api.php?amount=1&type=multiple&category=${category}&difficulty=${difficulty}&encode=url3986`)
+    fetch(`https://opentdb.com/api.php?amount=${amount}&type=multiple&category=${category}&difficulty=${difficulty}&encode=url3986`)
       .then(response => response.json())
       .then(result => {
         dispatch(receiveQuestion(result));

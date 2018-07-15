@@ -5,6 +5,8 @@ import score from './score';
 import optionsDifficulty from './optionsDifficulty';
 import optionsCategory from './optionsCategory';
 import optionsCategoryName from './optionsCategoryName';
+import currentQuestion from './currentQuestion';
+import updateReduxQuestionsAmount from './updateReduxQuestionsAmount';
 
 export default combineReducers({
   quizQuestion,
@@ -12,5 +14,7 @@ export default combineReducers({
   score,
   optionsDifficulty,
   optionsCategory,
-  optionsCategoryName
+  optionsCategoryName,
+  currentQuestion,
+  updateReduxQuestionsAmount
 });

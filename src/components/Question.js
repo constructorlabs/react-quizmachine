@@ -11,18 +11,15 @@ class Question extends React.Component {
     }
 
     render() {
-        const { quizQuestion } = this.props;
+        const { quizQuestion, currentQuestion } = this.props;
         return (
             <div className="question">
                 {
                     quizQuestion
-                        ? quizQuestion.results.map(result => {
-                            return <p className="question__text"
-                                key={result.question}>
-                                {decodeURIComponent(result.question)}
-                            </p>
-
-                        })
+                        ? <p className="question__text"
+                            key={quizQuestion.results[0].question}>
+                            {decodeURIComponent(quizQuestion.results[0].question)}
+                        </p>
                         : ""
 
                 }

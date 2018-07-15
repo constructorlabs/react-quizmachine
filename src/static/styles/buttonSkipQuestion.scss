@@ -14,4 +14,8 @@
             opacity: .8;
         }
     }
+
+    &.skip-question--hidden {
+        display: none;
+    }
 }

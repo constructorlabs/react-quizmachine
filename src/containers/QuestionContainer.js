@@ -4,7 +4,8 @@ import { fetchQuestion } from '../actions';
 
 export const mapStateToProps = reduxStore => {
     return {
-        quizQuestion: reduxStore.quizQuestion
+        quizQuestion: reduxStore.quizQuestion,
+        currentQuestion: reduxStore.currentQuestion
     };
 };
 

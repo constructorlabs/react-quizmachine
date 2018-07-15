@@ -9,26 +9,38 @@ class Options extends React.Component {
             category: '',
             categoryName: '',
             difficulty: '',
-            optionsOpen: false
+            optionsOpen: false,
+            questionsAmount: 10
         }
 
         this.updateCategory = this.updateCategory.bind(this);
         this.updateDifficulty = this.updateDifficulty.bind(this);
         this.toggleOptions = this.toggleOptions.bind(this);
         this.updateCategory = this.updateCategory.bind(this);
+        // this.updateReduxCategory = this.updateCategory.bind(this);
         this.updateDifficulty = this.updateDifficulty.bind(this);
+        // this.updateReduxDifficulty = this.updateDifficulty.bind(this);
+        this.updateQuestionsAmount = this.updateQuestionsAmount.bind(this);
+        // this.updateReduxQuestionsAmount = this.updateReduxQuestionsAmount.bind(this);
     }
 
     updateCategory(e) {
         this.setState({
             category: e.target.value,
-            categoryName: e.target.selectedOptions[0].text // get text of the option tag not the value
+            categoryName: e.target.selectedOptions ? e.target.selectedOptions[0].text : "All", // get text of the option tag not the value
+            // questionsAmount: 
         });
     }
 
     updateDifficulty(e) {
         this.setState({
             difficulty: e.target.value
+        });
+    }
+
+    updateQuestionsAmount(e) {
+        this.setState({
+            questionsAmount: e.target.value
         });
     }
 
@@ -39,6 +51,11 @@ class Options extends React.Component {
 
     updateReduxDifficulty() {
         this.props.optionsDifficulty(this.state.difficulty);
+    }
+
+    updateReduxQuestionsAmount() {
+        // console.log("this.state.questionsAmount", this.state.questionsAmount)
+        this.props.updateReduxQuestionsAmount(this.state.questionsAmount);
     }
 
     toggleOptions() {
@@ -94,18 +111,57 @@ class Options extends React.Component {
                             <option value="hard">Hard</option>
                         </select>
                     </div>
+                    <div className="custom-select ">
+                        <select defaultValue="Questions amount (10 by default)"
+                            name="questions-amount"
+                            onChange={(e) => this.updateQuestionsAmount(e)} className="">
+                            <option value="Questions amount (10 by default)" disabled>Questions amount (10 by default)</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                        </select>
+                    </div>
                     <button
                         className="options__button-update"
                         onClick={(e) => {
-                            this.props.requestQuestionsUpdate(this.state.category, this.state.difficulty);
+                            this.props.requestQuestionsUpdate(this.state.category, this.state.difficulty, 1);
+                            this.props.currentQuestion(1);
                             this.toggleOptions();
                             this.updateReduxCategory(e);
                             this.updateReduxDifficulty(e);
+                            this.updateReduxQuestionsAmount(e);
                         }}>
                         Update
                     </button>
                 </div>
-            </div >
+            </div>
         );
     };
 }

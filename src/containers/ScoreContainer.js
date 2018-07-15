@@ -7,7 +7,9 @@ export const mapStateToProps = reduxStore => {
     return {
         score: reduxStore.score,
         categoryName: reduxStore.optionsCategoryName,
-        difficulty: reduxStore.optionsDifficulty
+        difficulty: reduxStore.optionsDifficulty,
+        totalQuestions: reduxStore.updateReduxQuestionsAmount,
+        currentQuestion: reduxStore.currentQuestion
     };
 };
 
