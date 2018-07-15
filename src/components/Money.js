@@ -17,7 +17,8 @@ function Money({ score, status, friend, audience, fifty, friendLine, audienceLin
       audienceLine(event.target.name);
     }
     else {
-      incorrectAnswerFn()
+
+      incorrectAnswerFn('WALK')
     }
   }
 
@@ -26,8 +27,13 @@ function Money({ score, status, friend, audience, fifty, friendLine, audienceLin
     if (status === "lose" && score > 0) {
       scoreString = `You leave with £ ${score.toLocaleString()}
                       - Thanks for playing!`
-    } else if (status === "lose") {
+
+    } else if (status === "walk" && score > 0) {
+      scoreString = `You leave with £ ${score.toLocaleString()}
+      - Chicken! `
+    } else if ((status === "lose" || status === "walk") && score === 0) {
       scoreString = `You lose(r)! -  Better luck next time!`
+
     } else {
       scoreString = `You currently have £ ${score.toLocaleString()}`
     }

@@ -48,9 +48,9 @@ export function endQuestions() {
   }
 }
 // ------------------------------------------------------
-export function endGame() {
+export function endGame(status) {
   return {
-    type: 'LOSE'
+    type: status
   }
 }
 // ------------------------------------------------------

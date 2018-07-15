@@ -51,7 +51,7 @@ margin:auto;
     height: 250px;
     background-repeat: no-repeat;
     background-size: contain;
-    border: 5px groove grey;
+    /* border: 5px groove grey; */
 }
 
 .main__score--money{
@@ -69,14 +69,16 @@ margin:auto;
   margin:30px;
   text-align:center;
   font-size:30px;
-  /* display:none; */
-  /* visibility: hidden; */
+
 }
 .questions__buttons:hover {
 
   background-color: rgb(46, 121, 146, 0.6);
   color: white;
 }
+
 #hidden{
-  display:none
+  position:absolute;
+  visibility: hidden;
+  /* display:none; */
 }
