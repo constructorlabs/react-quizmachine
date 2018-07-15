@@ -34,8 +34,13 @@ class Question extends React.Component {
           <section className="main__score--money">
             <Money score={this.props.money}
               status={this.props.status}
-              lifeLine={this.props.lifeLine}
-              lifelineFn={this.props.lifelineFn} />
+              friend={this.props.friend}
+              audience={this.props.audience}
+              fifty={this.props.fifty}
+              friendLine={this.props.friendLine}
+              audienceLine={this.props.audienceLine}
+              fiftyLine={this.props.fiftyLine}
+            />
           </section>
 
           {this.result()}

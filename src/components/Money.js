@@ -1,49 +1,30 @@
 import React from "react";
 
-function Money({ score, status, lifeLine, lifelineFn }) {
+function Money({ score, status, friend, audience, fifty, friendLine, audienceLine, fiftyLine }) {
 
-  let askAFriend = true;
-  let fiftyfifty = true;
-  let asktheClass = true;
 
-  // function friendButton() {
-  //   let friendString;
-  //   console.log("You used your friend lifeline", lifeLine);
-  //   if (lifeLine === "FRIEND") {
-  //     friendString = <img
-  //       className="score__money--lifeline"
-  //       src="friendUsed.png" />
-  //   } else {
-  //     friendString = <img
-  //       className="score__money--lifeline"
-  //       src="friend.png"
-  //       name="friend"
-  //       onClick={friendLifeline()} />
-  //   }
-  //   return friendString;
-  // }
-  function friendLifeline(event) {
-    console.log("You used your friend lifeline", lifeLine);
-    lifelineFn("FRIEND");
-    console.log("After used your friend lifeline", lifeLine);
+
+  function useLifeline(event) {
+    if (event.target.name === "FRIEND") {
+      console.log("You used your friend lifeline", event.target.name);
+      friendLine(event.target.name);
+    } else if (event.target.name === "FIFTY") {
+      console.log("You used your 50:50 lifeline")
+      fiftyLine(event.target.name);
+    }
+    else if (event.target.name === "AUDIENCE") {
+      console.log("You used your Audience lifeline")
+      audienceLine(event.target.name);
+    }
   }
-
-  //   }
-  //   else if (event.target.name === "fifty") {
-  //     console.log("You used your 50:50 lifeline")
-  //   }
-  //   else {
-  //     console.log("You used your class lifeline")
-  //   }
-  // }
 
   function displayScore() {
     let scoreString;
     if (status === "lose" && score > 0) {
       scoreString = `You leave with £ ${score.toLocaleString()}
-                      Thanks for playing!`
+                      - Thanks for playing!`
     } else if (status === "lose") {
-      scoreString = `You leave with Nothing! Better luck next time!`
+      scoreString = `You lose(r)! -  Better luck next time!`
     } else {
       scoreString = `You currently have £ ${score.toLocaleString()}`
     }
@@ -58,35 +39,41 @@ function Money({ score, status, lifeLine, lifelineFn }) {
       <div className="score__money--wrapper">
         <div className="score__money--buttons">
 
-          <img
+          {fifty !== "FIFTY" ? <img
             className="score__money--lifeline"
             src="5050.png"
-            name="fifty"
-            onClick={event => lifeline(event)} />
-
-          {lifeLine !== "FRIEND" ? <img
-            className="score__money--lifeline"
-            src="friend.png"
-            name="friend"
-            onClick={event => friendLifeline(event)} /> :
+            name="FIFTY"
+            onClick={event => useLifeline(event)} /> :
             <img
               className="score__money--lifeline"
-              src="friendUsed.png"
-              name="friend"
-              onClick={event => friendLifeline(event)} />
+              src="5050Used.png" />
           }
 
-          <img
+          {friend !== "FRIEND" ? <img
+            className="score__money--lifeline"
+            src="friend.png"
+            name="FRIEND"
+            onClick={event => useLifeline(event)} /> :
+            <img
+              className="score__money--lifeline"
+              src="friendUsed.png" />
+          }
+
+          {audience !== "AUDIENCE" ? <img
             className="score__money--lifeline"
             src="audience.png"
-            name="class"
-            onClick={event => { lifeline(event) }} />
+            name="AUDIENCE"
+            onClick={event => useLifeline(event)} /> :
+            <img
+              className="score__money--lifeline"
+              src="audienceUsed.png" />
+          }
 
           <img
             className="score__money--lifeline"
             src="leave.png"
             name="walk"
-            onClick={event => { lifeline(event) }} />
+            onClick={event => { useLifeline(event) }} />
 
         </div>
         <div className="score__money--money">
@@ -100,22 +87,3 @@ function Money({ score, status, lifeLine, lifelineFn }) {
 
 export default Money;
 
-
-{/* <button
-            className="score__money--lifeline"
-            name="walk"
-            onClick={event => { lifeline(event) }}>
-
-            walk</button> */}
-
-            // {askAFriend ?
-            //   <img
-            //     className="score__money--lifeline"
-            //     src="friend.png"
-            //     name="friend"
-            //     onClick={event => FriendLifeline(event)} /> :
-            //   <img
-            //     className="score__money--lifeline"
-            //     src="friendUsed.png"
-            //   />
-            // }

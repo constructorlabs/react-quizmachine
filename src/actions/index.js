@@ -54,8 +54,20 @@ export function endGame() {
   }
 }
 // ------------------------------------------------------
-export function lifeline() {
+export function friendline(help) {
   return {
-    type: 'FRIEND'
+    type: help
+  }
+}
+// ------------------------------------------------------
+export function audienceline(help) {
+  return {
+    type: help
+  }
+}
+// ------------------------------------------------------
+export function fiftyline(help) {
+  return {
+    type: help
   }
 }

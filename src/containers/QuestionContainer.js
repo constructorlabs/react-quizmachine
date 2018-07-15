@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Question from "../components/Question";
-import { fetchQuestionFromAPI, correctAnswer, incorrectAnswer, endQuestions, endGame, lifeline } from "../actions";
+import { fetchQuestionFromAPI, correctAnswer, incorrectAnswer, endQuestions, endGame, friendline, audienceline, fiftyline } from "../actions";
 
 
 
@@ -13,7 +13,9 @@ const mapStateToProps = (reduxState) => {
     question: reduxState.question,
     money: reduxState.money,
     status: reduxState.endGame,
-    lifeLine: reduxState.lifeLine
+    friend: reduxState.friend,
+    audience: reduxState.audience,
+    fifty: reduxState.fifty
   };
 };
 
@@ -30,10 +32,10 @@ const mapDispatchToProps = dispatch => {
         dispatch(endQuestions()),
         dispatch(endGame())
     },
-    lifelineFn: () => { dispatch(lifeline()) }
+    friendLine: (help) => { dispatch(friendline(help)) },
+    audienceLine: (help) => { dispatch(audienceline(help)) },
+    fiftyLine: (help) => { dispatch(fiftyline(help)) }
   }
-
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question);
