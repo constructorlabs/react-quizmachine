@@ -1,4 +1,6 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+
 import Header from './Header';
 import OptionsContainer from '../containers/OptionsContainer';
 import ScoreContainer from '../containers/ScoreContainer';
@@ -14,12 +16,32 @@ class App extends React.Component {
     return (
       <div className="quiz-wrapper">
         <Header />
-        <OptionsContainer />
-        <ScoreContainer />
-        <QuestionContainer />
-        <AnswersContainer />
-        <MessageContainer />
-        <ButtonSkipQuestionContainer />
+        <Switch>
+          <Route exact path="/" render={props => {
+            return <div>
+              <OptionsContainer />
+              <ScoreContainer />
+              <QuestionContainer />
+              <AnswersContainer />
+              <MessageContainer />
+              <ButtonSkipQuestionContainer />
+            </div>
+          }
+          } />
+          <Route exact path="/quiz" render={props => {
+            return <div>
+              <OptionsContainer />
+              <ScoreContainer />
+              <QuestionContainer />
+              <AnswersContainer />
+              <MessageContainer />
+              <ButtonSkipQuestionContainer />
+            </div>
+          }} />
+          />
+        </Switch>
+
+
       </div>
     )
   }
