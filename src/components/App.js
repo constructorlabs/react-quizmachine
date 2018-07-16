@@ -8,6 +8,7 @@ import QuestionContainer from '../containers/QuestionContainer';
 import AnswersContainer from '../containers/AnswersContainer';
 import MessageContainer from '../containers/MessageContainer';
 import ButtonSkipQuestionContainer from '../containers/ButtonSkipQuestionContainer';
+import HallOfFameContainer from '../containers/HallOfFameContainer';
 
 import '../static/styles/style.scss';
 
@@ -36,6 +37,12 @@ class App extends React.Component {
               <AnswersContainer />
               <MessageContainer />
               <ButtonSkipQuestionContainer />
+            </div>
+          }} />
+          />
+          <Route exact path="/hall-of-fame" render={props => {
+            return <div>
+              <HallOfFameContainer />
             </div>
           }} />
           />
