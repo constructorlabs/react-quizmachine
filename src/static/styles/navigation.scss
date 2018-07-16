@@ -1,0 +1,14 @@
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+
+    .navigation__item {
+        color: var(--secondary-color);
+        margin-left: 10px;
+        text-decoration: none;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}
