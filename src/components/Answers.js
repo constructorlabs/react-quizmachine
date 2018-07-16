@@ -37,8 +37,8 @@ function Answers({
             if (currentQuestion === +totalQuestions) return;
         } else {
             e.target.classList.add('animated', 'shake', 'answers__button--wrong-answer');
-            scoreUpdate(score - 10);
             isRightAnswer(false);
+            scoreUpdate(score - 10);
             incrementCurrentQuestion(currentQuestion + 1);
             e.target.setAttribute("disabled", "disabled");
             viewMessage(true);

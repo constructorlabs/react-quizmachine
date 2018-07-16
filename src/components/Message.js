@@ -14,7 +14,7 @@ function Message({ questionAnswer, score, viewMessage, updateMessage }) {
 
     setTimeout(() => {
         updateMessage(false);
-    }, 3000);
+    }, 1500);
 
     return (
         <div>
