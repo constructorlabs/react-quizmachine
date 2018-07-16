@@ -6,6 +6,7 @@
     font-size: 36px;
     transform: rotate(-4deg) translate(-50%, -60%);
     font-family: 'Bitter', serif;
+    z-index: 2;
 
     background-color: #fcaa02;
     width: 150px;
@@ -14,9 +15,9 @@
     z-index: 9999;
     display: none;
 
-    // &.visible {
-    //     display: block;
-    // }
+    &.visible {
+        display: block;
+    }
 
     &:after {
         content: "";
@@ -45,7 +46,24 @@
     .message__text {
         z-index: 99999;
         position: absolute;
-        top: 33%;
-        left: 6%;
+        top: 20%;
+        left: 4%;
+        text-align: center;
+    }
+}
+
+.cover {
+    position: fixed;
+    background-color: var(--primary-color);
+    opacity: .1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+
+    &.visible {
+        display: block;
     }
 }

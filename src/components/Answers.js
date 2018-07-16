@@ -12,7 +12,8 @@ function Answers({
     difficulty,
     incrementCurrentQuestion,
     currentQuestion,
-    totalQuestions
+    totalQuestions,
+    viewMessage
 }) {
 
     const question_answers = answers
@@ -23,19 +24,25 @@ function Answers({
 
     function verifyAnswer(e, answer) {
         e.preventDefault();
-        if (currentQuestion === +totalQuestions) return;
+
         if (answer === answers.results[0].correct_answer) {
             isRightAnswer(true);
-            scoreUpdate(score + 10);
             e.target.classList.add('animated', 'pulse', 'answers__button--correct-answer');
+            scoreUpdate(score + 10);
+            incrementCurrentQuestion(currentQuestion + 1);
             setTimeout(() => {
                 isRightAnswer(false);
             }, 2000)
+            viewMessage(true);
+            if (currentQuestion === +totalQuestions) return;
         } else {
-            isRightAnswer(false);
-            scoreUpdate(score - 10);
             e.target.classList.add('animated', 'shake', 'answers__button--wrong-answer');
+            scoreUpdate(score - 10);
+            isRightAnswer(false);
+            incrementCurrentQuestion(currentQuestion + 1);
             e.target.setAttribute("disabled", "disabled");
+            viewMessage(true);
+            if (currentQuestion === +totalQuestions) { isRightAnswer(true); return };
         }
     }
 
@@ -50,7 +57,6 @@ function Answers({
                 requestQuestion(category, difficulty);
                 isRightAnswer(false);
             }, 2000)
-            incrementCurrentQuestion(currentQuestion + 1);
         }
     }
 

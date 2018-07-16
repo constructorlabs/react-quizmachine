@@ -55,6 +55,13 @@ export function updateReduxQuestionsAmount(questionsAmount) {
   }
 }
 
+export function viewMessage(viewMessage) {
+  return {
+    type: 'RECEIVE_VIEW_MESSAGE',
+    viewMessage
+  }
+}
+
 export function fetchQuestion(category = '', difficulty = '', amount = 1) {
   return function (dispatch) {
     fetch(`https://opentdb.com/api.php?amount=${amount}&type=multiple&category=${category}&difficulty=${difficulty}&encode=url3986`)

@@ -7,6 +7,7 @@ import optionsCategory from './optionsCategory';
 import optionsCategoryName from './optionsCategoryName';
 import currentQuestion from './currentQuestion';
 import updateReduxQuestionsAmount from './updateReduxQuestionsAmount';
+import viewMessage from './viewMessage';
 
 export default combineReducers({
   quizQuestion,
@@ -16,5 +17,6 @@ export default combineReducers({
   optionsCategory,
   optionsCategoryName,
   currentQuestion,
-  updateReduxQuestionsAmount
+  updateReduxQuestionsAmount,
+  viewMessage
 });

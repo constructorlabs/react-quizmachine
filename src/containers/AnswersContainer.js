@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Answers from '../components/Answers';
-import { isRightAnswer, scoreUpdate, fetchQuestion, currentQuestion } from '../actions';
+import { viewMessage, isRightAnswer, scoreUpdate, fetchQuestion, currentQuestion } from '../actions';
 
 export const mapStateToProps = reduxStore => {
     return {
@@ -18,7 +18,8 @@ const mapDispatchToProps = dispatch => {
         requestQuestion: (category, difficulty) => dispatch(fetchQuestion(category, difficulty)),
         scoreUpdate: score => dispatch(scoreUpdate(score)),
         isRightAnswer: isRight => dispatch(isRightAnswer(isRight)),
-        incrementCurrentQuestion: current => dispatch(currentQuestion(current))
+        incrementCurrentQuestion: current => dispatch(currentQuestion(current)),
+        viewMessage: isVisible => dispatch(viewMessage(isVisible))
     }
 };
 

@@ -1,4 +1,4 @@
-function score(score = 50, action) {
+function score(score = 0, action) {
     switch (action.type) {
         case 'RECEIVE_SCORE':
             return action.score

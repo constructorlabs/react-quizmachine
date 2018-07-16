@@ -2,16 +2,28 @@ import React from 'react';
 import '../static/styles/message.scss';
 import cx from 'classnames';
 
-function Message({ questionAnswer }) {
+function Message({ questionAnswer, score, viewMessage, updateMessage }) {
     const CSSClasses = cx('message ', {
-        visible: questionAnswer,
+        visible: viewMessage,
         animated: questionAnswer,
         fadeIn: questionAnswer,
     });
+    const CoverClasses = cx('cover ', {
+        visible: viewMessage
+    });
+
+    setTimeout(() => {
+        updateMessage(false);
+    }, 3000);
+
     return (
-        <div className={CSSClasses}>
-            <span className="message__text">{questionAnswer ? "Correct!" : ""}</span>
+        <div>
+            <div className={CSSClasses}>
+                <span className="message__text">{questionAnswer ? "+ 10 points!" : "- 10 points!"}</span>
+            </div>
+            <div className={CoverClasses}></div>
         </div>
+
     );
 }
 
