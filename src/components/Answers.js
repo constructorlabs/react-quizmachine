@@ -29,20 +29,20 @@ function Answers({
             isRightAnswer(true);
             e.target.classList.add('animated', 'pulse', 'answers__button--correct-answer');
             scoreUpdate(score + 10);
-            incrementCurrentQuestion(currentQuestion + 1);
             setTimeout(() => {
                 isRightAnswer(false);
             }, 2000)
             viewMessage(true);
             if (currentQuestion === +totalQuestions) return;
+            incrementCurrentQuestion(currentQuestion + 1);
         } else {
             e.target.classList.add('animated', 'shake', 'answers__button--wrong-answer');
             isRightAnswer(false);
             scoreUpdate(score - 10);
-            incrementCurrentQuestion(currentQuestion + 1);
             e.target.setAttribute("disabled", "disabled");
             viewMessage(true);
             if (currentQuestion === +totalQuestions) { isRightAnswer(true); return };
+            incrementCurrentQuestion(currentQuestion + 1);
         }
     }
 
