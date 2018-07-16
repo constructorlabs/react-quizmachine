@@ -6,7 +6,8 @@ import {
     optionsCategory,
     optionsCategoryName,
     updateReduxQuestionsAmount,
-    currentQuestion
+    currentQuestion,
+    scoreUpdate
 } from '../actions';
 
 export const mapStateToProps = reduxStore => {
@@ -22,7 +23,8 @@ const mapDispatchToProps = dispatch => {
         optionsCategory: category => dispatch(optionsCategory(category)),
         optionsCategoryName: categoryName => dispatch(optionsCategoryName(categoryName)),
         updateReduxQuestionsAmount: questionsAmount => dispatch(updateReduxQuestionsAmount(questionsAmount)),
-        currentQuestion: questionsCount => dispatch(currentQuestion(questionsCount))
+        currentQuestion: questionsCount => dispatch(currentQuestion(questionsCount)),
+        scoreUpdate: score => dispatch(scoreUpdate(score))
     }
 };
 

@@ -153,6 +153,7 @@ class Options extends React.Component {
                         onClick={(e) => {
                             this.props.requestQuestionsUpdate(this.state.category, this.state.difficulty, 1);
                             this.props.currentQuestion(1);
+                            this.props.scoreUpdate(0);
                             this.toggleOptions();
                             this.updateReduxCategory(e);
                             this.updateReduxDifficulty(e);
