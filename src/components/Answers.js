@@ -20,7 +20,7 @@ function Answers({
         ? [...answers.results[0].incorrect_answers, answers.results[0].correct_answer]
         : [];
 
-    const shuffled_answers = question_answers; //.sort(() => 0.5 - Math.random());
+    const shuffled_answers = question_answers.sort(() => 0.5 - Math.random());
 
     function verifyAnswer(e, answer) {
         e.preventDefault();

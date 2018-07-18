@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Header from './Header';
+import StartContainer from '../containers/StartContainer';
 import OptionsContainer from '../containers/OptionsContainer';
 import ScoreContainer from '../containers/ScoreContainer';
 import QuestionContainer from '../containers/QuestionContainer';
@@ -19,16 +20,11 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" render={props => {
-            return <div>
-              <OptionsContainer />
-              <ScoreContainer />
-              <QuestionContainer />
-              <AnswersContainer />
-              <MessageContainer />
-              <ButtonSkipQuestionContainer />
-            </div>
-          }
-          } />
+            return <StartContainer />
+          }} />
+          <Route exact path="/start" render={props => {
+            return <StartContainer />
+          }} />
           <Route exact path="/quiz" render={props => {
             return <div>
               <OptionsContainer />

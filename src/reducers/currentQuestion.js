@@ -3,6 +3,7 @@ function currentQuestion(
     switch (action.type) {
         case 'RECEIVE_CURRENT_QUESTION':
             return action.currentQuestion
+
         default:
             return state
     }
