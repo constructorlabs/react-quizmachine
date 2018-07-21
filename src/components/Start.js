@@ -1,8 +1,9 @@
 import React from 'react';
+import OptionsContainer from '../containers/OptionsContainer';
 
 function Start() {
     return (
-        <div>Start</div>
+        <OptionsContainer />
     )
 }
 

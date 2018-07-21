@@ -1,69 +1,130 @@
 import React from 'react';
-import cx from 'classnames';
+import { Redirect } from 'react-router-dom';
+import ButtonAnswer from './ButtonAnswer';
 import '../static/styles/answers.scss';
 
-function Answers({
-    answers,
-    isRightAnswer,
-    score,
-    scoreUpdate,
-    requestQuestion,
-    category,
-    difficulty,
-    incrementCurrentQuestion,
-    currentQuestion,
-    totalQuestions,
-    viewMessage
-}) {
+class Answers extends React.Component {
 
-    const question_answers = answers
-        ? [...answers.results[0].incorrect_answers, answers.results[0].correct_answer]
-        : [];
+    constructor(props) {
+        super(props);
+        this.state = {
+            answers: {},
+            shuffled_answers: [],
+            redirect: false
+        }
+        this.verifyAnswer = this.verifyAnswer.bind(this);
+        this.endOfQuestions = this.endOfQuestions.bind(this);
+        this.setRedirect = this.setRedirect.bind(this);
+        this.renderRedirect = this.renderRedirect.bind(this);
+    }
 
-    const shuffled_answers = question_answers.sort(() => 0.5 - Math.random());
+    // componentDidMount() {
+    // console.log("this.props", this.props)
+    // const question_answers = this.state.answers.results
+    //     ? [...this.state.answers.results[0].incorrect_answers, this.state.answers.results[0].correct_answer]
+    //     : [];
 
-    function verifyAnswer(e, answer) {
+    // this.setState({
+    //     shuffled_answers: question_answers.sort(() => 0.5 - Math.random())
+    // })
+
+    // }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ answers: nextProps.answers });
+        const question_answers = nextProps.answers.results
+            ? [...nextProps.answers.results[0].incorrect_answers, nextProps.answers.results[0].correct_answer]
+            : [];
+
+        this.setState({
+            shuffled_answers: question_answers.sort(() => 0.5 - Math.random())
+        })
+    }
+
+    verifyAnswer(e, answer) {
         e.preventDefault();
 
-        if (answer === answers.results[0].correct_answer) {
-            isRightAnswer(true);
-            e.target.classList.add('animated', 'pulse', 'answers__button--correct-answer');
-            scoreUpdate(score + 10);
+        if (answer === this.state.answers.results[0].correct_answer) {
+            this.props.isRightAnswer(true);
+            // e.target.classList.add('animated', 'pulse', 'answers__button--correct-answer');
+            this.props.scoreUpdate(this.props.score + 10);
+            this.props.viewMessage(true);
             setTimeout(() => {
-                isRightAnswer(false);
-            }, 2000)
-            viewMessage(true);
-            if (currentQuestion === +totalQuestions) return;
-            incrementCurrentQuestion(currentQuestion + 1);
+                this.props.isRightAnswer(false);
+            }, 3000)
+            this.props.requestQuestion(this.props.category, this.props.difficulty);
+            if (this.props.currentQuestion === +this.props.totalQuestions) return;
+            this.props.incrementCurrentQuestion(this.props.currentQuestion + 1);
         } else {
-            e.target.classList.add('animated', 'shake', 'answers__button--wrong-answer');
-            isRightAnswer(false);
-            scoreUpdate(score - 10);
-            e.target.setAttribute("disabled", "disabled");
-            viewMessage(true);
-            if (currentQuestion === +totalQuestions) { isRightAnswer(true); return };
-            incrementCurrentQuestion(currentQuestion + 1);
+            // e.target.classList.add('animated', 'shake', 'answers__button--wrong-answer');
+            this.props.isRightAnswer(false);
+            this.props.scoreUpdate(this.props.score - 10);
+
+
+            // e.target.setAttribute("disabled", "disabled");
+            this.props.viewMessage(true);
+
+            setTimeout(() => {
+                this.props.requestQuestion(this.props.category, this.props.difficulty);
+            }, 3000)
+            if (this.props.currentQuestion === +this.props.totalQuestions) { this.props.isRightAnswer(true); return };
+            this.props.incrementCurrentQuestion(this.props.currentQuestion + 1);
         }
     }
 
-    function endOfQuestions() {
+    endOfQuestions() {
         // console.log("currentQuestion", currentQuestion);
         // console.log("totalQuestions", totalQuestions);
-        if (currentQuestion === +totalQuestions) {
+        if (this.props.currentQuestion === +this.props.totalQuestions) {
             // Open end game message
             console.log('game ends');
+
+            setTimeout(() => {
+                this.setRedirect();
+            }, 2000)
         } else {
             setTimeout(() => {
-                requestQuestion(category, difficulty);
-                isRightAnswer(false);
+                // requestQuestion(category, difficulty);
+                this.props.isRightAnswer(false);
             }, 2000)
         }
     }
 
-    return (
-        <div className="answers">
-            {shuffled_answers.map(answer => {
-                return <button
+    setRedirect() {
+        this.setState({
+            redirect: true
+        });
+    }
+    renderRedirect() {
+        if (this.state.redirect) {
+            return <Redirect to="/hall-of-fame" />;
+        }
+    }
+
+    render() {
+        return (
+            <div className="answers" >
+                {this.renderRedirect()}
+                {
+                    this.state.shuffled_answers.map(answer => {
+                        return <ButtonAnswer
+                            key={answer}
+                            answer={answer}
+                            isRight={answer === this.state.answers.results[0].correct_answer}
+                            verifyAnswer={this.verifyAnswer}
+                            endOfQuestions={this.endOfQuestions}
+                        />
+                    })
+                }
+            </div>
+        )
+    }
+}
+
+export default Answers;
+
+
+                /* return <button
                     type="button"
                     onClick={(e) => {
                         verifyAnswer(e, answer);
@@ -74,74 +135,4 @@ function Answers({
                         "answers__button--disabled": false
                     })}>
                     {decodeURIComponent(answer)}
-                </button>
-            })}
-        </div >
-    )
-}
-
-export default Answers;
-
-
-// import React from 'react';
-// import cx from 'classnames';
-// import '../static/styles/answers.scss';
-
-// class Answers extends React.Component {
-//     //({ answers, isRightAnswer, score, scoreUpdate })
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             question_answers: []
-
-//             // shuffled_answers: question_answers //.sort(() => 0.5 - Math.random());
-//         }
-//     }
-
-//     componentDidMount() {
-//         console.log("this.props.answers", this.props)
-//         this.setState(
-//             {
-//                 question_answers: this.props.answers
-//                     ? [...this.props.answers.results[0].incorrect_answers, this.props.answers.results[0].correct_answer]
-//                     : ['sssss'],
-//             }
-//         )
-//     }
-
-//     verifyAnswer(e, answer) {
-//         e.preventDefault();
-//         if (answer === this.props.answers.results[0].correct_answer) {
-//             console.log("Right!");
-//             this.props.isRightAnswer(true);
-//             this.props.scoreUpdate(score + 10);
-//             e.target.classList.add('correct-answer');
-//         } else {
-//             console.log("Wrong!");
-//             this.props.isRightAnswer(false);
-//             this.props.scoreUpdate(score - 10);
-//             e.target.classList.add('disabled');
-//         }
-//     }
-
-//     render() {
-//         console.log("this.state.question_answers", this.state.question_answers)
-//         return (
-//             <div className="answers">
-//                 {this.state.question_answers.map(answer => {
-//                     return <button
-//                         type="button"
-//                         onClick={(e) => verifyAnswer(e, answer)}
-//                         key={answer}
-//                         className={cx('answers__button', {
-//                             "answers__button--disabled": false
-//                         })}>
-//                         {decodeURIComponent(answer)}
-//                     </button>
-//                 })}
-//             </div>
-//         )
-//     }
-// }
-
-// export default Answers;
+                </button> */

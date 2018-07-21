@@ -27,7 +27,7 @@ class App extends React.Component {
           }} />
           <Route exact path="/quiz" render={props => {
             return <div>
-              <OptionsContainer />
+              {/* <OptionsContainer /> */}
               <ScoreContainer />
               <QuestionContainer />
               <AnswersContainer />

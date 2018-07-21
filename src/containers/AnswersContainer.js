@@ -1,8 +1,16 @@
 import { connect } from 'react-redux'
 import Answers from '../components/Answers';
-import { viewMessage, isRightAnswer, scoreUpdate, fetchQuestion, currentQuestion } from '../actions';
+import {
+    viewMessage,
+    isRightAnswer,
+    scoreUpdate,
+    fetchQuestion,
+    currentQuestion
+}
+    from '../actions';
 
 export const mapStateToProps = reduxStore => {
+    console.log("reduxStore", reduxStore)
     return {
         answers: reduxStore.quizQuestion,
         score: reduxStore.score,

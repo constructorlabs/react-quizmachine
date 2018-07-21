@@ -1,11 +1,11 @@
 .options {
-    .options__list {
-        display: none;
+    // .options__list {
+    //     display: none;
     
-        &.visible {
-            display: block;
-        }
-    }
+    //     &.visible {
+    //         display: block;
+    //     }
+    // }
     
     .options__toggle {
         display: flex;
@@ -19,10 +19,10 @@
             margin-bottom: 10px;
             color: #fff;
 
-            &:hover {
-                cursor: pointer;
-                opacity: .8;
-            }
+            // &:hover {
+            //     cursor: pointer;
+            //     opacity: .8;
+            // }
         }
     }
 

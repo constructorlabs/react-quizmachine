@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { Redirect } from 'react-router-dom';
 import "../static/styles/options.scss";
 
 class Options extends React.Component {
@@ -9,19 +10,20 @@ class Options extends React.Component {
             category: '',
             categoryName: '',
             difficulty: '',
-            optionsOpen: false,
+
+            redirect: false,
+            // optionsOpen: false,
             questionsAmount: 10
         }
 
         this.updateCategory = this.updateCategory.bind(this);
         this.updateDifficulty = this.updateDifficulty.bind(this);
-        this.toggleOptions = this.toggleOptions.bind(this);
+        this.setRedirect = this.setRedirect.bind(this);
+        this.renderRedirect = this.renderRedirect.bind(this);
+        // this.toggleOptions = this.toggleOptions.bind(this);
         this.updateCategory = this.updateCategory.bind(this);
-        // this.updateReduxCategory = this.updateCategory.bind(this);
         this.updateDifficulty = this.updateDifficulty.bind(this);
-        // this.updateReduxDifficulty = this.updateDifficulty.bind(this);
         this.updateQuestionsAmount = this.updateQuestionsAmount.bind(this);
-        // this.updateReduxQuestionsAmount = this.updateReduxQuestionsAmount.bind(this);
     }
 
     updateCategory(e) {
@@ -51,6 +53,7 @@ class Options extends React.Component {
 
     updateReduxDifficulty() {
         this.props.optionsDifficulty(this.state.difficulty);
+        this.setRedirect();
     }
 
     updateReduxQuestionsAmount() {
@@ -58,10 +61,22 @@ class Options extends React.Component {
         this.props.updateReduxQuestionsAmount(this.state.questionsAmount);
     }
 
-    toggleOptions() {
+    // toggleOptions() {
+    //     this.setState({
+    //         optionsOpen: !this.state.optionsOpen
+    //     })
+    // }
+
+    setRedirect() {
         this.setState({
-            optionsOpen: !this.state.optionsOpen
-        })
+            redirect: true
+        });
+    }
+
+    renderRedirect() {
+        if (this.state.redirect) {
+            return <Redirect to="/quiz" />;
+        }
     }
 
     render() {
@@ -70,6 +85,7 @@ class Options extends React.Component {
         });
         return (
             <div className="options">
+                {this.renderRedirect()}
                 <div className="options__toggle">
                     <button className="options__toggle__button" onClick={this.toggleOptions}>Options</button>
                 </div>
@@ -154,12 +170,11 @@ class Options extends React.Component {
                             this.props.requestQuestionsUpdate(this.state.category, this.state.difficulty, 1);
                             this.props.currentQuestion(1);
                             this.props.scoreUpdate(0);
-                            this.toggleOptions();
                             this.updateReduxCategory(e);
                             this.updateReduxDifficulty(e);
                             this.updateReduxQuestionsAmount(e);
                         }}>
-                        Update
+                        Go!
                     </button>
                 </div>
             </div>
