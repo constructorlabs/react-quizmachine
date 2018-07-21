@@ -62,6 +62,13 @@ export function viewMessage(viewMessage) {
   }
 }
 
+export function generateArray(array) {
+  return {
+    type: 'ARRAY_RECEIVE',
+    randomArray: array
+  }
+}
+
 export function fetchQuestion(category = '', difficulty = '', amount = 1) {
   return function (dispatch) {
     fetch(`https://opentdb.com/api.php?amount=${amount}&type=multiple&category=${category}&difficulty=${difficulty}&encode=url3986`)

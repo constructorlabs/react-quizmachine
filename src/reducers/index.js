@@ -8,6 +8,7 @@ import optionsCategoryName from './optionsCategoryName';
 import currentQuestion from './currentQuestion';
 import updateReduxQuestionsAmount from './updateReduxQuestionsAmount';
 import viewMessage from './viewMessage';
+import randomArray from './randomArray';
 
 export default combineReducers({
   quizQuestion,
@@ -18,5 +19,6 @@ export default combineReducers({
   optionsCategoryName,
   currentQuestion,
   updateReduxQuestionsAmount,
-  viewMessage
+  viewMessage,
+  randomArray
 });

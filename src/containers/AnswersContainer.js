@@ -5,13 +5,14 @@ import {
     isRightAnswer,
     scoreUpdate,
     fetchQuestion,
-    currentQuestion
+    currentQuestion,
+    generateArray
 }
     from '../actions';
 
 export const mapStateToProps = reduxStore => {
-    console.log("reduxStore", reduxStore)
     return {
+        randomArray: reduxStore.randomArray,
         answers: reduxStore.quizQuestion,
         score: reduxStore.score,
         category: reduxStore.optionsCategory,
@@ -23,6 +24,7 @@ export const mapStateToProps = reduxStore => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        generateArray: array => dispatch(generateArray(array)),
         requestQuestion: (category, difficulty) => dispatch(fetchQuestion(category, difficulty)),
         scoreUpdate: score => dispatch(scoreUpdate(score)),
         isRightAnswer: isRight => dispatch(isRightAnswer(isRight)),

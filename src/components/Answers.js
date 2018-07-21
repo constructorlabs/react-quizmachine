@@ -18,17 +18,8 @@ class Answers extends React.Component {
         this.renderRedirect = this.renderRedirect.bind(this);
     }
 
-    // componentDidMount() {
-    // console.log("this.props", this.props)
-    // const question_answers = this.state.answers.results
-    //     ? [...this.state.answers.results[0].incorrect_answers, this.state.answers.results[0].correct_answer]
-    //     : [];
-
-    // this.setState({
-    //     shuffled_answers: question_answers.sort(() => 0.5 - Math.random())
-    // })
-
-    // }
+    componentDidMount() {
+    }
 
     componentWillReceiveProps(nextProps) {
         this.setState({ answers: nextProps.answers });
@@ -36,8 +27,18 @@ class Answers extends React.Component {
             ? [...nextProps.answers.results[0].incorrect_answers, nextProps.answers.results[0].correct_answer]
             : [];
 
+        //If they are new answers generate random array
+        if (nextProps.answers !== this.state.answers) {
+            this.props.generateArray(this.props.randomArray.sort(() => 0.5 - Math.random()));
+        }
+
+        // Generate array with suffled questions  
+        const suffled = [];
+        this.props.randomArray.map(position => {
+            suffled.push(question_answers[position]);
+        })
         this.setState({
-            shuffled_answers: question_answers.sort(() => 0.5 - Math.random())
+            shuffled_answers: suffled
         })
     }
 
@@ -66,7 +67,7 @@ class Answers extends React.Component {
 
             setTimeout(() => {
                 this.props.requestQuestion(this.props.category, this.props.difficulty);
-            }, 3000)
+            }, 1000)
             if (this.props.currentQuestion === +this.props.totalQuestions) { this.props.isRightAnswer(true); return };
             this.props.incrementCurrentQuestion(this.props.currentQuestion + 1);
         }
@@ -113,6 +114,7 @@ class Answers extends React.Component {
                             isRight={answer === this.state.answers.results[0].correct_answer}
                             verifyAnswer={this.verifyAnswer}
                             endOfQuestions={this.endOfQuestions}
+
                         />
                     })
                 }

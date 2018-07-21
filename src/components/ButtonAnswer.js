@@ -20,7 +20,6 @@ class ButtonAnswer extends React.Component {
 
 
     render() {
-        console.log("this.props.isRight", this.props.isRight);
         return (
             <button
                 type="button"
