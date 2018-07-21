@@ -1,6 +1,6 @@
 import React from "react";
 
-function Money({ score, status, friend, audience, fifty, friendLine, audienceLine, fiftyLine, incorrectAnswerFn }) {
+function Money({ score, status, friend, audience, fifty, friendLine, audienceLine, fiftyLine, walkFn }) {
 
 
 
@@ -18,7 +18,7 @@ function Money({ score, status, friend, audience, fifty, friendLine, audienceLin
     }
     else {
 
-      incorrectAnswerFn('WALK')
+      walkFn('WALK')
     }
   }
 
@@ -48,7 +48,7 @@ function Money({ score, status, friend, audience, fifty, friendLine, audienceLin
       <div className="score__money--wrapper">
         <div className="score__money--buttons">
 
-          {fifty !== "FIFTY" ? <img
+          {(fifty !== "FIFTY") && (fifty !== "USEDFIFTY") ? <img
             className="score__money--lifeline"
             src="5050.png"
             name="FIFTY"

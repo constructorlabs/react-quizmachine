@@ -36,9 +36,9 @@ export function correctAnswer() {
   }
 }
 // ------------------------------------------------------
-export function incorrectAnswer() {
+export function incorrectAnswer(endType) {
   return {
-    type: 'INCORRECT_ANSWER'
+    type: endType
   }
 }
 // ------------------------------------------------------

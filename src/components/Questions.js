@@ -1,6 +1,6 @@
 import React from "react";
 
-function Questions({ quizData, correctAnswerFn, incorrectAnswerFn, fifty }) {
+function Questions({ quizData, correctAnswerFn, incorrectAnswerFn, fifty, fiftyLine }) {
 
   let possibleAnswers = [...quizData]
   //Now quizData is an array of rightAnswer, Question, random answers
@@ -29,11 +29,14 @@ function Questions({ quizData, correctAnswerFn, incorrectAnswerFn, fifty }) {
   // check if selected answer is right or not and call appropriate dispatch function
   function checkAnswer(answer) {
     event.preventDefault();
-
     if (answer === rightAnswer) {
       correctAnswerFn('WIN')
+
     } else {
       incorrectAnswerFn('LOSE')
+    }
+    if (fifty === "FIFTY") {
+      fiftyLine('USEDFIFTY')
     }
   }
 

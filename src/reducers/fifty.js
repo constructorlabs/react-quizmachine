@@ -3,8 +3,8 @@ function fifty(reduxState = '', action) {
   switch (action.type) {
     case 'FIFTY':
       return 'FIFTY'
-    // case 'RESET':
-    //   return 'FIFTYUSED'
+    case 'USEDFIFTY':
+      return 'USEDFIFTY'
     default:
       return reduxState;
   }

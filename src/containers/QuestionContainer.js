@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Question from "../components/Question";
-import { fetchQuestionFromAPI, correctAnswer, incorrectAnswer, endQuestions, endGame, friendline, audienceline, fiftyline } from "../actions";
+import { fetchQuestionFromAPI, correctAnswer, incorrectAnswer, endQuestions, endGame, friendline, audienceline, fiftyline, walk } from "../actions";
 
 const mapStateToProps = (reduxState) => {
 
@@ -26,9 +26,14 @@ const mapDispatchToProps = dispatch => {
         dispatch(endGame(status))
     },
     incorrectAnswerFn: (status) => {
-      dispatch(incorrectAnswer()),
+      dispatch(incorrectAnswer('INCORRECT_ANSWER')),
         dispatch(endQuestions()),
         dispatch(endGame(status))
+    },
+    walkFn: () => {
+      dispatch(incorrectAnswer('WALK')),
+        dispatch(endQuestions()),
+        dispatch(endGame('LOSE'))
     },
     friendLine: (help) => { dispatch(friendline(help)) },
     audienceLine: (help) => { dispatch(audienceline(help)) },
