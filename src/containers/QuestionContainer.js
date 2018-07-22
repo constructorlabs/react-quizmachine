@@ -3,14 +3,15 @@ import Question from "../components/Question";
 import { fetchQuestionFromAPI, checkAnswer, endQuestions, endGame, friendline, audienceline, fiftyQuestions, restart } from "../actions";
 
 const mapStateToProps = (reduxState) => {
-  console.log("container audience", reduxState.audience)
+  console.log("container reply", reduxState.reply)
   return {
     quizData: reduxState.question,
     money: reduxState.money,
     status: reduxState.endGame,
     friend: reduxState.friend,
     audience: reduxState.audience,
-    fifty: reduxState.fifty
+    fifty: reduxState.fifty,
+    response: reduxState.reply
   };
 };
 

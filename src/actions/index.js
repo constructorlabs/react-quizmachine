@@ -1,7 +1,7 @@
 export function fetchQuestionFromAPI() {
   return function (dispatch, getState) {
 
-    // Quiz data fetch difficulty is dependent on how much money the contestant has won so    far
+    // Quiz data fetch difficulty is dependent on how much money the contestant has won so far
 
     let difficulty;
 
@@ -18,9 +18,13 @@ export function fetchQuestionFromAPI() {
     return fetch(`https://opentdb.com/api.php?amount=1&category=9&${difficulty}&type=multiple&encode=url3986`)
       .then(response => response.json())
       .then(json => {
+
         //need to reset win status 
         dispatch(endGame(''));
+
         dispatch(setQuestions(json.results));
+
+
       })
       .catch(error => console.log("Oh no! There's a Gru in the code... ", error));
   }
@@ -45,7 +49,9 @@ export function setQuestions(questionData) {
         quizData = [rightAnswer, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3].sort(function () { return 0.5 - Math.random() });
 
         quizData.unshift(rightAnswer, currentQuestion);
+
         //quizData is in the format[right answer,question,random 4 answers]
+        dispatch(friendReset('RESET_FRIEND')); //remove any friend replies before displaying next set of 4 questions
         dispatch(receiveQuestion(quizData))
       })
     }
@@ -65,16 +71,19 @@ export function checkAnswer(endType) {
     type: endType
   }
 }
-// ------------------------------------------------------
-// export function incorrectAnswer(endType) {
-//   return {
-//     type: endType
-//   }
-// }
+
 // ------------------------------------------------------
 export function endQuestions() {
+  return function (dispatch, getState) {
+    const questionData = getState().question;
+    const rightAnswer = questionData[0];
+    dispatch(showCorrect(rightAnswer))
+  }
+}
+export function showCorrect(display) {
   return {
-    type: 'GAME_OVER'
+    type: 'GAME_OVER',
+    payload: display
   }
 }
 // ------------------------------------------------------
@@ -84,37 +93,49 @@ export function endGame(status) {
   }
 }
 // ------------------------------------------------------
-export function friendline(help) {
+export function friend(help) {
   return {
     type: 'FRIEND',
     payload: help
   }
 }
 
-// export function friendline(help) {
-//   return function (dispatch, getState) {
-//     console.log("getstate ", getState().question);
-//     console.log(getState().question[0])
-//     console.log("fifty ", getState().fifty)
+export function friendline(help) {
+  return function (dispatch, getState) {
 
-//     const chance = Math.random();
-//     // If 50:50 has been used your friend has a 70% chance of getting the answer right
-//     if (getState().fifty === "FIFTY") {
-//       if (chance < 0.75) {
-//         dispatch(friendAnswer(getState().question[0]))
-//       } else {
-//         dispatch(friendAnswer(getState().question[0]))
-//       }
-//       dispatch(friendAnswer("FIFTY"))
-//     } else {
-//       dispatch(friendAnswer("RND"))
-//     }
-//   }
-// }
+    dispatch(friend('FRIEND'));
 
-export function friendAnswer(chances) {
+    const chance = Math.random();
+    let randomAnswer;
+
+    // If 50:50 has been used your friend has a probability of 75% chance of getting the answer right
+    if (getState().fifty === "FIFTY") {
+      if (chance < 0.75) {
+        dispatch(friendAnswer(getState().question[0]))
+
+      } else {
+        // return a random other answer
+        randomAnswer = (getState().question.slice(2)).sort(function () { return 0.5 - Math.random() });
+        dispatch(friendAnswer(randomAnswer[0]))
+      }
+      // Your friend only has a 45% chance of getting the answer right
+    } else {
+      if (chance < 0.45) {
+        dispatch(friendAnswer(getState().question[0]))
+
+      } else {
+        randomAnswer = (getState().question.slice(2)).sort(function () { return 0.5 - Math.random() });
+        dispatch(friendAnswer(randomAnswer[0]))
+
+      }
+    }
+  }
+}
+
+export function friendAnswer(reply) {
   return {
-    type: chances
+    type: 'FRIEND_RESPONSE',
+    payload: reply
   }
 }
 export function fiftyline(help) {
@@ -139,11 +160,11 @@ export function fiftyQuestions(help) {
 
     const currentQuestion = possibleAnswers[1];
     possibleAnswers.splice(0, 2);
+
     //calculate index positions of correct answer and 1 random other answer
-    // console.log("answers", possibleAnswers)
     let right = possibleAnswers.indexOf(rightAnswer);
     let keeper = Math.floor(Math.random() * 4);
-    // console.log("before  ", right, keeper);
+
     if (right === keeper && right !== 3) {
       keeper += 1
     } else if (right === 3 && keeper === 3) {
@@ -165,14 +186,22 @@ export function receiveFifty(questionData) {
 // ------------------------------------------------------
 
 
-//Initialise all states
+//Initialise all states on new game
 export function restart() {
   return function (dispatch, getState) {
     dispatch(audienceline(''));
-    dispatch(friendline(''));
+    dispatch(friend(''));
     dispatch(fiftyline(''));
+    dispatch(endGame(''));
+    dispatch(friendReset(''));
     dispatch(checkAnswer('RESTART'));
 
+  }
+}
 
+export function friendReset(reply) {
+  return {
+    type: 'RESET_FRIEND',
+    payload: reply
   }
 }

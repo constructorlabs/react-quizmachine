@@ -10,8 +10,12 @@ a {color: inherit;
 body {
   margin: 0;
   font-family: 'IBM Plex Serif', serif;
-  background: rgb(36, 36, 77);
-
+  /* background: rgb(36, 36, 77); */
+  background-image:url("background2.jpg");
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-size: cover;
+  
   color: whitesmoke;
 }
 
@@ -85,6 +89,11 @@ to {
 
   background-color: rgb(46, 121, 146, 0.6);
   color: white;
+}
+
+.questions__response{
+  font-style:italic;
+  color:yellow;
 }
 
 #hidden{

@@ -2,7 +2,6 @@ import React from "react";
 
 function Money({ score, status, friend, audience, fifty, friendLine, audienceLine, fiftyLine, newGame, walkFn }) {
 
-  console.log("in Money audience state is", audience)
   function useLifeline(event) {
     if (event.target.name === "FRIEND") {
       friendLine(event.target.name);
@@ -11,7 +10,7 @@ function Money({ score, status, friend, audience, fifty, friendLine, audienceLin
     } else if (event.target.name === "AUDIENCE") {
       audienceLine(event.target.name);
     } else if (event.target.name === "RESTART") {
-      console.log("restart")
+
       newGame(event.target.name);
     } else {
       walkFn('WALK')
@@ -35,8 +34,6 @@ function Money({ score, status, friend, audience, fifty, friendLine, audienceLin
     }
     return scoreString;
   }
-
-
 
   return (
     <div className="score__money">

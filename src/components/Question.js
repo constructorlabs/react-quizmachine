@@ -19,9 +19,9 @@ class Question extends React.Component {
     snd.play();
   }
 
-
   result() {
     switch (this.props.status) {
+      // display crying minion and play wrong answer sound 
       case "lose":
         return (<div><iframe src="https://giphy.com/embed/gGn9eq3prU6m4" width="480" height="320" frameBorder="1" margin="150" className="main__score--image" allowFullScreen>
         </iframe>
@@ -29,7 +29,9 @@ class Question extends React.Component {
         </div>)
 
       case "win":
-        return (<div><iframe src="https://giphy.com/embed/MOWPkhRAUbR7i" width="480" height="320" frameBorder="1" className="main__score--image"> </iframe>
+        // display happy minions and right answer sound
+        return (<div><iframe src="https://giphy.com/embed/MOWPkhRAUbR7i" width="480" height="320" frameBorder="1" margin="150" className="main__score--image" allowFullScreen>
+        </iframe>
           {this.play("right.mp3")}
         </div>)
       default:
@@ -38,7 +40,6 @@ class Question extends React.Component {
   }
 
   render() {
-    console.log("Inside QUESTION audeince", this.props.audience)
 
     return (
       <main className="main">
@@ -53,12 +54,12 @@ class Question extends React.Component {
               audienceLine={this.props.audienceLine}
               newGame={this.props.newGame}
               fiftyLine={this.props.fiftyLine}
-
               walkFn={this.props.walkFn}
             />
           </section>
 
           {this.result()}
+
         </section>
 
         <Questions
@@ -66,13 +67,11 @@ class Question extends React.Component {
           quizData={this.props.quizData}
           correctAnswerFn={this.props.correctAnswerFn}
           incorrectAnswerFn={this.props.incorrectAnswerFn}
-          score={this.props.money}
-          result={this.result}
           fifty={this.props.fifty}
           fiftyLine={this.props.fiftyLine}
+          response={this.props.response}
         />
 
-        {/* <button onClick={event => { this.props.fetchQuestion() }}>Next Contestant</button> */}
       </main>
 
     );

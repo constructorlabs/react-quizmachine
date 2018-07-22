@@ -1,7 +1,5 @@
 function money(state = 0, action) {
 
-  // console.log("money in reducer ", state, "type", action.type)
-
   switch (action.type) {
     case 'CORRECT_ANSWER':
       return state + 100000
