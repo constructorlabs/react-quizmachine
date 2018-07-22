@@ -2,7 +2,7 @@ function audience(reduxState = '', action) {
 
   switch (action.type) {
     case 'AUDIENCE':
-      return 'AUDIENCE'
+      return action.payload
     default:
       return reduxState;
   }

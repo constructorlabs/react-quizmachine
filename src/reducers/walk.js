@@ -1,4 +1,4 @@
-function money(state = 0, action) {
+function walk(state = 0, action) {
 
   switch (action.type) {
     case 'CORRECT_ANSWER':
@@ -13,18 +13,9 @@ function money(state = 0, action) {
       } else {
         return 500000
       }
-    case 'WALK':
-      if (state >= 300000) {
-        return state;
-      } else {
-        return 0;
-      }
-    case 'RESTART':
-      return 0;
-
     default:
       return state;
   }
 }
 
-export default money;
+export default walk;

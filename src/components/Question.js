@@ -5,25 +5,38 @@ import Questions from './Questions';
 class Question extends React.Component {
   constructor(props) {
     super(props);
+
   }
 
   componentDidMount() {
     if (this.props.fetchQuestion !== undefined) {
-      console.log("Step 1: calling fetchQuestion")
       this.props.fetchQuestion();
     }
   }
 
+  play(tune) {
+    let snd = new Audio(tune);
+    snd.play();
+  }
+
   result() {
-    let image;
-    if (this.props.status === "lose") {
-      image = <iframe src="https://giphy.com/embed/gGn9eq3prU6m4" width="480" height="320" frameBorder="1" margin="150" className="main__score--image" allowFullScreen></iframe>
-    } else if (this.props.status === "win") {
-      <iframe src="https://giphy.com/embed/MOWPkhRAUbR7i" width="480" height="320" frameBorder="1" className="main__score--image" allowFullScreen></iframe>
-    } else {
-      image = <img className="main__score--image" src='minion.jpg' />
+    switch (this.props.status) {
+      // display crying minion and play wrong answer sound 
+      case "lose":
+        return (<div><iframe src="https://giphy.com/embed/gGn9eq3prU6m4" width="480" height="320" frameBorder="1" margin="150" className="main__score--image" allowFullScreen>
+        </iframe>
+          {this.play("wrong.mp3")}
+        </div>)
+
+      case "win":
+        // display happy minions and right answer sound
+        return (<div><iframe src="https://giphy.com/embed/MOWPkhRAUbR7i" width="480" height="320" frameBorder="1" margin="150" className="main__score--image" allowFullScreen>
+        </iframe>
+          {this.play("right.mp3")}
+        </div>)
+      default:
+        return (<img className="main__score--image" src='minion.jpg' />)
     }
-    return image;
   }
 
   render() {
@@ -39,30 +52,28 @@ class Question extends React.Component {
               fifty={this.props.fifty}
               friendLine={this.props.friendLine}
               audienceLine={this.props.audienceLine}
+              newGame={this.props.newGame}
               fiftyLine={this.props.fiftyLine}
-              incorrectAnswerFn={this.props.incorrectAnswerFn}
+              walkFn={this.props.walkFn}
             />
           </section>
 
           {this.result()}
+
         </section>
 
-        {this.props.question.map(quizItem => {
-          return (
-            <Questions
-              key={quizItem}
-              quizItem={quizItem}
-              correctAnswerFn={this.props.correctAnswerFn}
-              incorrectAnswerFn={this.props.incorrectAnswerFn}
-              score={this.props.money}
-              result={this.result}
-              fifty={this.props.fifty}
-              friend={this.props.friend}
-            />
-          );
-        })}
+        <Questions
+          key={this.props.quizData}
+          quizData={this.props.quizData}
+          correctAnswerFn={this.props.correctAnswerFn}
+          incorrectAnswerFn={this.props.incorrectAnswerFn}
+          fifty={this.props.fifty}
+          fiftyLine={this.props.fiftyLine}
+          response={this.props.response}
+        />
 
       </main>
+
     );
 
   }

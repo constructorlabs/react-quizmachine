@@ -1,23 +1,19 @@
 import React from "react";
 
-function Money({ score, status, friend, audience, fifty, friendLine, audienceLine, fiftyLine, incorrectAnswerFn }) {
-
-
+function Money({ score, status, friend, audience, fifty, friendLine, audienceLine, fiftyLine, newGame, walkFn }) {
 
   function useLifeline(event) {
     if (event.target.name === "FRIEND") {
-      console.log("You used your friend lifeline", event.target.name);
       friendLine(event.target.name);
     } else if (event.target.name === "FIFTY") {
-      console.log("You used your 50:50 lifeline")
       fiftyLine(event.target.name);
-    }
-    else if (event.target.name === "AUDIENCE") {
-      console.log("You used your Audience lifeline")
+    } else if (event.target.name === "AUDIENCE") {
       audienceLine(event.target.name);
-    }
-    else {
-      incorrectAnswerFn()
+    } else if (event.target.name === "RESTART") {
+
+      newGame(event.target.name);
+    } else {
+      walkFn('WALK')
     }
   }
 
@@ -26,8 +22,13 @@ function Money({ score, status, friend, audience, fifty, friendLine, audienceLin
     if (status === "lose" && score > 0) {
       scoreString = `You leave with £ ${score.toLocaleString()}
                       - Thanks for playing!`
-    } else if (status === "lose") {
+
+    } else if (status === "walk" && score > 0) {
+      scoreString = `You leave with £ ${score.toLocaleString()}
+      - Chicken! `
+    } else if ((status === "lose" || status === "walk") && score === 0) {
       scoreString = `You lose(r)! -  Better luck next time!`
+
     } else {
       scoreString = `You currently have £ ${score.toLocaleString()}`
     }
@@ -36,13 +37,15 @@ function Money({ score, status, friend, audience, fifty, friendLine, audienceLin
 
   return (
     <div className="score__money">
+
       <div className="score__logo">
-        <img src="minionaire.png" />
+        <img src="minionaire.png" name="RESTART" onClick={event => useLifeline(event)} />
       </div>
+
       <div className="score__money--wrapper">
         <div className="score__money--buttons">
 
-          {fifty !== "FIFTY" ? <img
+          {(fifty !== "FIFTY") && (fifty !== "USEDFIFTY") ? <img
             className="score__money--lifeline"
             src="5050.png"
             name="FIFTY"

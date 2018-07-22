@@ -10,8 +10,12 @@ a {color: inherit;
 body {
   margin: 0;
   font-family: 'IBM Plex Serif', serif;
-  background: rgb(36, 36, 77);
-
+  /* background: rgb(36, 36, 77); */
+  background-image:url("background2.jpg");
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-size: cover;
+  
   color: whitesmoke;
 }
 
@@ -28,7 +32,17 @@ font-size:30px;
 }
 .score__money--money{
 margin:auto;
+color: white;
+
+animation: color-blink 0.3s steps(2, start) ;
 }
+
+@keyframes color-blink {
+to {
+  color: #38625c;
+}
+}
+
 
 .score__money--lifeline{
   height:60px;
@@ -51,7 +65,7 @@ margin:auto;
     height: 250px;
     background-repeat: no-repeat;
     background-size: contain;
-    border: 5px groove grey;
+    /* border: 5px groove grey; */
 }
 
 .main__score--money{
@@ -61,7 +75,7 @@ margin:auto;
 
 .questions__buttons{
   width:500px;
-  height:60px;
+  height:80px;
   background-color:rgb(36, 36, 77,0.6);
   border:2px solid whitesmoke;
   border-radius:30%;
@@ -69,14 +83,21 @@ margin:auto;
   margin:30px;
   text-align:center;
   font-size:30px;
-  /* display:none; */
-  /* visibility: hidden; */
+
 }
 .questions__buttons:hover {
 
   background-color: rgb(46, 121, 146, 0.6);
   color: white;
 }
+
+.questions__response{
+  font-style:italic;
+  color:yellow;
+}
+
 #hidden{
-  display:none
+  position:absolute;
+  visibility: hidden;
+  /* display:none; */
 }

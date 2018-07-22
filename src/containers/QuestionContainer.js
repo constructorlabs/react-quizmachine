@@ -1,21 +1,17 @@
 import { connect } from "react-redux";
 import Question from "../components/Question";
-import { fetchQuestionFromAPI, correctAnswer, incorrectAnswer, endQuestions, endGame, friendline, audienceline, fiftyline } from "../actions";
-
-
+import { fetchQuestionFromAPI, checkAnswer, endQuestions, endGame, friendline, audienceline, fiftyQuestions, restart } from "../actions";
 
 const mapStateToProps = (reduxState) => {
-
-  console.log("Step 6 - calling mapStateToProps in QuestionContainer", reduxState["question"])
-
-
+  console.log("container reply", reduxState.reply)
   return {
-    question: reduxState.question,
+    quizData: reduxState.question,
     money: reduxState.money,
     status: reduxState.endGame,
     friend: reduxState.friend,
     audience: reduxState.audience,
-    fifty: reduxState.fifty
+    fifty: reduxState.fifty,
+    response: reduxState.reply
   };
 };
 
@@ -23,18 +19,28 @@ const mapDispatchToProps = dispatch => {
 
   return {
     fetchQuestion: () => dispatch(fetchQuestionFromAPI()),
-    correctAnswerFn: () => {
-      dispatch(correctAnswer()),
-        dispatch(fetchQuestionFromAPI())
+    correctAnswerFn: (status) => {
+      dispatch(checkAnswer('CORRECT_ANSWER')),
+        dispatch(fetchQuestionFromAPI()),
+        dispatch(endGame(status))
     },
-    incorrectAnswerFn: () => {
-      dispatch(incorrectAnswer()),
+    incorrectAnswerFn: (status) => {
+      dispatch(checkAnswer('INCORRECT_ANSWER')),
         dispatch(endQuestions()),
-        dispatch(endGame())
+        dispatch(endGame(status))
+    },
+    walkFn: () => {
+      dispatch(checkAnswer('WALK')),
+        dispatch(endQuestions()),
+        dispatch(endGame('LOSE'))
     },
     friendLine: (help) => { dispatch(friendline(help)) },
     audienceLine: (help) => { dispatch(audienceline(help)) },
-    fiftyLine: (help) => { dispatch(fiftyline(help)) }
+    fiftyLine: (help) => { dispatch(fiftyQuestions(help)) },
+    newGame: () => {
+      dispatch(restart()),
+        dispatch(fetchQuestionFromAPI())
+    }
   }
 }
 

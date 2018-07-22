@@ -1,79 +1,42 @@
 import React from "react";
 
-function Questions({ quizItem, correctAnswerFn, incorrectAnswerFn, fifty, friend }) {
+function Questions({ quizData, correctAnswerFn, incorrectAnswerFn, fifty, fiftyLine, response }) {
+  //response at end of render is the reply when Phone a Friend is clicked
 
-  let possibleAnswers;
-  let letters = ["Minion", "A: ", "B: ", "C: ", "D: "];
-  const currentQuestion = decodeURIComponent(quizItem.question);
-  const rightAnswer = decodeURIComponent(quizItem.correct_answer);
-  const incorrectAnswer1 = decodeURIComponent(quizItem.incorrect_answers[0]);
-  const incorrectAnswer2 = decodeURIComponent(quizItem.incorrect_answers[1]);
-  const incorrectAnswer3 = decodeURIComponent(quizItem.incorrect_answers[2]);
+  let currentQuestion, letters, rightAnswer, possibleAnswers;
 
-  //put answers in random order in an array
+  //Have re-used quizData object to hold either all quiz info as array OR the correct answer STRING
 
-  possibleAnswers = [rightAnswer, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3].sort(function () { return 0.5 - Math.random() })
-
-
-  function fiftyfifty() {
-    let buttonId;
-    let buttonString;
-    console.log("answers", possibleAnswers)
-    let right = possibleAnswers.indexOf(rightAnswer);
-    console.log("right", right)
-    let keeper = Math.floor(Math.random() * 4);
-
-    console.log("before  ", right, keeper);
-
-    if (right === keeper && right !== 3) {
-      keeper += 1
-    } else if (right === 3 && keeper === 3) {
-      keeper = (Math.floor((Math.random() * 2) + 1))
-    }
-
-    buttonString = possibleAnswers.map((currentAnswer, index) => {
-      letters.shift();
-      debugger;
-      (index === keeper || index === right) ?
-        buttonId = index :
-        buttonId = "hodden";
-      debugger
-      return
-      <button
-        className="questions__buttons"
-        id={buttonId}
-        key={currentAnswer}
-        value={currentAnswer}
-        onClick={event => { checkAnswer(event.target.value) }}>
-        {currentAnswer}</button>
-      debugger
-
-    })
-    console.log("buttonString", buttonString)
-    return buttonString;
-
+  // setting conditional rendering parameters
+  if (typeof quizData === "string") {
+    possibleAnswers = quizData;
+  } else {
+    possibleAnswers = [...quizData];
+    letters = ["Minion", "A: ", "B: ", "C: ", "D: "];
+    rightAnswer = possibleAnswers[0];
+    currentQuestion = possibleAnswers[1];
+    possibleAnswers.splice(0, 2);
   }
 
-
+  //Now quizData is an array of rightAnswer, Question, random answers
   // check if selected answer is right or not and call appropriate dispatch function
   function checkAnswer(answer) {
     event.preventDefault();
-
     if (answer === rightAnswer) {
-      correctAnswerFn()
+      correctAnswerFn('WIN')
+
     } else {
-      incorrectAnswerFn()
+      incorrectAnswerFn('LOSE')
+    }
+    if (fifty === "FIFTY") {
+      fiftyLine('USEDFIFTY')
     }
   }
 
   return (
     <section className="questions">
       <h3> {currentQuestion}</h3>
-
-      {(fifty === "FIFTY") ?
-        fiftyfifty()
-        // possibleAnswers = possibleAnswers.slice(0, 2) 
-        :
+      {typeof possibleAnswers !== "string" ?
         possibleAnswers.map((currentAnswer, index) => {
 
           letters.shift()
@@ -81,20 +44,28 @@ function Questions({ quizItem, correctAnswerFn, incorrectAnswerFn, fifty, friend
 
             <button
               className="questions__buttons"
-              // className={letters[0]}
               id={index}
-
               key={currentAnswer}
               value={currentAnswer}
               onClick={event => { checkAnswer(event.target.value) }}>
-              {currentAnswer}</button>
-            // {letters[0]} {currentAnswer}</button>
 
+              {letters[0]} {currentAnswer}</button>
           )
 
-        })
+        }) :
+        <span>
+          Correct answer:
+          <button
+            className="questions__buttons"
+            value={possibleAnswers}>
+            {possibleAnswers}
+          </button>
+        </span>
       }
-
+      <br />
+      <div className="questions__response">
+        {response}
+      </div>
     </section>
   )
 }
