@@ -1,6 +1,17 @@
 import { combineReducers } from 'redux';
-import placeholder from './placeholder';
+import question from './question';
+import money from './money';
+import endGame from './endGame';
+import friend from './friend';
+import fifty from './fifty';
+import audience from './audience';
 
 export default combineReducers({
-  placeholder
+  question,
+  money,
+  endGame,
+  friend,
+  fifty,
+  audience
+
 });
