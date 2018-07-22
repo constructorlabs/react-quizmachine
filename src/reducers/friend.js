@@ -2,7 +2,7 @@ function friend(reduxState = '', action) {
 
   switch (action.type) {
     case 'FRIEND':
-      return 'FRIEND'
+      return action.payload
     default:
       return reduxState;
   }

@@ -1,23 +1,19 @@
 import React from "react";
 
-function Money({ score, status, friend, audience, fifty, friendLine, audienceLine, fiftyLine, walkFn }) {
+function Money({ score, status, friend, audience, fifty, friendLine, audienceLine, fiftyLine, newGame, walkFn }) {
 
-
-
+  console.log("in Money audience state is", audience)
   function useLifeline(event) {
     if (event.target.name === "FRIEND") {
-      console.log("You used your friend lifeline", event.target.name);
       friendLine(event.target.name);
     } else if (event.target.name === "FIFTY") {
-      console.log("You used your 50:50 lifeline")
       fiftyLine(event.target.name);
-    }
-    else if (event.target.name === "AUDIENCE") {
-      console.log("You used your Audience lifeline")
+    } else if (event.target.name === "AUDIENCE") {
       audienceLine(event.target.name);
-    }
-    else {
-
+    } else if (event.target.name === "RESTART") {
+      console.log("restart")
+      newGame(event.target.name);
+    } else {
       walkFn('WALK')
     }
   }
@@ -40,11 +36,15 @@ function Money({ score, status, friend, audience, fifty, friendLine, audienceLin
     return scoreString;
   }
 
+
+
   return (
     <div className="score__money">
+
       <div className="score__logo">
-        <img src="minionaire.png" />
+        <img src="minionaire.png" name="RESTART" onClick={event => useLifeline(event)} />
       </div>
+
       <div className="score__money--wrapper">
         <div className="score__money--buttons">
 

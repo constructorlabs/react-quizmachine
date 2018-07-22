@@ -1,11 +1,9 @@
 import { connect } from "react-redux";
 import Question from "../components/Question";
-import { fetchQuestionFromAPI, correctAnswer, incorrectAnswer, endQuestions, endGame, friendline, audienceline, fiftyline, walk } from "../actions";
+import { fetchQuestionFromAPI, checkAnswer, endQuestions, endGame, friendline, audienceline, fiftyQuestions, restart } from "../actions";
 
 const mapStateToProps = (reduxState) => {
-
-  console.log("Step 6 - calling mapStateToProps in QuestionContainer", reduxState["question"])
-
+  console.log("container audience", reduxState.audience)
   return {
     quizData: reduxState.question,
     money: reduxState.money,
@@ -21,23 +19,27 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchQuestion: () => dispatch(fetchQuestionFromAPI()),
     correctAnswerFn: (status) => {
-      dispatch(correctAnswer()),
+      dispatch(checkAnswer('CORRECT_ANSWER')),
         dispatch(fetchQuestionFromAPI()),
         dispatch(endGame(status))
     },
     incorrectAnswerFn: (status) => {
-      dispatch(incorrectAnswer('INCORRECT_ANSWER')),
+      dispatch(checkAnswer('INCORRECT_ANSWER')),
         dispatch(endQuestions()),
         dispatch(endGame(status))
     },
     walkFn: () => {
-      dispatch(incorrectAnswer('WALK')),
+      dispatch(checkAnswer('WALK')),
         dispatch(endQuestions()),
         dispatch(endGame('LOSE'))
     },
     friendLine: (help) => { dispatch(friendline(help)) },
     audienceLine: (help) => { dispatch(audienceline(help)) },
-    fiftyLine: (help) => { dispatch(fiftyline(help)) }
+    fiftyLine: (help) => { dispatch(fiftyQuestions(help)) },
+    newGame: () => {
+      dispatch(restart()),
+        dispatch(fetchQuestionFromAPI())
+    }
   }
 }
 

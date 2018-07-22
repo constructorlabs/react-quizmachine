@@ -1,6 +1,6 @@
 function money(state = 0, action) {
 
-  console.log("money in reducer ", state, "type", action.type)
+  // console.log("money in reducer ", state, "type", action.type)
 
   switch (action.type) {
     case 'CORRECT_ANSWER':
@@ -21,6 +21,9 @@ function money(state = 0, action) {
       } else {
         return 0;
       }
+    case 'RESTART':
+      return 0;
+
     default:
       return state;
   }

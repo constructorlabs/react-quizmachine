@@ -28,7 +28,17 @@ font-size:30px;
 }
 .score__money--money{
 margin:auto;
+color: white;
+
+animation: color-blink 0.3s steps(2, start) ;
 }
+
+@keyframes color-blink {
+to {
+  color: #38625c;
+}
+}
+
 
 .score__money--lifeline{
   height:60px;
