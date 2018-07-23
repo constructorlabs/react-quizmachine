@@ -1,0 +1,21 @@
+.skip-question {
+    display: flex;
+    justify-content: flex-end;
+
+    .skip-question-button {
+        padding: 10px 20px;
+        background-color: var(--tertiary-color);
+        border: none;
+        color: #fff;
+        margin-top: 20px;
+
+        &:hover {
+            cursor: pointer;
+            opacity: .8;
+        }
+    }
+
+    &.skip-question--hidden {
+        display: none;
+    }
+}

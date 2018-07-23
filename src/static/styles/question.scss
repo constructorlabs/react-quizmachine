@@ -1,0 +1,19 @@
+.question {
+    .question__text {
+        text-align: center;
+        font-size: 1.8rem;
+        color: var(--secondary-color);
+        position: relative;
+        font-family: 'Bitter', serif;
+        
+        &::before {
+            content: "Q";
+            position: absolute;
+            font-size: 6rem;
+            top: -30px;
+            left: -6px;
+            opacity: 0.3;
+        
+        }
+    }
+}

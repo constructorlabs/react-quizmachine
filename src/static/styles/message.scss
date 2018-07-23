@@ -1,0 +1,83 @@
+.message {
+    position: fixed;
+    top: 50px;
+    right: 30px;
+    color: #fff;
+    font-size: 19px;
+    transform: rotate(-4deg);
+    font-family: 'Bitter', serif;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    z-index: 9999;
+    display: none;
+    
+        background-color: var(--wrong-answer-color);
+        &:before {
+            background-color: var(--wrong-answer-color);
+        }
+        &:after {
+            background-color: var(--wrong-answer-color);
+        }
+
+    &.correct {
+        background-color: var(--correct-answer-color);
+        &:before {
+            background-color: var(--correct-answer-color);
+        }
+        &:after {
+            background-color: var(--correct-answer-color);
+        }
+    }
+
+    &.visible {
+        display: block;
+    }
+
+    &:after {
+        content: "";
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        transform: rotate(30deg);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &:before {
+        content: "";
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        transform: rotate(60deg);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .message__text {
+        z-index: 99999;
+        position: fixed;
+        top: 24%;
+        left: 4%;
+        text-align: center;
+    }
+}
+
+.cover {
+    position: fixed;
+    background-color: var(--primary-color);
+    opacity: .1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+
+    &.visible {
+        display: block;
+    }
+}
