@@ -9,6 +9,7 @@ import currentQuestion from './currentQuestion';
 import updateReduxQuestionsAmount from './updateReduxQuestionsAmount';
 import viewMessage from './viewMessage';
 import randomArray from './randomArray';
+import leaderboard from './leaderboard';
 
 export default combineReducers({
   quizQuestion,
@@ -20,5 +21,6 @@ export default combineReducers({
   currentQuestion,
   updateReduxQuestionsAmount,
   viewMessage,
-  randomArray
+  randomArray,
+  leaderboard
 });

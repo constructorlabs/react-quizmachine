@@ -1,19 +1,35 @@
 .message {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: fixed;
+    top: 50px;
+    right: 30px;
     color: #fff;
-    font-size: 36px;
-    transform: rotate(-4deg) translate(-50%, -60%);
+    font-size: 19px;
+    transform: rotate(-4deg);
     font-family: 'Bitter', serif;
     z-index: 2;
-
-    background-color: #fcaa02;
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
     z-index: 9999;
     display: none;
+    
+        background-color: var(--wrong-answer-color);
+        &:before {
+            background-color: var(--wrong-answer-color);
+        }
+        &:after {
+            background-color: var(--wrong-answer-color);
+        }
+
+    &.correct {
+        background-color: var(--correct-answer-color);
+        &:before {
+            background-color: var(--correct-answer-color);
+        }
+        &:after {
+            background-color: var(--correct-answer-color);
+        }
+    }
 
     &.visible {
         display: block;
@@ -21,10 +37,9 @@
 
     &:after {
         content: "";
-        background-color: #fcaa02;
-        width: 150px;
-        height: 150px;
-        border-radius: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
         transform: rotate(30deg);
         position: absolute;
         top: 0;
@@ -33,10 +48,9 @@
 
     &:before {
         content: "";
-        background-color: #fcaa02;
-        width: 150px;
-        height: 150px;
-        border-radius: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
         transform: rotate(60deg);
         position: absolute;
         top: 0;
@@ -45,8 +59,8 @@
 
     .message__text {
         z-index: 99999;
-        position: absolute;
-        top: 20%;
+        position: fixed;
+        top: 24%;
         left: 4%;
         text-align: center;
     }

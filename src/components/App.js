@@ -9,7 +9,7 @@ import QuestionContainer from '../containers/QuestionContainer';
 import AnswersContainer from '../containers/AnswersContainer';
 import MessageContainer from '../containers/MessageContainer';
 import ButtonSkipQuestionContainer from '../containers/ButtonSkipQuestionContainer';
-import HallOfFameContainer from '../containers/HallOfFameContainer';
+import LeaderboardContainer from '../containers/LeaderboardContainer';
 
 import '../static/styles/style.scss';
 
@@ -36,9 +36,9 @@ class App extends React.Component {
             </div>
           }} />
           />
-          <Route exact path="/hall-of-fame" render={props => {
+          <Route exact path="/leaderboard" render={props => {
             return <div>
-              <HallOfFameContainer />
+              <LeaderboardContainer />
             </div>
           }} />
           />

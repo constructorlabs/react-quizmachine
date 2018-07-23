@@ -69,6 +69,13 @@ export function generateArray(array) {
   }
 }
 
+export function leaderboardList(leaderboard) {
+  return {
+    type: 'RECEIVE_LEADERBOARD',
+    leaderboard
+  }
+}
+
 export function fetchQuestion(category = '', difficulty = '', amount = 1) {
   return function (dispatch) {
     fetch(`https://opentdb.com/api.php?amount=${amount}&type=multiple&category=${category}&difficulty=${difficulty}&encode=url3986`)

@@ -18,9 +18,6 @@ class Answers extends React.Component {
         this.renderRedirect = this.renderRedirect.bind(this);
     }
 
-    componentDidMount() {
-    }
-
     componentWillReceiveProps(nextProps) {
         this.setState({ answers: nextProps.answers });
         const question_answers = nextProps.answers.results
@@ -47,45 +44,41 @@ class Answers extends React.Component {
 
         if (answer === this.state.answers.results[0].correct_answer) {
             this.props.isRightAnswer(true);
-            // e.target.classList.add('animated', 'pulse', 'answers__button--correct-answer');
             this.props.scoreUpdate(this.props.score + 10);
             this.props.viewMessage(true);
+
             setTimeout(() => {
                 this.props.isRightAnswer(false);
             }, 3000)
-            this.props.requestQuestion(this.props.category, this.props.difficulty);
+
             if (this.props.currentQuestion === +this.props.totalQuestions) return;
-            this.props.incrementCurrentQuestion(this.props.currentQuestion + 1);
-        } else {
-            // e.target.classList.add('animated', 'shake', 'answers__button--wrong-answer');
-            this.props.isRightAnswer(false);
-            this.props.scoreUpdate(this.props.score - 10);
-
-
-            // e.target.setAttribute("disabled", "disabled");
-            this.props.viewMessage(true);
 
             setTimeout(() => {
                 this.props.requestQuestion(this.props.category, this.props.difficulty);
+            }, 3000)
+
+            this.props.incrementCurrentQuestion(this.props.currentQuestion + 1);
+        } else {
+            this.props.isRightAnswer(false);
+            this.props.scoreUpdate(this.props.score - 10);
+            this.props.viewMessage(true);
+
+
+            if (this.props.currentQuestion === +this.props.totalQuestions) { return };
+            setTimeout(() => {
+                this.props.requestQuestion(this.props.category, this.props.difficulty);
             }, 1000)
-            if (this.props.currentQuestion === +this.props.totalQuestions) { this.props.isRightAnswer(true); return };
             this.props.incrementCurrentQuestion(this.props.currentQuestion + 1);
         }
     }
 
     endOfQuestions() {
-        // console.log("currentQuestion", currentQuestion);
-        // console.log("totalQuestions", totalQuestions);
         if (this.props.currentQuestion === +this.props.totalQuestions) {
-            // Open end game message
-            console.log('game ends');
-
             setTimeout(() => {
                 this.setRedirect();
             }, 2000)
         } else {
             setTimeout(() => {
-                // requestQuestion(category, difficulty);
                 this.props.isRightAnswer(false);
             }, 2000)
         }
@@ -98,7 +91,7 @@ class Answers extends React.Component {
     }
     renderRedirect() {
         if (this.state.redirect) {
-            return <Redirect to="/hall-of-fame" />;
+            return <Redirect to="/leaderboard" />;
         }
     }
 
@@ -124,17 +117,3 @@ class Answers extends React.Component {
 }
 
 export default Answers;
-
-
-                /* return <button
-                    type="button"
-                    onClick={(e) => {
-                        verifyAnswer(e, answer);
-                        endOfQuestions();
-                    }}
-                    key={answer}
-                    className={cx('answers__button', {
-                        "answers__button--disabled": false
-                    })}>
-                    {decodeURIComponent(answer)}
-                </button> */

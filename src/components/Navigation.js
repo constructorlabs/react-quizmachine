@@ -8,7 +8,7 @@ function Navigation(props) {
         <div className="navigation">
             <Link to="/start" className="navigation__item">Start</Link>
             {/* <Link to="/quiz" className="navigation__item">Quiz</Link> */}
-            <Link to="/hall-of-fame" className="navigation__item">Hall Of Fame</Link>
+            <Link to="/leaderboard" className="navigation__item">Leaderboard</Link>
         </div>
     )
 }
