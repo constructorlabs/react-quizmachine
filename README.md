@@ -2,7 +2,7 @@
 
 To create a quiz app using the Open Trivia Database database to obtain questions.
 
-## Instructions
+## Install Instructions
 1. git clone repo
 2. install node from website, if you don't already have it installed 
 3. npm install (in terminal/bash shell)
