@@ -42,7 +42,7 @@ You can walk (door icon) at any point and take your winnings, however, no money 
 7.High Score table
 
 ##Technologies used
-I implemented a solution using React and Redux. 
+I implemented a solution using React, Redux with asynchronous fetches from the opentdb.com API to load general knowledge questions and answers. 
 
 ##Own Thoughts and Findings
 I found the project really satisfying in terms of getting to grips with state within Redux and the use of actions. I haven't optimised my code and am sure I could review and improve upon it. I don't think my use of state is ideal especially when handing the current status of the game. I'm pleased that I have managed to keep my reducers mainly pure and free from masses of functionality. I have moved my logic to within my actions and have made use of getState, however I am concerned about having such a large index.js action file and would like to find out if it is possible to split this into more logical modules. I need to continue working towards making my components manageable. I realise that I should have split my presentational components into smaller ones and will try to refactor it. 
