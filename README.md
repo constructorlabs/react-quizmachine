@@ -2,6 +2,10 @@
 
 To create a quiz app using the Open Trivia Database database to obtain questions.
 
+## Demo 
+The game is currently deployed at 
+http://ghk-react-app.s3-website.eu-west-2.amazonaws.com/ Please note there is an issue with the encoding that only appeared after being deployed. I will review this bug along with the rest of the code within the next few weeks.
+
 ## Install Instructions
 1. git clone repo
 2. install node from website, if you don't already have it installed 
