@@ -1,7 +1,7 @@
-function placeholder(state = '', action){
+function placeholder(state = '', action) {
   switch (action.type) {
     default:
-      return state
+      return state;
   }
 }
 

@@ -1,0 +1,5 @@
+/.git
+/.vscode
+/static
+/node_modules
+/dist

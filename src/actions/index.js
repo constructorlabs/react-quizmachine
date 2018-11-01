@@ -1,5 +1,5 @@
-export function fetchQuestion(){
-  return function(dispatch){
-
-  }
+function fetchQuestion() {
+  // return function(dispatch) {};
 }
+
+export default fetchQuestion;
