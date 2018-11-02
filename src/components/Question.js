@@ -30,7 +30,10 @@ class Question extends React.Component {
               answer => (
                 <button
                   key={answer}
-                  onClick={() => this.props.receiveAnswer(answer, this.props.question)}
+                  onClick={() => {
+                    this.props.receiveAnswer(answer, this.props.question);
+                    this.props.fetchQuestion()
+                  }}
                 >
                   {answer}
                 </button>
