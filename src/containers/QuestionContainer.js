@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Question from "../components/Question";
+import QuestionMap from "../components/QuestionMap";
 import { fetchQuestionFromAPI, setAnswer } from "../actions";
 
 export const mapStateToProps = state => {
@@ -13,13 +13,13 @@ export const mapStateToProps = state => {
 
 export const mapDispatchToProps = dispatch => {
   return {
-    questionFetch: () => {
-      dispatch(fetchQuestionFromAPI());
+    questionFetch: (difficulty, category) => {
+      dispatch(fetchQuestionFromAPI(difficulty, category));
     },
-    answerClickHandle: answer => {
+    answerClickHandle: (answer, difficulty, category) => {
       //   alert(answer);
       dispatch(setAnswer(answer));
-      dispatch(fetchQuestionFromAPI());
+      dispatch(fetchQuestionFromAPI(difficulty, category));
     },
   };
 };
@@ -27,4 +27,4 @@ export const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Question);
+)(QuestionMap);
