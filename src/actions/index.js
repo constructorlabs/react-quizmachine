@@ -1,8 +1,8 @@
 import shuffle  from "shuffle-array";
 
-export function fetchQuestion(){
+export function fetchQuestion(difficulty){
   return function(dispatch){
-    fetch('https://opentdb.com/api.php?amount=1&type=multiple')
+    fetch(`https://opentdb.com/api.php?amount=1&type=multiple${difficulty}`)
     .then(response => response.json())
     .then(result => {
       const questionObj = result.results[0]
@@ -38,5 +38,13 @@ export function receiveView(view){
   return{
     type: 'RECEIVE_VIEW',
     view
+  }
+}
+
+export function receiveDifficulty(difficulty){
+  console.log(difficulty)
+  return {
+    type: 'RECEIVE_DIFFICULTY',
+    difficulty
   }
 }

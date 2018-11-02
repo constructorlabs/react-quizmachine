@@ -6,13 +6,14 @@ const mapStateToProps = state => {
     return {
         question: state.question.question,
         numberOfQuestions: state.question.numberOfQuestions,
-        correct: state.points.correct
+        correct: state.points.correct,
+        difficulty: state.menu.difficulty
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchQuestion: () => dispatch(fetchQuestion()),
+        fetchQuestion: (difficulty) => dispatch(fetchQuestion(difficulty)),
         receiveAnswer: (answer, question) => dispatch(receiveAnswer(answer, question))
     }
 }

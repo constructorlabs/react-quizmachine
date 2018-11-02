@@ -8,11 +8,11 @@ class Question extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchQuestion();
+    this.props.fetchQuestion(this.props.difficulty);
   }
 
   fetchNextQuestion(){
-    setTimeout(this.props.fetchQuestion, 4000)
+    setTimeout(() => this.props.fetchQuestion(this.props.difficulty), 4000)
   }
 
   render() {
