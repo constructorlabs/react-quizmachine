@@ -1,4 +1,6 @@
 import React from "react";
+import question from "../reducers/question";
+const shuffle = require("shuffle-array");
 
 class Question extends React.Component {
   constructor() {
@@ -10,14 +12,27 @@ class Question extends React.Component {
     this.props.fetchQuestion();
   }
 
+  randomizeAnswers(correctAnswer, incorrectAnswers) {
+    const answerArray = incorrectAnswers.concat(correctAnswer);
+    return shuffle(answerArray);
+  }
+
   render() {
+    const correctAnswer = this.props.question.correct_answer;
+    const incorrectAnswers = this.props.question.incorrect_answers;
+
     return (
       <div>
-        <p>QUESTION:</p>
-        <button>Answer A</button>
-        <button>Answer B</button>
-        <button>Answer C</button>
-        <button>Answer D</button>
+        {this.props.question.question && (
+          <div>
+            <p>{this.props.question.question} </p>
+            {this.randomizeAnswers(correctAnswer, incorrectAnswers).map(
+              answer => (
+                <button key={answer}>{answer}</button>
+              )
+            )}
+          </div>
+        )}
       </div>
     );
   }

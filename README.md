@@ -88,8 +88,6 @@ If you are using planning to use Redux, use the steps below to help you get star
 
 - In `QuestionContainer` implement a `mapDispatchToProps` method which we will use to receive the `fetchQuestion` call from the `QuestionComponent`. Add a console.log inside the method which implements `fetchQuestion` in `mapDispatchToProps` saying `Step 2: getting action creator`
 
--------------------------------------------------------------------------------------
-
 - Create an asynchronous action creator in `actions/index.js` called `fetchQuestionFromAPI`. It should return a function which will receive `dispatch`. Inside the function, implement a `fetch` to the API to receive the question. Add a console.log just inside the action creator saying `Step 3: calling fetch`. Add another console.log inside the second `then` of the `fetch` and console.log the returned data.
 
 - Import the `fetchQuestionFromAPI` action creator from previous step into `QuestionContainer` call it using `dispatch` from `mapDispatchToProps`.
@@ -99,6 +97,7 @@ If you are using planning to use Redux, use the steps below to help you get star
 - Implement a reducer called `question` to handle the `RECEIVE_QUESTION` action and set it in state. Add a console.log with `Step 5 - setting question in state`. You may want to initialise the default value of state to be an empty object. Don't forget to implement the default case.
 
 - Add the `question` reducer to `reducers/index.js` and remove the `placeholder` reducer as we no longer need it.
+---------------------------------------------------------------------------------------------
 
 - Implement `mapStateToProps` in `QuestionContainer` which should take the `question` from reducer state and pass it as a `question` prop to the `Question` component. Add a console.log to `mapStateToProps` which outputs `Step 6 - calling mapStateToProps in QuestionContainer`.
 
