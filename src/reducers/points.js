@@ -1,11 +1,11 @@
 function points(state = 0, action){
     switch (action.type) {
         case 'CORRECT_ANSWER':
-            const points = state + 1;
-            return points;
+            const morePoints = state + 1;
+            return morePoints;
         case 'INCORRECT_ANSWER':
-            const points = state - 1;
-            return points;
+            const lessPoints = state - 1;
+            return lessPoints;
         default:
             return state;
     }
