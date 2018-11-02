@@ -1,10 +1,11 @@
+import shuffle  from "shuffle-array";
+
 export function fetchQuestion(){
   return function(dispatch){
     fetch('https://opentdb.com/api.php?amount=1&type=multiple')
     .then(response => response.json())
     .then(result => {
       const questionObj = result.results[0]
-      console.log(questionObj)
       dispatch(receiveQuestion(questionObj));
     })
     .catch(error => console.log(error))
@@ -12,6 +13,7 @@ export function fetchQuestion(){
 }
 
 export function receiveQuestion(question){
+  question.answerArr = shuffle(question.incorrect_answers.concat(question.correct_answer));
   return{
     type: 'RECEIVE_QUESTION',
     question,
@@ -29,5 +31,12 @@ export function receiveAnswer(answer, question) {
     return {
       type: 'INCORRECT_ANSWER'
     }
+  }
+}
+
+export function receiveView(view){
+  return{
+    type: 'RECEIVE_VIEW',
+    view
   }
 }
