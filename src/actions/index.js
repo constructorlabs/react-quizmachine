@@ -29,10 +29,11 @@ export function correctAnswer(pointsAwarded){
 
 };
 
-export function incorrectAnswer(pointsAwarded){
+export function incorrectAnswer(pointsAwarded, name){
   return {
     type: 'INCORRECT_ANSWER',
-    points: pointsAwarded
+    points: pointsAwarded,
+    name
     }
 
 
@@ -51,10 +52,23 @@ export function selectOption(selected){
     const pointsAwarded = pointsSchedule[currentDifficulty];
     if(selected === currentQuestion.correct_answer){
       dispatch(correctAnswer(pointsAwarded))
-
+  dispatch(fetchQuestion())
     } else {
-      dispatch(incorrectAnswer(pointsAwarded))
-      alert(`Sorry! Try again next time. You scored ${getState().score}.`)
+
+      const name=window.prompt(`Game Over! Please enter your name to see the ranking table:`)
+
+      dispatch(incorrectAnswer(pointsAwarded, name))
       }
+
   }
 }
+
+// export function displayScores(){
+//   return function (dispatch, getState) {
+//     const allScores = getState().scores.allScores
+//     dispatch({
+//       type:"DISPLAY_SCORES",
+//       allScores
+//     })
+//   }
+// }

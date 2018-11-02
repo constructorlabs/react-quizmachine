@@ -1,13 +1,13 @@
 import {connect} from 'react-redux';
 import Question from '../components/Question';
+// import Score from '../components/Score';
 import {fetchQuestion, selectOption} from '../actions';
 
 function mapStateToProps (state) {
   console.log('Step 1. calling mapStateToProps in QuestionContainer')
-  
+
   return {
-    currentQuestion:state.question,
-    currentScore: state.score
+    currentQuestion:state.question
   }
 }
 
@@ -24,4 +24,7 @@ function mapDispatchToProps (dispatch) {
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Question);
+export const connector = connect(mapStateToProps,mapDispatchToProps);
+
+export const QuestionContainer = connector(Question);
+// export const ScoreContainer = connector(Score);
