@@ -4,7 +4,7 @@ function Question() {
       <div className="center">
         <Difficulty className="difficulty-button" />
         <Category className="difficulty-button" />
-        <QuestionMap />
+        <QuestionMap className="difficulty-button" />
       </div>
     </div>
   );
