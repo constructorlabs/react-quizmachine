@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AnswersContainer from '../containers/AnswersContainer';
-import '../../styles/components/trivia.scss';
+import '../../styles/components/Trivia.scss';
 
 function Trivia({ score, difficulty, lives, trivia }) {
   return (

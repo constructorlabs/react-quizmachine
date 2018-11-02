@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NewGameContainer from '../containers/NewGameContainer';
 import TriviaContainer from '../containers/TriviaContainer';
 import GameOverContainer from '../containers/GameOverContainer';
-import '../../styles/components/app.scss';
+import '../../styles/components/App.scss';
 
 class App extends React.Component {
   constructor(props, context) {

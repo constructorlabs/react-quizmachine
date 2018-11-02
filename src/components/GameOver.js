@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../styles/components/game-over.scss';
+import '../../styles/components/GameOver.scss';
 
 function GameOver({ getRestart }) {
   return (

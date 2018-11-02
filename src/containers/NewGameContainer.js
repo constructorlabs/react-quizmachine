@@ -1,12 +1,15 @@
 import { connect } from 'react-redux';
 import NewGame from '../components/NewGame';
-import { setDifficulty, setScore, setLives, fetchTrivia } from '../actions';
+import { setDifficulty, setTriviaType, fetchTrivia } from '../actions';
 
 const mapDispatchToProps = dispatch => ({
   getDifficulty: difficulty => {
     dispatch(setDifficulty(difficulty));
-    dispatch(setLives(3));
-    dispatch(setScore(0));
+  },
+  getTriviaType: type => {
+    dispatch(setTriviaType(type));
+  },
+  startGame: () => {
     dispatch(fetchTrivia());
   },
 });

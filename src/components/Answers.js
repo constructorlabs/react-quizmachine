@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import '../../styles/components/answers.scss';
+import '../../styles/components/Answers.scss';
 
 function Answers({ answers, response, getResponse }) {
   return (

@@ -6,6 +6,7 @@ import response from './response';
 import score from './score';
 import lives from './lives';
 import progress from './progress';
+import triviaType from './triviaType';
 
 export default combineReducers({
   difficulty,
@@ -15,4 +16,5 @@ export default combineReducers({
   score,
   lives,
   progress,
+  triviaType,
 });

@@ -60,12 +60,21 @@ export function resetProgress() {
   };
 }
 
-export function setTrivia(trivia, value) {
-  const answers = shuffle(
-    trivia.incorrect_answers
-      .map(answer => ({ content: he.decode(answer), correct: false, value: 0 }))
-      .concat([{ content: he.decode(trivia.correct_answer), correct: true, value }]),
-  );
+export function setTrivia(trivia, value, type) {
+  let answers = trivia.incorrect_answers
+    .map(answer => ({ content: he.decode(answer), correct: false, value: 0 }))
+    .concat([{ content: he.decode(trivia.correct_answer), correct: true, value }]);
+
+  if (type === 'multiple') {
+    answers = shuffle(answers);
+  } else if (type === 'boolean') {
+    answers.sort((a, b) => {
+      if (a.content[0] > b.content[0]) {
+        return -1;
+      }
+      return 1;
+    });
+  }
 
   const newTrivia = {
     category: trivia.category,
@@ -84,23 +93,45 @@ export function setTrivia(trivia, value) {
   };
 }
 
+export function setResponse(response) {
+  return {
+    type: 'SET_RESPONSE',
+    response,
+  };
+}
+
 export function fetchTrivia() {
   return (dispatch, getState) => {
-    const { difficulty } = getState();
-    const value = difficulty === 'easy' ? 100 : difficulty === 'medium' ? 200 : 300;
-    fetch(`https://opentdb.com/api.php?amount=1&difficulty=${difficulty}&type=multiple`)
+    dispatch(setResponse({}));
+    const { difficulty, triviaType } = getState();
+    let type = null;
+    let value = 50;
+
+    if (triviaType === 'multiple') {
+      type = 'multiple';
+      value *= 2;
+    } else if (triviaType === 'true/false') {
+      type = 'boolean';
+    }
+
+    if (difficulty === 'medium') {
+      value *= 2;
+    } else if (difficulty === 'hard') {
+      value *= 3;
+    }
+
+    fetch(`https://opentdb.com/api.php?amount=1&difficulty=${difficulty}${type && `&type=${type}`}`)
       .then(response => response.json())
       .then(result => {
-        dispatch(setTrivia(result.results[0], value));
+        dispatch(setTrivia(result.results[0], value, type));
         dispatch(setStage('trivia'));
       });
   };
 }
 
-export function setResponse(response) {
+export function resetTrivia() {
   return {
-    type: 'SET_RESPONSE',
-    response,
+    type: 'RESET_TRIVIA',
   };
 }
 
@@ -130,5 +161,12 @@ export function analyzeResponse(response) {
     } else {
       dispatch(setStage('gameOver'));
     }
+  };
+}
+
+export function setTriviaType(triviaType) {
+  return {
+    type: 'SET_TRIVIA_TYPE',
+    triviaType,
   };
 }

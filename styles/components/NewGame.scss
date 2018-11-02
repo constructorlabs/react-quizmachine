@@ -19,14 +19,33 @@
     text-align: center;
   }
 
-  &__choose {
+  &__options {
+    display: flex;
+  }
+
+  &__diff {
+    justify-content: center;
+    width: 8rem;
+  }
+
+  &__choose-dif {
     font-family: $font-family;
+    text-align: center;
+  }
+
+  &__type {
+    justify-content: center;
+    width: 8rem;
+  }
+
+  &__choose-type {
+    text-align: center;
   }
 
   &__buttons {
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 
   &__button {
@@ -35,7 +54,7 @@
     border: 1px solid $primary-color;
     border-radius: 5px;
     color: $primary-color;
-    padding: 5px 32px;
+    padding: 5px 10px;
     text-align: center;
     display: inline-block;
     font-size: 1rem;
