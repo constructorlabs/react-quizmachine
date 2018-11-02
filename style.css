@@ -1,3 +1,14 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  text-align: center;
+}
+
+.true-false-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .voting-button {
   color: #550527;
   font-size: 24px;
@@ -9,7 +20,7 @@
 }
 
 .voting-button--selected {
-  color: #FFF;
+  color: #fff;
   background-color: #550527;
   border: 2px solid white;
 }

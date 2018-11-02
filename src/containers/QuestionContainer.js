@@ -3,10 +3,11 @@ import Question from "../components/Question";
 import { fetchQuestionFromAPI, setAnswer } from "../actions";
 
 export const mapStateToProps = state => {
-  console.log("2. getting action creator");
-  console.log("Step 6 - calling mapStateToProps in QuestionContainer");
   return {
     question: state.question.question,
+    score: state.question.score,
+    correctAnswer: state.question.correctAnswer,
+    userAnswer: state.question.userAnswer,
   };
 };
 
@@ -16,8 +17,9 @@ export const mapDispatchToProps = dispatch => {
       dispatch(fetchQuestionFromAPI());
     },
     answerClickHandle: answer => {
-      alert(answer);
+      //   alert(answer);
       dispatch(setAnswer(answer));
+      dispatch(fetchQuestionFromAPI());
     },
   };
 };
