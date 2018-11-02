@@ -18,3 +18,18 @@ export function receiveQuestion(question){
     question,
   }
 }
+
+export function receiveAnswer(answer, getState) {
+  const reduxState = getState();
+  const correctAnswer = reduxState.question.correct_answer
+  const difficulty = reduxState.question.difficulty
+  if (answer === correctAnswer) {
+    return {
+      type: 'CORRECT_ANSWER'
+    }
+  } else {
+    return {
+      type: 'INCORRECT_ANSWER'
+    }
+  }
+}

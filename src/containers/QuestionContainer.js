@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Question from '../components/Question';
-import { fetchQuestion } from '../actions';
+import { fetchQuestion, receiveAnswer } from '../actions';
 
 const mapStateToProps = state => {
     console.log('Step 6 - calling mapStateToProps in QuestionContainer')
@@ -12,7 +12,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     console.log("Step 2: getting action creator")
     return {
-        fetchQuestion: () => dispatch(fetchQuestion())
+        fetchQuestion: () => dispatch(fetchQuestion()),
+        receiveAnswer: (answer) => dispatch(receiveAnswer(answer))
     }
 }
 

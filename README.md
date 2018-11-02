@@ -97,7 +97,6 @@ If you are using planning to use Redux, use the steps below to help you get star
 - Implement a reducer called `question` to handle the `RECEIVE_QUESTION` action and set it in state. Add a console.log with `Step 5 - setting question in state`. You may want to initialise the default value of state to be an empty object. Don't forget to implement the default case.
 
 - Add the `question` reducer to `reducers/index.js` and remove the `placeholder` reducer as we no longer need it.
----------------------------------------------------------------------------------------------
 
 - Implement `mapStateToProps` in `QuestionContainer` which should take the `question` from reducer state and pass it as a `question` prop to the `Question` component. Add a console.log to `mapStateToProps` which outputs `Step 6 - calling mapStateToProps in QuestionContainer`.
 

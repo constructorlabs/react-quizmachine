@@ -25,10 +25,16 @@ class Question extends React.Component {
       <div>
         {this.props.question.question && (
           <div>
-            <p>{this.props.question.question} </p>
+            <h2>{this.props.question.question} </h2>
+            <p>Difficulty: {this.props.question.difficulty}</p>
             {this.randomizeAnswers(correctAnswer, incorrectAnswers).map(
               answer => (
-                <button key={answer}>{answer}</button>
+                <button
+                  key={answer}
+                  onClick={answer => this.props.receiveAnswer(answer)}
+                >
+                  {answer}
+                </button>
               )
             )}
           </div>
