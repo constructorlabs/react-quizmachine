@@ -8,7 +8,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "prettier": "prettier --write src/**/*.js",
-    "lint": "eslint --debug src/",
+    "lint": "eslint --fix src/",
     "lint:write": "eslint --fix src/"
   },
   "author": "Yetkin Ergun",
@@ -34,12 +34,15 @@
     "classnames": "^2.2.6",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "he": "^1.2.0",
     "prop-types": "^15.6.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-devtools-extension": "^2.13.5",
+    "redux-thunk": "^2.3.0",
+    "shuffle-array": "^1.0.1"
   },
   "devDependencies": {
     "babel-jest": "^22.4.1",
@@ -64,6 +67,7 @@
     "node-sass": "^4.9.4",
     "prettier": "^1.14.3",
     "react-test-renderer": "^16.4.1",
+    "css-loader": "^0.28.11",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.0.1",

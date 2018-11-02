@@ -1,6 +1,18 @@
 import { combineReducers } from 'redux';
-import placeholder from './placeholder';
+import difficulty from './difficulty';
+import stage from './stage';
+import trivia from './trivia';
+import response from './response';
+import score from './score';
+import lives from './lives';
+import progress from './progress';
 
 export default combineReducers({
-  placeholder,
+  difficulty,
+  stage,
+  trivia,
+  response,
+  score,
+  lives,
+  progress,
 });
