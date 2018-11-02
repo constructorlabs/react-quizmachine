@@ -1,5 +1,10 @@
 function questionReducer(
-  state = { question: [], correctAnswer: "", score: 0, userAnswer: "" },
+  state = {
+    question: [],
+    correctAnswer: "",
+    score: 0,
+    userAnswer: "",
+  },
   action
 ) {
   function scoreEasyQuestion(answer) {
