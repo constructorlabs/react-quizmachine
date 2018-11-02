@@ -1,7 +1,7 @@
 export function fetchQuestionFromAPI(difficulty, category) {
   return function(dispatch) {
     fetch(
-      `https://opentdb.com/api.php?amount=1&difficulty=${difficulty}&category=${catgegory}`
+      `https://opentdb.com/api.php?amount=1&difficulty=${difficulty}&category=${category}`
     )
       .then(response => response.json())
       .then(result => {

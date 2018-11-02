@@ -1,7 +1,36 @@
+body {
+  background-color: blanchedalmond;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   text-align: center;
+}
+
+.center {
+  grid-column: 2/3;
+  background-color: lightpink;
+}
+
+.difficulty-button {
+  grid-column: 2/3;
+}
+
+.difficulty-button--off {
+  display: none;
+}
+
+.category-button {
+  grid-column: 2/3;
+}
+
+.category-button--off {
+  display: none;
+}
+
+.question {
+  grid-column: 2/3;
 }
 
 .true-false-grid {
