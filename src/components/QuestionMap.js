@@ -15,7 +15,10 @@ class QuestionMap extends React.Component {
   }
 
   render() {
-    return question.map(question => {
+    return ( 
+    <p className="score">Score: {this.props.score}</p> 
+    
+    {this.props.question.map(question => {
       if (question.type == "boolean") {
         return (
           <div className="question" key={question.question}>
@@ -105,9 +108,9 @@ class QuestionMap extends React.Component {
             </div>
           </div>
         );
-      }
-    });
-  }
-}
+    }
+    })}
+    })
+    }
 
 export default QuestionMap;
