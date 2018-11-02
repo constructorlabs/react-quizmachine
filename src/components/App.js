@@ -1,10 +1,18 @@
 import React from 'react';
+import QuestionsContainer from '../containers/QuestionsContainer';
+
 
 class App extends React.Component {
+
+
+ 
+
+
   render(){
     return (
       <div>
-        App contents go here
+        QUIZ        
+        <QuestionsContainer />
       </div>
     )
   }
