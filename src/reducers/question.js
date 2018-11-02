@@ -1,7 +1,11 @@
-function question(state = {}, action){
+function question(state = {question: {}, numberOfQuestions: 0}, action){
   switch (action.type) {
     case 'RECEIVE_QUESTION':
-      return action.question
+      const incrementNumberOfQuestions = state.numberOfQuestions + 1;
+      return{
+        question: action.question,
+        numberOfQuestions: incrementNumberOfQuestions
+      } 
     default:
       return state
   }

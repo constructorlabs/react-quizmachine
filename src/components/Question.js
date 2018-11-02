@@ -1,6 +1,7 @@
 import React from "react";
 import question from "../reducers/question";
-const shuffle = require("shuffle-array");
+import shuffle  from "shuffle-array";
+import { decode } from 'he';
 
 class Question extends React.Component {
   constructor() {
@@ -16,15 +17,20 @@ class Question extends React.Component {
     return shuffle(answerArray);
   }
 
+  fetchNextQuestion(){
+    setTimeout(this.props.fetchQuestion, 4000)
+  }
+
   render() {
     const correctAnswer = this.props.question.correct_answer;
     const incorrectAnswers = this.props.question.incorrect_answers;
 
     return (
       <div>
+        <p>{this.props.numberOfQuestions}/30</p>
         {this.props.question.question && (
           <div>
-            <h2>{this.props.question.question} </h2>
+            <h2>{decode(this.props.question.question)} </h2>
             <p>Difficulty: {this.props.question.difficulty}</p>
             {this.randomizeAnswers(correctAnswer, incorrectAnswers).map(
               answer => (
@@ -32,13 +38,15 @@ class Question extends React.Component {
                   key={answer}
                   onClick={() => {
                     this.props.receiveAnswer(answer, this.props.question);
-                    this.props.fetchQuestion()
+                    this.fetchNextQuestion();
                   }}
                 >
-                  {answer}
+                  {decode(answer)}
                 </button>
               )
             )}
+            {this.props.correct === 'yes' && <h3>Correct! Well Done</h3>}
+            {this.props.correct === 'no' && <h3>Incorrect! The correct answer was: {decode(correctAnswer)} </h3>}
           </div>
         )}
       </div>

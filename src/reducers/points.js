@@ -1,11 +1,28 @@
-function points(state = 0, action){
+const initialState = {
+    points : 0,
+    correct: ""
+}
+
+
+function points(state = initialState, action){
     switch (action.type) {
+        case 'RECEIVE_QUESTION':
+            return {
+                points: state.points,
+                correct: action.correct
+            }
         case 'CORRECT_ANSWER':
-            const morePoints = state + 1;
-            return morePoints;
+            const addOnePoint = state.points + 1;
+            return {
+                points: addOnePoint,
+                correct: 'yes'
+            }
+            
         case 'INCORRECT_ANSWER':
-            const lessPoints = state - 1;
-            return lessPoints;
+            return {
+               points: state.points,
+               correct: 'no'
+            } 
         default:
             return state;
     }
