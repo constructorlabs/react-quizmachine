@@ -26,7 +26,6 @@ class QuestionMap extends React.Component {
     this.setState({
       difficulty: value,
       displayDiff: !this.state.displayDiff,
-      displayCat: !this.state.displayCat,
     });
   }
 
@@ -35,7 +34,6 @@ class QuestionMap extends React.Component {
       {
         category: value,
         displayCat: !this.state.displayCat,
-        displayQuestion: !this.state.displayQuestion,
       },
       () => this.props.questionFetch(this.state.difficulty, this.state.category)
     );
@@ -46,114 +44,114 @@ class QuestionMap extends React.Component {
       "difficulty-div--off": this.state.displayDiff == false,
     });
     const categoryClassSwitch = cx("category-div", {
-      "category-div-off": this.state.displayCat == false,
+      "category-div--off": this.state.displayCat == false,
     });
 
-    const questionClassSwitch = cx("question-div--off", {
-      "question-div": this.state.displayQuestion == true,
-    });
+    // const questionClassSwitch = cx("question-div--off", {
+    //   "question-div": this.state.displayQuestion == true,
+    // });
     console.log("props", this.props);
     return (
       <div className="grid">
         <div className="center">
+          <h1>TRUTHY OR FALSY</h1>
           <div className={difficultyClassSwitch}>
             <Difficulty handleClick={this.difficultyHandleClick} />
           </div>
           <div className={categoryClassSwitch}>
             <Category handleClick={this.categoryHandleClick} />
           </div>
-          <div className="">
-            <p>Score: {this.props.score}</p>
-            {this.props.question.map(question => {
-              if (question.type == "boolean") {
-                return (
-                  <div key={question.question}>
-                    <p>{question.category}</p>
-                    <p>{question.difficulty.toUpperCase()}</p>
-                    <p>{question.question}</p>
 
-                    <div className="true-false-grid">
-                      <button
-                        className="voting-button button-one"
-                        type="button"
-                        value="True"
-                        onClick={event => {
-                          event.preventDefault();
-                          this.props.answerClickHandle(
-                            event.target.value,
-                            this.state.difficulty,
-                            this.state.category
-                          );
-                        }}
-                      >
-                        True
-                      </button>
-                      <button
-                        className="voting-button button-two"
-                        type="button"
-                        value="False"
-                        onClick={event => {
-                          this.props.answerClickHandle(
-                            event.target.value,
-                            this.state.difficulty,
-                            this.state.category
-                          );
-                        }}
-                      >
-                        False
-                      </button>
-                    </div>
-                  </div>
-                );
-              } else {
-                return (
-                  <div key={question.question}>
-                    <p>{question.category}</p>
-                    <p>{question.difficulty.toUpperCase()}</p>
-                    <p>{question.question}</p>
+          <p>Score: {this.props.score}</p>
+          {this.props.question.map(question => {
+            if (question.type == "boolean") {
+              return (
+                <div key={question.question}>
+                  <p>{question.category}</p>
+                  <p>{question.difficulty.toUpperCase()}</p>
+                  <p>{question.question}</p>
 
-                    <div>
-                      <button
-                        className="voting-button"
-                        type="button"
-                        key={question.correct_answer}
-                        value={question.correct_answer}
-                        onClick={event => {
-                          this.props.answerClickHandle(
-                            event.target.value,
-                            this.state.difficulty,
-                            this.state.category
-                          );
-                        }}
-                      >
-                        {question.correct_answer}
-                      </button>
-
-                      {question.incorrect_answers.map(answer => {
-                        return (
-                          <button
-                            className="voting-button"
-                            type="button"
-                            key={answer}
-                            value={answer}
-                            onClick={event => {
-                              this.props.answerClickHandle(
-                                event.target.value,
-                                this.state.difficulty,
-                                this.state.category
-                              );
-                            }}
-                          >
-                            {answer}
-                          </button>
+                  <div className="true-false-grid">
+                    <button
+                      className="voting-button button-one"
+                      type="button"
+                      value="True"
+                      onClick={event => {
+                        event.preventDefault();
+                        this.props.answerClickHandle(
+                          event.target.value,
+                          this.state.difficulty,
+                          this.state.category
                         );
-                      })}
-                    </div>
+                      }}
+                    >
+                      True
+                    </button>
+                    <button
+                      className="voting-button button-two"
+                      type="button"
+                      value="False"
+                      onClick={event => {
+                        this.props.answerClickHandle(
+                          event.target.value,
+                          this.state.difficulty,
+                          this.state.category
+                        );
+                      }}
+                    >
+                      False
+                    </button>
                   </div>
-                );
-              }
-            })}
-          </div>
+                </div>
+              );
+            } else {
+              return (
+                <div key={question.question}>
+                  <p>{question.category}</p>
+                  <p>{question.difficulty.toUpperCase()}</p>
+                  <p>{question.question}</p>
+
+                  <div>
+                    <button
+                      className="voting-button"
+                      type="button"
+                      key={question.correct_answer}
+                      value={question.correct_answer}
+                      onClick={event => {
+                        this.props.answerClickHandle(
+                          event.target.value,
+                          this.state.difficulty,
+                          this.state.category
+                        );
+                      }}
+                    >
+                      {question.correct_answer}
+                    </button>
+
+                    {question.incorrect_answers.map(answer => {
+                      return (
+                        <button
+                          className="voting-button"
+                          type="button"
+                          key={answer}
+                          value={answer}
+                          onClick={event => {
+                            this.props.answerClickHandle(
+                              event.target.value,
+                              this.state.difficulty,
+                              this.state.category
+                            );
+                          }}
+                        >
+                          {answer}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            }
+          })}
         </div>
       </div>
     );
