@@ -13,23 +13,23 @@ body {
   background-color: lightpink;
 }
 
-.difficulty-button {
+.difficulty-div {
   grid-column: 2/3;
 }
 
-.difficulty-button--off {
+.difficulty-div--off {
   display: none;
 }
 
-.category-button {
+.category-div {
+  display: none;
+}
+
+.category-div--off {
   grid-column: 2/3;
 }
 
-.category-button--off {
-  display: none;
-}
-
-.question {
+.question-div {
   grid-column: 2/3;
 }
 

@@ -1,13 +1,21 @@
 import React from "react";
 
-function Difficulty() {
+function Difficulty({ handleClick }) {
   return (
-    <div className="difficulty-button">
-      <p className="difficulty-button">select a difficulty:</p>
-      <button className="difficulty-button">Easy</button>
-      <button className="difficulty-button">Medium</button>
-      <button className="difficulty-button">Hard</button>
-      <button className="difficulty-button">I'm Feeling Lucky</button>
+    <div className="difficulty-div">
+      <p>select a difficulty:</p>
+      <button onClick={event => handleClick(event.target.value)} value="easy">
+        Easy
+      </button>
+      <button onClick={event => handleClick(event.target.value)} value="medium">
+        Medium
+      </button>
+      <button onClick={event => handleClick(event.target.value)} value="hard">
+        Hard
+      </button>
+      <button onClick={event => handleClick(event.target.value)} value="">
+        I'm Feeling Lucky
+      </button>
     </div>
   );
 }
