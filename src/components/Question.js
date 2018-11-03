@@ -12,7 +12,11 @@ class Question extends React.Component {
   }
 
   fetchNextQuestion() {
-    setTimeout(() => this.props.fetchQuestion(this.props.difficulty), 4000);
+    setTimeout(() => this.props.fetchQuestion(this.props.difficulty), 1500);
+  }
+
+  goToScoreboard() {
+    setTimeout(() => this.props.receiveView("scoreboard"), 2000)
   }
 
   render() {
@@ -22,7 +26,7 @@ class Question extends React.Component {
       <div>
         <p>
           {this.props.numberOfQuestions}
-          /30
+          /20
         </p>
         {this.props.question.question && (
           <div>
@@ -35,18 +39,33 @@ class Question extends React.Component {
                 key={answer}
                 disabled={this.props.correct}
                 onClick={() => {
-                  this.props.receiveAnswer(answer, this.props.question, this.props.difficulty);
-                  this.fetchNextQuestion();
+                  this.props.receiveAnswer(
+                    answer,
+                    this.props.question,
+                    this.props.difficulty
+                  );
+                  this.props.numberOfQuestions >= 20
+                    ? this.goToScoreboard()
+                    : this.fetchNextQuestion();
                 }}
               >
                 {decode(answer)}
               </button>
             ))}
-            {this.props.correct === "yes" && <h3>Correct! Well Done</h3>}
+            {this.props.correct === "yes" && (
+              <div>
+                {" "}
+                <p>Correct! Well Done</p>{" "}
+                <img src="https://media.giphy.com/media/mPIA4KZVXv0ty/giphy.gif" />
+              </div>
+            )}
             {this.props.correct === "no" && (
-              <p>
-                Incorrect! The correct answer was: {decode(correctAnswer)}{" "}
-              </p>
+              <div>
+                <p>
+                  Incorrect! The correct answer was: {decode(correctAnswer)}{" "}
+                </p>
+                <img src="https://media.giphy.com/media/hPPx8yk3Bmqys/giphy.gif" />
+              </div>
             )}
           </div>
         )}

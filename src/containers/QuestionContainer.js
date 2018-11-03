@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Question from "../components/Question";
-import { fetchQuestion, receiveAnswer } from "../actions";
+import { fetchQuestion, receiveAnswer, receiveView } from "../actions";
 
 const mapStateToProps = state => {
   return {
@@ -17,7 +17,8 @@ const mapDispatchToProps = dispatch => {
     receiveAnswer: (answer, question, quizDifficulty) =>
       dispatch(
         receiveAnswer(answer, question, quizDifficulty)
-      )
+      ),
+    receiveView: view => dispatch(receiveView(view))
   };
 };
 

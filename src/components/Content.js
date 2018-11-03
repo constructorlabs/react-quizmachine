@@ -2,6 +2,7 @@ import React from "react";
 import QuestionContainer from "../containers/QuestionContainer";
 import PointsContainer from "../containers/PointsContainer";
 import MenuContainer from "../containers/MenuContainer";
+import ScoreboardContainer from "../containers/ScoreboardContainer";
 
 function Content({ view }) {
   return (
@@ -12,6 +13,7 @@ function Content({ view }) {
           <QuestionContainer /> <PointsContainer />
         </React.Fragment>
       )}
+      {view === 'scoreboard' && <ScoreboardContainer />}
     </div>
   );
 }

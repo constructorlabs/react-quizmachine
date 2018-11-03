@@ -47,7 +47,7 @@ See [https://opentdb.com/api\_config.php](https://opentdb.com/api_config.php) fo
 
 ## Stretch goals - feel free to pick
 
-* ------ Show the user a 'happy' animated gif on a correct answer and a 'sad' gif on incorrect answer.
+<!-- * Show the user a 'happy' animated gif on a correct answer and a 'sad' gif on incorrect answer. -->
 
 * ------ Allow user to select question category
 
