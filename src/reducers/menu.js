@@ -1,4 +1,4 @@
-function menu(state = {difficulty: ""}, action) {
+function menu(state = {difficulty: "&difficulty=easy"}, action) {
     switch(action.type) {
         case 'RECEIVE_DIFFICULTY':
             return {

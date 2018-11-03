@@ -21,11 +21,13 @@ export function receiveQuestion(question){
   }
 }
 
-export function receiveAnswer(answer, question) {
+export function receiveAnswer(answer, question, quizDifficulty) {
   const correctAnswer = question.correct_answer
   if (answer === correctAnswer) {
     return {
-      type: 'CORRECT_ANSWER'
+      type: 'CORRECT_ANSWER',
+      quizDifficulty,
+      questionDifficulty: question.difficulty
     }
   } else {
     return {
