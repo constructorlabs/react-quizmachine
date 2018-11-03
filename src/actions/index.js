@@ -60,29 +60,27 @@ export function receivePlayerName(name) {
 }
 
 export function fetchScoreboard(difficulty) {
-  return function(dispatch) {
     const scoreboard = JSON.parse(localStorage.getItem(difficulty))
-    dispatch(receiveScoreboard(scoreboard))
-  }
+    return {
+      scoreboard
+    }
 }
 
-export function receiveScoreboard(scoreboard) {
-  console.log(scoreboard)
-}
 
 export function submitScore(name, points, difficulty) {
-  return function(dispatch) {
     const quizDifficulty = !difficulty ? "random" : difficulty;
-    const scoreboardArray = dispatch(fetchScoreboard(quizDifficulty));
-    console.log(scoreboardArray)
+    const scoreboardArray = fetchScoreboard(quizDifficulty);
     const playerScoreObject = { name: name, points: points };
-    if (scoreboardArray === undefined) {
+    if (scoreboardArray.scoreboard === null) {
       localStorage.setItem(quizDifficulty, JSON.stringify([playerScoreObject]));
     } else if (scoreboardArray) {
-      const newScoreboard = scoreboardArray.concat(playerScoreObject)
+      const newScoreboard = scoreboardArray.scoreboard.concat(playerScoreObject)
       newScoreboard.sort((a, b) => b.points - a.points);
       localStorage.setItem(difficulty, JSON.stringify(newScoreboard))
     }
-  }
+    return {
+      type: "RECEIVE_SCOREBOARD",
+      scoreboard: scoreboardArray
+    }
 }
 

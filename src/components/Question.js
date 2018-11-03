@@ -44,7 +44,7 @@ class Question extends React.Component {
                     this.props.question,
                     this.props.difficulty
                   );
-                  this.props.numberOfQuestions >= 1
+                  this.props.numberOfQuestions >= 20
                     ? this.goToScoreboard()
                     : this.fetchNextQuestion();
                 }}
