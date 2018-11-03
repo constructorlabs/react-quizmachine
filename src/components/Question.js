@@ -9,6 +9,7 @@ class Question extends React.Component {
 
   componentDidMount() {
     this.props.fetchQuestion(this.props.difficulty);
+    this.props.initializeStateScoreboard(this.props.difficulty)
   }
 
   fetchNextQuestion() {

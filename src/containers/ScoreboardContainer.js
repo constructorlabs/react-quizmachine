@@ -6,7 +6,9 @@ const mapStateToProps = state => {
   return {
     points: state.points.points,
     difficulty: state.menu.difficulty,
-    name: state.scoreboard.name
+    name: state.scoreboard.name,
+    scoreboard: state.scoreboard.scoreboard, 
+    formVisible: state.scoreboard.formVisible
   };
 };
 

@@ -59,13 +59,22 @@ export function receivePlayerName(name) {
   };
 }
 
+
 export function fetchScoreboard(difficulty) {
-    const scoreboard = JSON.parse(localStorage.getItem(difficulty))
-    return {
-      scoreboard
-    }
+  const scoreboard = JSON.parse(localStorage.getItem(difficulty))
+  return {
+    scoreboard
+  }
 }
 
+export function initializeStateScoreboard(difficulty){
+  const scoreboard = JSON.parse(localStorage.getItem(difficulty))
+  return {
+    type: "RECEIVE_SCOREBOARD",
+    scoreboard: scoreboard,
+    formVisible: "yes"
+  }
+}
 
 export function submitScore(name, points, difficulty) {
     const quizDifficulty = !difficulty ? "random" : difficulty;
@@ -78,9 +87,11 @@ export function submitScore(name, points, difficulty) {
       newScoreboard.sort((a, b) => b.points - a.points);
       localStorage.setItem(difficulty, JSON.stringify(newScoreboard))
     }
+    const updatedScoreboard = fetchScoreboard(quizDifficulty);
     return {
       type: "RECEIVE_SCOREBOARD",
-      scoreboard: scoreboardArray
+      scoreboard: updatedScoreboard.scoreboard,
+      formVisible: "no"
     }
 }
 
