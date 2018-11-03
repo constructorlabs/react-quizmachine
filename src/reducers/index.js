@@ -9,6 +9,7 @@ import progress from './progress';
 import triviaType from './triviaType';
 import category from './category';
 import allCategories from './allCategories';
+import gifUrl from './gifUrl';
 
 export default combineReducers({
   difficulty,
@@ -21,4 +22,5 @@ export default combineReducers({
   triviaType,
   category,
   allCategories,
+  gifUrl,
 });

@@ -9,7 +9,8 @@
     "build": "webpack --mode production",
     "prettier": "prettier --write src/**/*.js",
     "lint": "eslint --fix src/",
-    "lint:write": "eslint --fix src/"
+    "lint:write": "eslint --fix src/",
+    "start": "nodemon server.js"
   },
   "author": "Yetkin Ergun",
   "license": "ISC",
@@ -31,10 +32,15 @@
     ]
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
+    "dotenv": "^6.1.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "express": "^4.16.4",
+    "hbs": "^4.0.1",
     "he": "^1.2.0",
+    "node-fetch": "^2.2.0",
     "prop-types": "^15.6.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

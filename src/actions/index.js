@@ -60,14 +60,14 @@ export function resetProgress() {
   };
 }
 
-export function setTrivia(trivia, value, type) {
+export function setTrivia(trivia, value) {
   let answers = trivia.incorrect_answers
     .map(answer => ({ content: he.decode(answer), correct: false, value: 0 }))
     .concat([{ content: he.decode(trivia.correct_answer), correct: true, value }]);
 
-  if (type === 'multiple') {
+  if (trivia.type === 'multiple') {
     answers = shuffle(answers);
-  } else if (type === 'boolean') {
+  } else if (trivia.type === 'boolean') {
     answers.sort((a, b) => {
       if (a.content[0] > b.content[0]) {
         return -1;
@@ -97,6 +97,13 @@ export function setResponse(response) {
   return {
     type: 'SET_RESPONSE',
     response,
+  };
+}
+
+export function setGif(gifUrl) {
+  return {
+    type: 'SET_GIF_URL',
+    gifUrl,
   };
 }
 
@@ -133,7 +140,8 @@ export function fetchTrivia() {
     )
       .then(response => response.json())
       .then(result => {
-        dispatch(setTrivia(result.results[0], value, type));
+        dispatch(setTrivia(result.results[0], value));
+        dispatch(setGif(''));
         dispatch(setStage('trivia'));
       });
   };
@@ -145,11 +153,30 @@ export function resetTrivia() {
   };
 }
 
+export function fetchGif(correct) {
+  return dispatch => {
+    let tag;
+    const correctTags = ['yes', 'correct', 'great', 'amazing', 'fistbump'];
+    const incorrectTags = ['no', 'wrong', 'fail', 'facepalm', 'nope'];
+    if (correct) {
+      tag = correctTags[Math.floor(Math.random() * correctTags.length)];
+    } else {
+      tag = incorrectTags[Math.floor(Math.random() * incorrectTags.length)];
+    }
+    fetch(`/api/gif/${tag}`)
+      .then(response => response.json())
+      .then(result => {
+        dispatch(setGif(result.results[0].media[0].tinygif.url));
+      });
+  };
+}
+
 export function analyzeResponse(response) {
   return (dispatch, getState) => {
     const { progress, difficulty, lives } = getState();
     dispatch(setResponse(response));
     dispatch(addToScore(response.value));
+    dispatch(fetchGif(response.correct));
     if (response.correct) {
       if (progress < 9) {
         dispatch(incrementProgress());
@@ -164,12 +191,14 @@ export function analyzeResponse(response) {
         dispatch(incrementLives());
         dispatch(resetProgress());
       }
-      setTimeout(() => dispatch(fetchTrivia()), 500);
-    } else if (lives > 1) {
-      dispatch(decrementLives());
-      setTimeout(() => dispatch(fetchTrivia()), 500);
+      setTimeout(() => dispatch(fetchTrivia()), 4000);
     } else {
-      dispatch(setStage('gameOver'));
+      dispatch(decrementLives());
+      if (lives > 1) {
+        setTimeout(() => dispatch(fetchTrivia()), 4000);
+      } else {
+        setTimeout(() => dispatch(setStage('gameOver')), 4000);
+      }
     }
   };
 }

@@ -6,6 +6,8 @@ const mapStateToProps = state => ({
   difficulty: state.difficulty,
   lives: state.lives,
   trivia: state.trivia,
+  response: state.response,
+  gifUrl: state.gifUrl,
 });
 
 export default connect(
