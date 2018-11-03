@@ -2,7 +2,7 @@ import React from "react";
 
 function Difficulty({ handleClick }) {
   return (
-    <div className="difficulty-div">
+    <div>
       <p>select a difficulty:</p>
       <button onClick={event => handleClick(event.target.value)} value="easy">
         Easy

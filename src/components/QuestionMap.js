@@ -10,19 +10,19 @@ class QuestionMap extends React.Component {
       difficulty: "",
       category: "",
       displayDiff: true,
-      displayCat: false,
+      displayCat: true,
       displayQuestion: false,
     };
 
     this.difficultyHandleClick = this.difficultyHandleClick.bind(this);
+    this.categoryHandleClick = this.categoryHandleClick.bind(this);
   }
 
-  componentDidMount() {
-    this.props.questionFetch(this.state.difficulty, this.state.category);
-  }
+  //   componentDidMount() {
+  //     this.props.questionFetch(this.state.difficulty, this.state.category);
+  //   }
 
   difficultyHandleClick(value) {
-    console.log(value);
     this.setState({
       difficulty: value,
       displayDiff: !this.state.displayDiff,
@@ -31,33 +31,38 @@ class QuestionMap extends React.Component {
   }
 
   categoryHandleClick(value) {
-    this.setState({
-      category: value,
-      displayCat: !this.state.displayCat,
-      displayQuestion: !this.state.displayQuestion,
-    });
+    this.setState(
+      {
+        category: value,
+        displayCat: !this.state.displayCat,
+        displayQuestion: !this.state.displayQuestion,
+      },
+      () => this.props.questionFetch(this.state.difficulty, this.state.category)
+    );
   }
 
   render() {
     const difficultyClassSwitch = cx("difficulty-div", {
-      "difficulty-div--on": this.state.showNutrition == true,
+      "difficulty-div--off": this.state.displayDiff == false,
     });
     const categoryClassSwitch = cx("category-div", {
-      "category-div--on": this.state.displayCat == true,
+      "category-div-off": this.state.displayCat == false,
+    });
+
+    const questionClassSwitch = cx("question-div--off", {
+      "question-div": this.state.displayQuestion == true,
     });
     console.log("props", this.props);
     return (
       <div className="grid">
         <div className="center">
-          <Difficulty
-            className={difficultyClassSwitch}
-            handleClick={this.difficultyHandleClick}
-          />
-          <Category
-            className={categoryClassSwitch}
-            handleClick={this.categoryHandleClick}
-          />
-          <div className="question-div">
+          <div className={difficultyClassSwitch}>
+            <Difficulty handleClick={this.difficultyHandleClick} />
+          </div>
+          <div className={categoryClassSwitch}>
+            <Category handleClick={this.categoryHandleClick} />
+          </div>
+          <div className="">
             <p>Score: {this.props.score}</p>
             {this.props.question.map(question => {
               if (question.type == "boolean") {

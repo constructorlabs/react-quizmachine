@@ -14,6 +14,7 @@ body {
 }
 
 .difficulty-div {
+  display: block;
   grid-column: 2/3;
 }
 
@@ -22,15 +23,21 @@ body {
 }
 
 .category-div {
-  display: none;
+  display: block;
+  grid-column: 2/3;
 }
 
 .category-div--off {
-  grid-column: 2/3;
+  display: none;
 }
 
 .question-div {
+  display: block;
   grid-column: 2/3;
+}
+
+.question-div--off {
+  display: none;
 }
 
 .true-false-grid {
