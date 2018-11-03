@@ -1,8 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import '../../styles/components/NewGame.scss';
 
-function NewGame({ getDifficulty, getTriviaType, startGame }) {
+function NewGame({
+  difficulty,
+  triviaType,
+  category,
+  getDifficulty,
+  getTriviaType,
+  getCategory,
+  startGame,
+}) {
   return (
     <div className="new-game">
       <div className="new-game__title">Who Knows?</div>
@@ -13,31 +22,61 @@ function NewGame({ getDifficulty, getTriviaType, startGame }) {
         <div className="new-game__diff">
           <div className="new-game__choose-dif">Difficulty</div>
           <div className="new-game__buttons">
-            {['easy', 'medium', 'hard'].map(item => (
-              <button
-                type="button"
-                className="new-game__button"
-                key={item}
-                onClick={() => getDifficulty(item)}
-              >
-                {item}
-              </button>
-            ))}
+            {['easy', 'medium', 'hard'].map(item => {
+              const classes = cx('new-game__button', {
+                'new-game__button--selected': difficulty === item,
+              });
+              return (
+                <button
+                  type="button"
+                  className={classes}
+                  key={item}
+                  onClick={() => getDifficulty(item)}
+                >
+                  {item}
+                </button>
+              );
+            })}
           </div>
         </div>
         <div className="new-game__type">
           <div className="new-game__choose-type">Question type</div>
           <div className="new-game__buttons">
-            {['multiple', 'true/false', 'any'].map(item => (
-              <button
-                type="button"
-                className="new-game__button"
-                key={item}
-                onClick={() => getTriviaType(item)}
-              >
-                {item}
-              </button>
-            ))}
+            {['any', 'multiple', 'true/false'].map(item => {
+              const classes = cx('new-game__button', {
+                'new-game__button--selected': triviaType === item,
+              });
+              return (
+                <button
+                  type="button"
+                  className={classes}
+                  key={item}
+                  onClick={() => getTriviaType(item)}
+                >
+                  {item}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+        <div className="new-game__category">
+          <div className="new-game__choose-category">Category</div>
+          <div className="new-game__buttons">
+            {['any', 'entertainment', 'history', 'science', 'sports', 'others'].map(item => {
+              const classes = cx('new-game__button', {
+                'new-game__button--selected': category === item,
+              });
+              return (
+                <button
+                  type="button"
+                  className={classes}
+                  key={item}
+                  onClick={() => getCategory(item)}
+                >
+                  {item}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -49,8 +88,12 @@ function NewGame({ getDifficulty, getTriviaType, startGame }) {
 }
 
 NewGame.propTypes = {
+  difficulty: PropTypes.string.isRequired,
+  triviaType: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   getDifficulty: PropTypes.func.isRequired,
   getTriviaType: PropTypes.func.isRequired,
+  getCategory: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
 };
 

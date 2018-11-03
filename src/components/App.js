@@ -4,6 +4,7 @@ import NewGameContainer from '../containers/NewGameContainer';
 import TriviaContainer from '../containers/TriviaContainer';
 import GameOverContainer from '../containers/GameOverContainer';
 import '../../styles/components/App.scss';
+import { fetchCategories } from '../actions';
 
 class App extends React.Component {
   constructor(props, context) {
@@ -22,6 +23,7 @@ class App extends React.Component {
     store.subscribe(() => {
       this.updateFromStore();
     });
+    store.dispatch(fetchCategories());
   }
 
   updateFromStore() {

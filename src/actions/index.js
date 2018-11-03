@@ -103,9 +103,10 @@ export function setResponse(response) {
 export function fetchTrivia() {
   return (dispatch, getState) => {
     dispatch(setResponse({}));
-    const { difficulty, triviaType } = getState();
+    const { difficulty, triviaType, category, allCategories } = getState();
     let type = null;
     let value = 50;
+    let categoryId = null;
 
     if (triviaType === 'multiple') {
       type = 'multiple';
@@ -120,7 +121,16 @@ export function fetchTrivia() {
       value *= 3;
     }
 
-    fetch(`https://opentdb.com/api.php?amount=1&difficulty=${difficulty}${type && `&type=${type}`}`)
+    if (category !== 'any') {
+      const idArray = allCategories[category];
+      categoryId = idArray[Math.floor(Math.random() * idArray.length)];
+    }
+
+    fetch(
+      `https://opentdb.com/api.php?amount=1&difficulty=${difficulty}${type ? `&type=${type}` : ''}${
+        categoryId ? `&category=${categoryId}` : ''
+      }`,
+    )
       .then(response => response.json())
       .then(result => {
         dispatch(setTrivia(result.results[0], value, type));
@@ -168,5 +178,46 @@ export function setTriviaType(triviaType) {
   return {
     type: 'SET_TRIVIA_TYPE',
     triviaType,
+  };
+}
+
+export function setCategory(category) {
+  return {
+    type: 'SET_CATEGORY',
+    category,
+  };
+}
+
+export function setAllCategories(categories) {
+  const entertainment = categories
+    .filter(item => item.name.includes('Entertainment'))
+    .map(item => item.id);
+  const history = categories.filter(item => item.name.includes('History')).map(item => item.id);
+  const science = categories.filter(item => item.name.includes('Science')).map(item => item.id);
+  const sports = categories.filter(item => item.name.includes('Sports')).map(item => item.id);
+  const combinedCategories = [...entertainment, ...history, ...science, ...sports];
+  const others = categories
+    .filter(item => !combinedCategories.includes(item.id))
+    .map(item => item.id);
+  const groupedCategories = {
+    entertainment,
+    history,
+    science,
+    sports,
+    others,
+  };
+  return {
+    type: 'SET_ALL_CATEGORIES',
+    allCategories: groupedCategories,
+  };
+}
+
+export function fetchCategories() {
+  return dispatch => {
+    fetch('https://opentdb.com/api_category.php')
+      .then(response => response.json())
+      .then(result => {
+        dispatch(setAllCategories(result.trivia_categories));
+      });
   };
 }
