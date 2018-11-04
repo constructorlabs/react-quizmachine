@@ -20,7 +20,7 @@ function NewGame({
       </div>
       <div className="new-game__options">
         <div className="new-game__diff">
-          <div className="new-game__choose-dif">Difficulty</div>
+          <div className="new-game__header">Difficulty</div>
           <div className="new-game__buttons">
             {['easy', 'medium', 'hard'].map(item => {
               const classes = cx('new-game__button', {
@@ -40,7 +40,7 @@ function NewGame({
           </div>
         </div>
         <div className="new-game__type">
-          <div className="new-game__choose-type">Question type</div>
+          <div className="new-game__header">Question type</div>
           <div className="new-game__buttons">
             {['any', 'multiple', 'true/false'].map(item => {
               const classes = cx('new-game__button', {
@@ -60,7 +60,7 @@ function NewGame({
           </div>
         </div>
         <div className="new-game__category">
-          <div className="new-game__choose-category">Category</div>
+          <div className="new-game__header">Category</div>
           <div className="new-game__buttons">
             {['any', 'entertainment', 'history', 'science', 'sports', 'others'].map(item => {
               const classes = cx('new-game__button', {
@@ -80,7 +80,7 @@ function NewGame({
           </div>
         </div>
       </div>
-      <button type="button" className="new-game__button" onClick={startGame}>
+      <button type="button" className="new-game__button start-button" onClick={startGame}>
         Start!
       </button>
     </div>

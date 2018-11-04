@@ -21,12 +21,12 @@ function Login({
   return (
     <div className="login">
       <div className="login__title">Who Knows?</div>
-      <div className="new-game__subtitle">
+      <div className="login__subtitle">
         A trivia game that you will probably end up playing while in the bathroom.
       </div>
       <div className="login__box">
         <form className={existingUserClasses} onSubmit={getLogin}>
-          <div>Existing users</div>
+          <div className="login__header">Existing users</div>
           <div className="login__username">
             <input
               className="login__input"
@@ -59,7 +59,7 @@ function Login({
 
       <div className="login__box">
         <form className={newUserClasses} onSubmit={getCreateUser}>
-          <div>New user</div>
+          <div className="login__header">New user</div>
           <div className="login__username">
             <input
               className="login__input"

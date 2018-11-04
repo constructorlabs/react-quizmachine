@@ -8,16 +8,20 @@ function GameOver({ highScores, getRestart }) {
       <div className="game-over__title">Game Over!</div>
       <div className="game-over__scores-title">High Scores</div>
       <table className="game-over__high-scores">
-        <tr className="game-over__scores-columns">
-          <th>Player</th>
-          <th>Score</th>
-        </tr>
-        {highScores.map(item => (
-          <tr key={item.end_date}>
-            <td>{item.username}</td>
-            <td>{item.score}</td>
+        <thead>
+          <tr className="game-over__scores-columns">
+            <th>Player</th>
+            <th>Score</th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {highScores.map(item => (
+            <tr key={item.end_date}>
+              <td>{item.username}</td>
+              <td>{item.score}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <button type="button" className="game-over__button" onClick={() => getRestart()}>
         Start again

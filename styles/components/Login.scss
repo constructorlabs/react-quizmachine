@@ -1,7 +1,8 @@
 @import 'defaults';
 
 .login {
-  height: 100vh;
+  width: 100%;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,6 +19,10 @@
     font-size: 0.7rem;
     margin-bottom: 3rem;
     text-align: center;
+  }
+
+  &__header {
+    font-weight: 600;
   }
 
   &__existing {
@@ -41,7 +46,7 @@
   }
 
   &__view-switch {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -160,7 +160,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #F6F7EB;\n  font-family: \"Roboto\";\n  color: #403D39;\n  display: flex;\n  justify-content: center; }\n\n.answers {\n  display: flex;\n  flex-direction: column; }\n\n.answer {\n  background: transparent;\n  border: 1px solid #403D39;\n  border-radius: 5px;\n  color: #403D39;\n  padding: 5px 32px;\n  text-align: center;\n  display: inline-block;\n  font-size: 1rem;\n  margin: 4px 10px;\n  -webkit-transition-duration: 0.2s;\n  transition-duration: 0.2s;\n  cursor: pointer;\n  text-decoration: none;\n  text-transform: uppercase;\n  outline: none;\n  position: relative;\n  animation-duration: 5s;\n  animation-iteration-count: infinite;\n  animation-timing-function: ease-in; }\n  .answer--red {\n    background-color: red;\n    color: #f1f1f1;\n    animation-name: shakeAnim; }\n  .answer--green {\n    background-color: green;\n    color: #f1f1f1;\n    transform: scale(1.05); }\n\n@keyframes shakeAnim {\n  0% {\n    left: 0; }\n  1% {\n    left: -3px; }\n  2% {\n    left: 5px; }\n  3% {\n    left: -8px; }\n  4% {\n    left: 8px; }\n  5% {\n    left: -5px; }\n  6% {\n    left: 3px; }\n  7% {\n    left: 0; } }\n", ""]);
+exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #f6f7eb;\n  font-family: \"Roboto\";\n  color: #403d39;\n  display: flex;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100vh; }\n\n.answers {\n  display: flex;\n  flex-direction: column; }\n\n.answer {\n  background: transparent;\n  border: 1px solid #403d39;\n  border-radius: 5px;\n  color: #403d39;\n  padding: 5px 32px;\n  text-align: center;\n  display: inline-block;\n  font-size: 1rem;\n  margin: 4px 10px;\n  -webkit-transition-duration: 0.2s;\n  transition-duration: 0.2s;\n  cursor: pointer;\n  text-decoration: none;\n  text-transform: uppercase;\n  outline: none;\n  position: relative;\n  animation-duration: 5s;\n  animation-iteration-count: infinite;\n  animation-timing-function: ease-in; }\n  .answer:hover {\n    background-color: #403d39;\n    color: #f1f1f1; }\n  .answer--red {\n    background-color: red !important;\n    color: #f1f1f1;\n    animation-name: shakeAnim; }\n  .answer--green {\n    background-color: green !important;\n    color: #f1f1f1;\n    transform: scale(1.05); }\n\n@keyframes shakeAnim {\n  0% {\n    left: 0; }\n  1% {\n    left: -3px; }\n  2% {\n    left: 5px; }\n  3% {\n    left: -8px; }\n  4% {\n    left: 8px; }\n  5% {\n    left: -5px; }\n  6% {\n    left: 3px; }\n  7% {\n    left: 0; } }\n", ""]);
 
 // exports
 
@@ -179,7 +179,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #F6F7EB;\n  font-family: \"Roboto\";\n  color: #403D39;\n  display: flex;\n  justify-content: center; }\n\n.app {\n  max-width: 400px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center; }\n\n.footer {\n  margin: 0;\n  padding: 0;\n  font-size: 0.7rem;\n  position: fixed;\n  bottom: 5px;\n  text-align: center; }\n", ""]);
+exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #f6f7eb;\n  font-family: \"Roboto\";\n  color: #403d39;\n  display: flex;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100vh; }\n\n.app {\n  max-width: 400px;\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center; }\n\n.footer {\n  margin: 0;\n  padding: 0;\n  font-size: 0.7rem;\n  position: fixed;\n  bottom: 5px;\n  text-align: center; }\n", ""]);
 
 // exports
 
@@ -198,7 +198,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #F6F7EB;\n  font-family: \"Roboto\";\n  color: #403D39;\n  display: flex;\n  justify-content: center; }\n\n.game-over {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center; }\n  .game-over__title {\n    font-size: 3rem;\n    font-family: 'Permanent Marker', cursive;\n    margin-bottom: 1rem; }\n  .game-over__scores-title {\n    font-weight: 600; }\n  .game-over__high-scores {\n    table-layout: auto;\n    width: 200px;\n    font-size: 0.8rem;\n    margin: 10px;\n    text-align: center; }\n  .game-over__button {\n    background: transparent;\n    font-family: \"Roboto\";\n    border: 1px solid #403D39;\n    border-radius: 5px;\n    color: #403D39;\n    padding: 5px 32px;\n    text-align: center;\n    display: inline-block;\n    font-size: 1rem;\n    margin: 4px 10px;\n    -webkit-transition-duration: 0.2s;\n    transition-duration: 0.2s;\n    text-transform: uppercase; }\n    .game-over__button:hover {\n      background-color: #403D39;\n      color: #f1f1f1; }\n", ""]);
+exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #f6f7eb;\n  font-family: \"Roboto\";\n  color: #403d39;\n  display: flex;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100vh; }\n\n.game-over {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center; }\n  .game-over__title {\n    font-size: 3rem;\n    font-family: 'Permanent Marker', cursive;\n    margin-bottom: 1rem; }\n  .game-over__scores-title {\n    font-weight: 600; }\n  .game-over__high-scores {\n    table-layout: auto;\n    width: 200px;\n    font-size: 0.8rem;\n    margin: 10px;\n    text-align: center; }\n  .game-over__button {\n    background: transparent;\n    font-family: \"Roboto\";\n    border: 1px solid #403d39;\n    border-radius: 5px;\n    color: #403d39;\n    padding: 5px 32px;\n    text-align: center;\n    display: inline-block;\n    font-size: 1rem;\n    margin: 4px 10px;\n    -webkit-transition-duration: 0.2s;\n    transition-duration: 0.2s;\n    text-transform: uppercase; }\n    .game-over__button:hover {\n      background-color: #403d39;\n      color: #f1f1f1; }\n", ""]);
 
 // exports
 
@@ -217,7 +217,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #F6F7EB;\n  font-family: \"Roboto\";\n  color: #403D39;\n  display: flex;\n  justify-content: center; }\n\n.login {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-size: 0.8rem; }\n  .login__title {\n    font-size: 3rem;\n    margin-bottom: 0.3rem;\n    font-family: 'Permanent Marker', cursive; }\n  .login__subtitle {\n    font-size: 0.7rem;\n    margin-bottom: 3rem;\n    text-align: center; }\n  .login__existing {\n    display: flex;\n    flex-direction: column;\n    align-items: center; }\n    .login__existing--hidden {\n      display: none; }\n  .login__new {\n    display: flex;\n    flex-direction: column;\n    align-items: center; }\n    .login__new--hidden {\n      display: none; }\n  .login__view-switch {\n    margin-top: 20px;\n    display: flex;\n    flex-direction: column;\n    align-items: center; }\n  .login__input {\n    display: flex;\n    overflow: hidden;\n    margin: 3px 0px 3px 0px;\n    padding: 12px 12px;\n    width: 150px;\n    height: 12px;\n    cursor: pointer;\n    user-select: none;\n    transition: all 150ms linear;\n    white-space: nowrap;\n    text-decoration: none !important;\n    text-transform: none;\n    color: #232121;\n    background-color: #fff;\n    border: 1px solid #d4d4d4;\n    border-radius: 3px;\n    font-weight: 500;\n    line-height: 1;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    justify-content: center;\n    align-items: center; }\n    .login__input:focus {\n      outline: 0; }\n  .login__button {\n    background: transparent;\n    font-family: \"Roboto\";\n    border: 1px solid #403D39;\n    border-radius: 5px;\n    color: #403D39;\n    padding: 5px 10px;\n    text-align: center;\n    display: inline-block;\n    font-size: 0.8rem;\n    margin: 4px 10px;\n    -webkit-transition-duration: 0.2s;\n    transition-duration: 0.2s;\n    text-transform: uppercase; }\n    .login__button:hover {\n      background-color: #403D39;\n      color: #f1f1f1; }\n    .login__button:focus {\n      outline: 0; }\n", ""]);
+exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #f6f7eb;\n  font-family: \"Roboto\";\n  color: #403d39;\n  display: flex;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100vh; }\n\n.login {\n  width: 100%;\n  padding: 10px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-size: 0.8rem; }\n  .login__title {\n    font-size: 3rem;\n    margin-bottom: 0.3rem;\n    font-family: 'Permanent Marker', cursive; }\n  .login__subtitle {\n    font-size: 0.7rem;\n    margin-bottom: 3rem;\n    text-align: center; }\n  .login__header {\n    font-weight: 600; }\n  .login__existing {\n    display: flex;\n    flex-direction: column;\n    align-items: center; }\n    .login__existing--hidden {\n      display: none; }\n  .login__new {\n    display: flex;\n    flex-direction: column;\n    align-items: center; }\n    .login__new--hidden {\n      display: none; }\n  .login__view-switch {\n    margin-top: 30px;\n    display: flex;\n    flex-direction: column;\n    align-items: center; }\n  .login__input {\n    display: flex;\n    overflow: hidden;\n    margin: 3px 0px 3px 0px;\n    padding: 12px 12px;\n    width: 150px;\n    height: 12px;\n    cursor: pointer;\n    user-select: none;\n    transition: all 150ms linear;\n    white-space: nowrap;\n    text-decoration: none !important;\n    text-transform: none;\n    color: #232121;\n    background-color: #fff;\n    border: 1px solid #d4d4d4;\n    border-radius: 3px;\n    font-weight: 500;\n    line-height: 1;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    justify-content: center;\n    align-items: center; }\n    .login__input:focus {\n      outline: 0; }\n  .login__button {\n    background: transparent;\n    font-family: \"Roboto\";\n    border: 1px solid #403d39;\n    border-radius: 5px;\n    color: #403d39;\n    padding: 5px 10px;\n    text-align: center;\n    display: inline-block;\n    font-size: 0.8rem;\n    margin: 4px 10px;\n    -webkit-transition-duration: 0.2s;\n    transition-duration: 0.2s;\n    text-transform: uppercase; }\n    .login__button:hover {\n      background-color: #403d39;\n      color: #f1f1f1; }\n    .login__button:focus {\n      outline: 0; }\n", ""]);
 
 // exports
 
@@ -236,7 +236,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #F6F7EB;\n  font-family: \"Roboto\";\n  color: #403D39;\n  display: flex;\n  justify-content: center; }\n\n.new-game {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center; }\n  .new-game__title {\n    font-size: 3rem;\n    margin-bottom: 0.3rem;\n    font-family: 'Permanent Marker', cursive; }\n  .new-game__subtitle {\n    font-size: 0.7rem;\n    margin-bottom: 3rem;\n    text-align: center; }\n  .new-game__options {\n    display: flex; }\n  .new-game__diff {\n    justify-content: center;\n    width: 8rem; }\n  .new-game__choose-dif {\n    font-family: \"Roboto\";\n    text-align: center; }\n  .new-game__type {\n    justify-content: center;\n    width: 8rem; }\n  .new-game__choose-type {\n    text-align: center; }\n  .new-game__category {\n    justify-content: center;\n    width: 8rem; }\n  .new-game__choose-category {\n    font-family: \"Roboto\";\n    text-align: center; }\n  .new-game__buttons {\n    display: flex;\n    flex-direction: column;\n    margin-top: 0.5rem; }\n  .new-game__button {\n    background: transparent;\n    font-family: \"Roboto\";\n    border: 1px solid #403D39;\n    border-radius: 5px;\n    color: #403D39;\n    padding: 5px 10px;\n    text-align: center;\n    display: inline-block;\n    font-size: 0.8rem;\n    margin: 4px 10px;\n    -webkit-transition-duration: 0.2s;\n    transition-duration: 0.2s;\n    text-transform: uppercase; }\n    .new-game__button:hover {\n      background-color: #403D39;\n      color: #f1f1f1; }\n    .new-game__button:focus {\n      outline: 0; }\n    .new-game__button--selected {\n      background-color: #403D39;\n      color: #f1f1f1; }\n", ""]);
+exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #f6f7eb;\n  font-family: \"Roboto\";\n  color: #403d39;\n  display: flex;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100vh; }\n\n.new-game {\n  height: 100vh;\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center; }\n  .new-game__title {\n    font-size: 3rem;\n    margin-bottom: 0.3rem;\n    font-family: 'Permanent Marker', cursive; }\n  .new-game__subtitle {\n    font-size: 0.7rem;\n    margin-bottom: 2rem;\n    text-align: center; }\n  .new-game__options {\n    display: flex; }\n  .new-game__diff {\n    justify-content: center;\n    width: 90px; }\n  .new-game__header {\n    font-family: \"Roboto\";\n    text-align: center;\n    font-size: 0.9rem; }\n  .new-game__type {\n    justify-content: center;\n    width: 110px; }\n  .new-game__category {\n    justify-content: center;\n    width: 140px; }\n  .new-game__buttons {\n    display: flex;\n    flex-direction: column;\n    margin-top: 5px; }\n  .new-game__button {\n    background: transparent;\n    font-family: \"Roboto\";\n    border: 1px solid #403d39;\n    border-radius: 5px;\n    color: #403d39;\n    padding: 5px 10px;\n    text-align: center;\n    display: inline-block;\n    font-size: 0.8rem;\n    margin: 4px 10px;\n    -webkit-transition-duration: 0.2s;\n    transition-duration: 0.2s;\n    text-transform: uppercase; }\n    .new-game__button:hover {\n      background-color: #403d39;\n      color: #f1f1f1; }\n    .new-game__button:focus {\n      outline: 0; }\n    .new-game__button--selected {\n      background-color: #403d39;\n      color: #f1f1f1; }\n\n.start-button {\n  background-color: #403d39;\n  color: #f1f1f1;\n  padding: 10px 20px;\n  font-size: 1rem;\n  font-weight: 600;\n  margin: 20px;\n  border: 2px solid #403d39;\n  border-radius: 7px; }\n  .start-button:hover {\n    background: green;\n    border: 2px solid green; }\n", ""]);
 
 // exports
 
@@ -255,7 +255,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #F6F7EB;\n  font-family: \"Roboto\";\n  color: #403D39;\n  display: flex;\n  justify-content: center; }\n\n.trivia__wrapper {\n  display: flex;\n  justify-content: center; }\n\n.trivia {\n  margin: 5rem 2rem 4rem 2rem;\n  padding: 2rem 1rem 2rem 1rem;\n  max-width: 500px;\n  border: none;\n  border-radius: 6px;\n  color: #403D39;\n  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); }\n  .trivia__title {\n    font-family: 'Permanent Marker', cursive;\n    font-size: 2rem;\n    text-align: center;\n    padding-top: 1rem; }\n  .trivia__category {\n    font-size: 0.8rem;\n    padding-bottom: 0;\n    margin-bottom: 0; }\n  .trivia__question {\n    font-size: 1.2rem;\n    font-weight: 600;\n    padding-top: 1rem;\n    padding-bottom: 1rem; }\n\n.stats {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  margin-top: 1rem;\n  width: 100%; }\n  .stats div {\n    font-size: 0.8rem; }\n\n.trivia__card--hidden {\n  display: none; }\n", ""]);
+exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #f6f7eb;\n  font-family: \"Roboto\";\n  color: #403d39;\n  display: flex;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100vh; }\n\n.trivia__wrapper {\n  display: flex;\n  justify-content: center; }\n\n.trivia {\n  margin: 4rem 2rem 4rem 2rem;\n  padding: 2rem 1rem 2rem 1rem;\n  max-width: 500px;\n  border: none;\n  border-radius: 6px;\n  color: #403d39;\n  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); }\n  .trivia__title {\n    font-family: 'Permanent Marker', cursive;\n    font-size: 2rem;\n    text-align: center;\n    padding-top: 1rem; }\n  .trivia__category {\n    font-size: 0.8rem;\n    padding-bottom: 0;\n    margin-bottom: 0; }\n  .trivia__question {\n    font-size: 1.2rem;\n    font-weight: 600;\n    padding-top: 1rem;\n    padding-bottom: 1rem; }\n\n.stats {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  margin-top: 1rem;\n  width: 100%; }\n  .stats div {\n    font-size: 0.8rem; }\n\n.trivia__card--hidden {\n  display: none; }\n", ""]);
 
 // exports
 
@@ -25054,35 +25054,43 @@ function GameOver(_ref) {
       'table',
       { className: 'game-over__high-scores' },
       _react2.default.createElement(
-        'tr',
-        { className: 'game-over__scores-columns' },
+        'thead',
+        null,
         _react2.default.createElement(
-          'th',
-          null,
-          'Player'
-        ),
-        _react2.default.createElement(
-          'th',
-          null,
-          'Score'
-        )
-      ),
-      highScores.map(function (item) {
-        return _react2.default.createElement(
           'tr',
-          { key: item.end_date },
+          { className: 'game-over__scores-columns' },
           _react2.default.createElement(
-            'td',
+            'th',
             null,
-            item.username
+            'Player'
           ),
           _react2.default.createElement(
-            'td',
+            'th',
             null,
-            item.score
+            'Score'
           )
-        );
-      })
+        )
+      ),
+      _react2.default.createElement(
+        'tbody',
+        null,
+        highScores.map(function (item) {
+          return _react2.default.createElement(
+            'tr',
+            { key: item.end_date },
+            _react2.default.createElement(
+              'td',
+              null,
+              item.username
+            ),
+            _react2.default.createElement(
+              'td',
+              null,
+              item.score
+            )
+          );
+        })
+      )
     ),
     _react2.default.createElement(
       'button',
@@ -25158,7 +25166,7 @@ function Login(_ref) {
     ),
     _react2.default.createElement(
       'div',
-      { className: 'new-game__subtitle' },
+      { className: 'login__subtitle' },
       'A trivia game that you will probably end up playing while in the bathroom.'
     ),
     _react2.default.createElement(
@@ -25169,7 +25177,7 @@ function Login(_ref) {
         { className: existingUserClasses, onSubmit: getLogin },
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'login__header' },
           'Existing users'
         ),
         _react2.default.createElement(
@@ -25229,7 +25237,7 @@ function Login(_ref) {
         { className: newUserClasses, onSubmit: getCreateUser },
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'login__header' },
           'New user'
         ),
         _react2.default.createElement(
@@ -25359,7 +25367,7 @@ function NewGame(_ref) {
         { className: 'new-game__diff' },
         _react2.default.createElement(
           'div',
-          { className: 'new-game__choose-dif' },
+          { className: 'new-game__header' },
           'Difficulty'
         ),
         _react2.default.createElement(
@@ -25389,7 +25397,7 @@ function NewGame(_ref) {
         { className: 'new-game__type' },
         _react2.default.createElement(
           'div',
-          { className: 'new-game__choose-type' },
+          { className: 'new-game__header' },
           'Question type'
         ),
         _react2.default.createElement(
@@ -25419,7 +25427,7 @@ function NewGame(_ref) {
         { className: 'new-game__category' },
         _react2.default.createElement(
           'div',
-          { className: 'new-game__choose-category' },
+          { className: 'new-game__header' },
           'Category'
         ),
         _react2.default.createElement(
@@ -25447,7 +25455,7 @@ function NewGame(_ref) {
     ),
     _react2.default.createElement(
       'button',
-      { type: 'button', className: 'new-game__button', onClick: startGame },
+      { type: 'button', className: 'new-game__button start-button', onClick: startGame },
       'Start!'
     )
   );
