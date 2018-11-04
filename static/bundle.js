@@ -198,7 +198,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #F6F7EB;\n  font-family: \"Roboto\";\n  color: #403D39;\n  display: flex;\n  justify-content: center; }\n\n.game-over {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center; }\n  .game-over__title {\n    font-size: 3rem;\n    font-family: 'Permanent Marker', cursive;\n    margin-bottom: 1rem; }\n  .game-over__button {\n    background: transparent;\n    font-family: \"Roboto\";\n    border: 1px solid #403D39;\n    border-radius: 5px;\n    color: #403D39;\n    padding: 5px 32px;\n    text-align: center;\n    display: inline-block;\n    font-size: 1rem;\n    margin: 4px 10px;\n    -webkit-transition-duration: 0.2s;\n    transition-duration: 0.2s;\n    text-transform: uppercase; }\n    .game-over__button:hover {\n      background-color: #403D39;\n      color: #f1f1f1; }\n", ""]);
+exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #F6F7EB;\n  font-family: \"Roboto\";\n  color: #403D39;\n  display: flex;\n  justify-content: center; }\n\n.game-over {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center; }\n  .game-over__title {\n    font-size: 3rem;\n    font-family: 'Permanent Marker', cursive;\n    margin-bottom: 1rem; }\n  .game-over__scores-title {\n    font-weight: 600; }\n  .game-over__high-scores {\n    table-layout: auto;\n    width: 200px;\n    font-size: 0.8rem;\n    margin: 10px;\n    text-align: center; }\n  .game-over__button {\n    background: transparent;\n    font-family: \"Roboto\";\n    border: 1px solid #403D39;\n    border-radius: 5px;\n    color: #403D39;\n    padding: 5px 32px;\n    text-align: center;\n    display: inline-block;\n    font-size: 1rem;\n    margin: 4px 10px;\n    -webkit-transition-duration: 0.2s;\n    transition-duration: 0.2s;\n    text-transform: uppercase; }\n    .game-over__button:hover {\n      background-color: #403D39;\n      color: #f1f1f1; }\n", ""]);
 
 // exports
 
@@ -217,7 +217,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #F6F7EB;\n  font-family: \"Roboto\";\n  color: #403D39;\n  display: flex;\n  justify-content: center; }\n\n.login {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  font-size: 0.8rem; }\n  .login__title {\n    font-size: 3rem;\n    margin-bottom: 0.3rem;\n    font-family: 'Permanent Marker', cursive; }\n  .login__subtitle {\n    font-size: 0.7rem;\n    margin-bottom: 3rem;\n    text-align: center; }\n  .login__existing {\n    display: flex;\n    flex-direction: column;\n    align-items: center; }\n    .login__existing--hidden {\n      display: none; }\n  .login__new {\n    display: flex;\n    flex-direction: column;\n    align-items: center; }\n    .login__new--hidden {\n      display: none; }\n  .login__view-switch {\n    margin-top: 20px;\n    display: flex;\n    flex-direction: column;\n    align-items: center; }\n  .login__input {\n    display: flex;\n    overflow: hidden;\n    margin: 3px 0px 3px 0px;\n    padding: 12px 12px;\n    width: 150px;\n    height: 12px;\n    cursor: pointer;\n    user-select: none;\n    transition: all 150ms linear;\n    white-space: nowrap;\n    text-decoration: none !important;\n    text-transform: none;\n    color: #232121;\n    background-color: #fff;\n    border: 1px solid #d4d4d4;\n    border-radius: 3px;\n    font-weight: 500;\n    line-height: 1;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    justify-content: center;\n    align-items: center; }\n    .login__input:focus {\n      outline: 0; }\n  .login__button {\n    background: transparent;\n    font-family: \"Roboto\";\n    border: 1px solid #403D39;\n    border-radius: 5px;\n    color: #403D39;\n    padding: 5px 10px;\n    text-align: center;\n    display: inline-block;\n    font-size: 0.8rem;\n    margin: 4px 10px;\n    -webkit-transition-duration: 0.2s;\n    transition-duration: 0.2s;\n    text-transform: uppercase; }\n    .login__button:hover {\n      background-color: #403D39;\n      color: #f1f1f1; }\n    .login__button:focus {\n      outline: 0; }\n", ""]);
 
 // exports
 
@@ -24312,10 +24312,18 @@ exports.incrementProgress = incrementProgress;
 exports.resetProgress = resetProgress;
 exports.setTrivia = setTrivia;
 exports.setResponse = setResponse;
-exports.setGif = setGif;
-exports.fetchTrivia = fetchTrivia;
-exports.resetTrivia = resetTrivia;
+exports.setCorrectGif = setCorrectGif;
+exports.setIncorrectGif = setIncorrectGif;
+exports.setSessionId = setSessionId;
+exports.resetSession = resetSession;
+exports.setHighScores = setHighScores;
+exports.endSession = endSession;
+exports.resetGif = resetGif;
 exports.fetchGif = fetchGif;
+exports.fetchTrivia = fetchTrivia;
+exports.startSession = startSession;
+exports.resetTrivia = resetTrivia;
+exports.chooseGif = chooseGif;
 exports.analyzeResponse = analyzeResponse;
 exports.setTriviaType = setTriviaType;
 exports.setCategory = setCategory;
@@ -24324,7 +24332,10 @@ exports.fetchCategories = fetchCategories;
 exports.setUsername = setUsername;
 exports.setPassword = setPassword;
 exports.setLoggedIn = setLoggedIn;
+exports.setUserId = setUserId;
 exports.loginUser = loginUser;
+exports.createUser = createUser;
+exports.setUserType = setUserType;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -24390,13 +24401,15 @@ function resetProgress() {
   };
 }
 
-function setTrivia(trivia, value) {
+function setTrivia(trivia) {
   var answers = trivia.incorrect_answers.map(function (answer) {
-    return { content: he.decode(answer), correct: false, value: 0 };
-  }).concat([{ content: he.decode(trivia.correct_answer), correct: true, value: value }]);
+    return { content: he.decode(answer), correct: false };
+  }).concat([{ content: he.decode(trivia.correct_answer), correct: true }]);
 
+  var value = 50;
   if (trivia.type === 'multiple') {
     answers = shuffle(answers);
+    value *= 2;
   } else if (trivia.type === 'boolean') {
     answers.sort(function (a, b) {
       if (a.content[0] > b.content[0]) {
@@ -24404,6 +24417,11 @@ function setTrivia(trivia, value) {
       }
       return 1;
     });
+  }
+  if (trivia.difficulty === 'medium') {
+    value *= 2;
+  } else if (trivia.difficulty === 'hard') {
+    value *= 3;
   }
 
   var newTrivia = {
@@ -24430,16 +24448,101 @@ function setResponse(response) {
   };
 }
 
-function setGif(gifUrl) {
+function setCorrectGif(correctGif) {
   return {
-    type: 'SET_GIF_URL',
-    gifUrl: gifUrl
+    type: 'SET_CORRECT_GIF',
+    correctGif: correctGif
+  };
+}
+
+function setIncorrectGif(incorrectGif) {
+  return {
+    type: 'SET_INCORRECT_GIF',
+    incorrectGif: incorrectGif
+  };
+}
+
+function setSessionId(id) {
+  return {
+    type: 'SET_SESSION_ID',
+    id: id
+  };
+}
+
+function resetSession() {
+  return {
+    type: 'RESET_SESSION'
+  };
+}
+
+function setHighScores(table) {
+  return {
+    type: 'SET_HIGH_SCORES',
+    table: table
+  };
+}
+
+function endSession() {
+  return function (dispatch, getState) {
+    var reduxState = getState();
+    var sessionId = reduxState.session.id;
+    var score = reduxState.score;
+
+    fetch('/api/end-session', {
+      method: 'POST',
+      body: JSON.stringify({ sessionId: sessionId, score: score }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function () {
+      dispatch(resetSession());
+      return fetch('/api/high-scores');
+    }).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      return dispatch(setHighScores(data));
+    });
+  };
+}
+
+function resetGif() {
+  return {
+    type: 'RESET_GIF'
+  };
+}
+
+function fetchGif() {
+  return function (dispatch) {
+    var correctTags = ['yes', 'correct', 'great', 'amazing', 'fistbump'];
+    var incorrectTags = ['no', 'wrong', 'fail', 'facepalm', 'nope'];
+    var correctTag = correctTags[Math.floor(Math.random() * correctTags.length)];
+    var incorrectTag = incorrectTags[Math.floor(Math.random() * incorrectTags.length)];
+
+    dispatch(resetGif());
+    fetch('/api/gif/' + correctTag).then(function (response) {
+      return response.json();
+    }).then(function (result) {
+      dispatch(setCorrectGif({
+        url: result.results[0].media[0].tinygif.url,
+        duration: result.results[0].media[0].nanomp4.duration * 1000
+      }));
+    });
+
+    fetch('/api/gif/' + incorrectTag).then(function (response) {
+      return response.json();
+    }).then(function (result) {
+      dispatch(setIncorrectGif({
+        url: result.results[0].media[0].tinygif.url,
+        duration: result.results[0].media[0].nanomp4.duration * 1000
+      }));
+    });
   };
 }
 
 function fetchTrivia() {
   return function (dispatch, getState) {
     dispatch(setResponse({}));
+    dispatch(fetchGif());
 
     var _getState = getState(),
         difficulty = _getState.difficulty,
@@ -24448,20 +24551,12 @@ function fetchTrivia() {
         allCategories = _getState.allCategories;
 
     var type = null;
-    var value = 50;
     var categoryId = null;
 
     if (triviaType === 'multiple') {
       type = 'multiple';
-      value *= 2;
     } else if (triviaType === 'true/false') {
       type = 'boolean';
-    }
-
-    if (difficulty === 'medium') {
-      value *= 2;
-    } else if (difficulty === 'hard') {
-      value *= 3;
     }
 
     if (category !== 'any') {
@@ -24472,9 +24567,31 @@ function fetchTrivia() {
     fetch('https://opentdb.com/api.php?amount=1&difficulty=' + difficulty + (type ? '&type=' + type : '') + (categoryId ? '&category=' + categoryId : '')).then(function (response) {
       return response.json();
     }).then(function (result) {
-      dispatch(setTrivia(result.results[0], value));
-      dispatch(setGif(''));
+      dispatch(setTrivia(result.results[0]));
       dispatch(setStage('trivia'));
+    });
+  };
+}
+
+function startSession() {
+  return function (dispatch, getState) {
+    var _getState2 = getState(),
+        difficulty = _getState2.difficulty,
+        triviaType = _getState2.triviaType,
+        category = _getState2.category,
+        user = _getState2.user;
+
+    fetch('/api/new-session', {
+      method: 'POST',
+      body: JSON.stringify({ userId: user.id, difficulty: difficulty, triviaType: triviaType, category: category }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      dispatch(setSessionId(data.sessionId));
+      dispatch(fetchTrivia());
     });
   };
 }
@@ -24485,35 +24602,35 @@ function resetTrivia() {
   };
 }
 
-function fetchGif(correct) {
-  return function (dispatch) {
-    var tag = void 0;
-    var correctTags = ['yes', 'correct', 'great', 'amazing', 'fistbump'];
-    var incorrectTags = ['no', 'wrong', 'fail', 'facepalm', 'nope'];
-    if (correct) {
-      tag = correctTags[Math.floor(Math.random() * correctTags.length)];
-    } else {
-      tag = incorrectTags[Math.floor(Math.random() * incorrectTags.length)];
-    }
-    fetch('/api/gif/' + tag).then(function (response) {
-      return response.json();
-    }).then(function (result) {
-      dispatch(setGif(result.results[0].media[0].tinygif.url));
-    });
+function chooseGif(correct) {
+  if (correct) {
+    return {
+      type: 'USE_CORRECT_GIF'
+    };
+  }
+  return {
+    type: 'USE_INCORRECT_GIF'
   };
 }
 
 function analyzeResponse(response) {
   return function (dispatch, getState) {
-    var _getState2 = getState(),
-        progress = _getState2.progress,
-        difficulty = _getState2.difficulty,
-        lives = _getState2.lives;
+    var _getState3 = getState(),
+        progress = _getState3.progress,
+        difficulty = _getState3.difficulty,
+        lives = _getState3.lives,
+        trivia = _getState3.trivia,
+        gif = _getState3.gif;
+
+    var correctGifDuration = gif.correctGif.duration;
+    var incorrectGifDuration = gif.incorrectGif.duration;
 
     dispatch(setResponse(response));
-    dispatch(addToScore(response.value));
-    dispatch(fetchGif(response.correct));
     if (response.correct) {
+      setTimeout(function () {
+        return dispatch(chooseGif(true));
+      }, 1000);
+      dispatch(addToScore(trivia.value));
       if (progress < 9) {
         dispatch(incrementProgress());
       } else {
@@ -24529,17 +24646,21 @@ function analyzeResponse(response) {
       }
       setTimeout(function () {
         return dispatch(fetchTrivia());
-      }, 4000);
+      }, Math.max(correctGifDuration * 1.2, 3000));
     } else {
+      setTimeout(function () {
+        return dispatch(chooseGif(false));
+      }, 1000);
       dispatch(decrementLives());
       if (lives > 1) {
         setTimeout(function () {
           return dispatch(fetchTrivia());
-        }, 4000);
+        }, Math.max(incorrectGifDuration * 1.2, 3000));
       } else {
+        dispatch(endSession());
         setTimeout(function () {
           return dispatch(setStage('gameOver'));
-        }, 4000);
+        }, Math.max(incorrectGifDuration * 1.2, 3000));
       }
     }
   };
@@ -24629,6 +24750,13 @@ function setLoggedIn() {
   };
 }
 
+function setUserId(id) {
+  return {
+    type: 'SET_USER_ID',
+    id: id
+  };
+}
+
 function loginUser() {
   return function (dispatch, getState) {
     var _getState$user = getState().user,
@@ -24645,10 +24773,42 @@ function loginUser() {
       return response.json();
     }).then(function (data) {
       if (data.status === 'OK') {
+        dispatch(setUserId(data.id));
         dispatch(setLoggedIn());
         dispatch(setStage('newGame'));
       }
     });
+  };
+}
+
+function createUser() {
+  return function (dispatch, getState) {
+    var _getState$user2 = getState().user,
+        username = _getState$user2.username,
+        password = _getState$user2.password;
+
+    fetch('/api/new-user', {
+      method: 'POST',
+      body: JSON.stringify({ username: username, password: password }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      if (data.status === 'OK') {
+        dispatch(setUserId(data.id));
+        dispatch(setLoggedIn());
+        dispatch(setStage('newGame'));
+      }
+    });
+  };
+}
+
+function setUserType(userType) {
+  return {
+    type: 'SET_USER_TYPE',
+    userType: userType
   };
 }
 
@@ -24874,7 +25034,8 @@ __webpack_require__(/*! ../../styles/components/GameOver.scss */ "./styles/compo
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function GameOver(_ref) {
-  var getRestart = _ref.getRestart;
+  var highScores = _ref.highScores,
+      getRestart = _ref.getRestart;
 
   return _react2.default.createElement(
     'div',
@@ -24883,6 +25044,45 @@ function GameOver(_ref) {
       'div',
       { className: 'game-over__title' },
       'Game Over!'
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'game-over__scores-title' },
+      'High Scores'
+    ),
+    _react2.default.createElement(
+      'table',
+      { className: 'game-over__high-scores' },
+      _react2.default.createElement(
+        'tr',
+        { className: 'game-over__scores-columns' },
+        _react2.default.createElement(
+          'th',
+          null,
+          'Player'
+        ),
+        _react2.default.createElement(
+          'th',
+          null,
+          'Score'
+        )
+      ),
+      highScores.map(function (item) {
+        return _react2.default.createElement(
+          'tr',
+          { key: item.end_date },
+          _react2.default.createElement(
+            'td',
+            null,
+            item.username
+          ),
+          _react2.default.createElement(
+            'td',
+            null,
+            item.score
+          )
+        );
+      })
     ),
     _react2.default.createElement(
       'button',
@@ -24895,6 +25095,7 @@ function GameOver(_ref) {
 }
 
 GameOver.propTypes = {
+  highScores: _propTypes2.default.array.isRequired,
   getRestart: _propTypes2.default.func.isRequired
 };
 
@@ -24924,6 +25125,10 @@ var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-type
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 __webpack_require__(/*! ../../styles/components/Login.scss */ "./styles/components/Login.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -24931,19 +25136,42 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Login(_ref) {
   var username = _ref.username,
       password = _ref.password,
+      userType = _ref.userType,
       getUsername = _ref.getUsername,
       getPassword = _ref.getPassword,
-      getLogin = _ref.getLogin;
+      getLogin = _ref.getLogin,
+      getUserType = _ref.getUserType,
+      getCreateUser = _ref.getCreateUser;
+
+  var existingUserClasses = (0, _classnames2.default)('login__existing', {
+    'login__existing--hidden': userType === 'new'
+  });
+  var newUserClasses = (0, _classnames2.default)('login__new', { 'login__new--hidden': userType === 'existing' });
 
   return _react2.default.createElement(
     'div',
     { className: 'login' },
     _react2.default.createElement(
       'div',
+      { className: 'login__title' },
+      'Who Knows?'
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'new-game__subtitle' },
+      'A trivia game that you will probably end up playing while in the bathroom.'
+    ),
+    _react2.default.createElement(
+      'div',
       { className: 'login__box' },
       _react2.default.createElement(
         'form',
-        { className: 'login__existing', onSubmit: getLogin },
+        { className: existingUserClasses, onSubmit: getLogin },
+        _react2.default.createElement(
+          'div',
+          null,
+          'Existing users'
+        ),
         _react2.default.createElement(
           'div',
           { className: 'login__username' },
@@ -24979,13 +25207,15 @@ function Login(_ref) {
           'div',
           { className: 'login__view-switch' },
           _react2.default.createElement(
-            'p',
+            'div',
             null,
             'No Account?'
           ),
           _react2.default.createElement(
-            'div',
-            { className: 'login__switch' },
+            'button',
+            { type: 'button', className: 'login__button', onClick: function onClick() {
+                return getUserType('new');
+              } },
             'Sign up'
           )
         )
@@ -24996,33 +25226,56 @@ function Login(_ref) {
       { className: 'login__box' },
       _react2.default.createElement(
         'form',
-        { className: 'login__new' },
+        { className: newUserClasses, onSubmit: getCreateUser },
+        _react2.default.createElement(
+          'div',
+          null,
+          'New user'
+        ),
         _react2.default.createElement(
           'div',
           { className: 'login__username' },
-          _react2.default.createElement('input', { className: 'login__input', placeholder: 'Username' })
+          _react2.default.createElement('input', {
+            className: 'login__input',
+            onChange: function onChange(event) {
+              return getUsername(event.target.value);
+            },
+            value: username,
+            placeholder: 'Username'
+          })
         ),
         _react2.default.createElement(
           'div',
           { className: 'login__password' },
-          _react2.default.createElement('input', { className: 'login__input', type: 'password', minLength: '3', placeholder: 'Password' })
+          _react2.default.createElement('input', {
+            className: 'login__input',
+            onChange: function onChange(event) {
+              return getPassword(event.target.value);
+            },
+            value: password,
+            type: 'password',
+            minLength: '3',
+            placeholder: 'Password'
+          })
         ),
         _react2.default.createElement(
           'button',
           { type: 'submit', className: 'login__button' },
-          'Create user'
+          'Sign up'
         ),
         _react2.default.createElement(
           'div',
           { className: 'login__view-switch' },
           _react2.default.createElement(
-            'p',
+            'div',
             null,
             'Already have an account?'
           ),
           _react2.default.createElement(
-            'div',
-            { className: 'login__switch' },
+            'button',
+            { type: 'button', className: 'login__button', onClick: function onClick() {
+                return getUserType('existing');
+              } },
             'Sign in'
           )
         )
@@ -25032,11 +25285,14 @@ function Login(_ref) {
 }
 
 Login.propTypes = {
-  username: _propTypes2.default.string,
-  password: _propTypes2.default.string,
+  username: _propTypes2.default.string.isRequired,
+  password: _propTypes2.default.string.isRequired,
+  userType: _propTypes2.default.string.isRequired,
   getUsername: _propTypes2.default.func.isRequired,
   getPassword: _propTypes2.default.func.isRequired,
-  getLogin: _propTypes2.default.func.isRequired
+  getLogin: _propTypes2.default.func.isRequired,
+  getUserType: _propTypes2.default.func.isRequired,
+  getCreateUser: _propTypes2.default.func.isRequired
 };
 
 exports.default = Login;
@@ -25320,7 +25576,7 @@ Trivia.propTypes = {
   score: _propTypes2.default.number.isRequired,
   difficulty: _propTypes2.default.string.isRequired,
   lives: _propTypes2.default.number.isRequired,
-  gifUrl: _propTypes2.default.string.isRequired
+  gifUrl: _propTypes2.default.string
 };
 
 exports.default = Trivia;
@@ -25394,6 +25650,12 @@ var _actions = __webpack_require__(/*! ../actions */ "./src/actions/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    highScores: state.highScores
+  };
+};
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     getRestart: function getRestart() {
@@ -25409,7 +25671,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_GameOver2.default);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_GameOver2.default);
 
 /***/ }),
 
@@ -25440,7 +25702,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state) {
   return {
     username: state.user.username,
-    password: state.user.password
+    password: state.user.password,
+    userType: state.user.userType
   };
 };
 
@@ -25455,6 +25718,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     getLogin: function getLogin(event) {
       event.preventDefault();
       dispatch((0, _actions.loginUser)());
+    },
+    getUserType: function getUserType(type) {
+      dispatch((0, _actions.setUserType)(type));
+      dispatch((0, _actions.setUsername)(''));
+      dispatch((0, _actions.setPassword)(''));
+    },
+    getCreateUser: function getCreateUser(event) {
+      event.preventDefault();
+      dispatch((0, _actions.createUser)());
     }
   };
 };
@@ -25507,7 +25779,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch((0, _actions.setCategory)(category));
     },
     startGame: function startGame() {
-      return dispatch((0, _actions.fetchTrivia)());
+      return dispatch((0, _actions.startSession)());
     }
   };
 };
@@ -25545,7 +25817,7 @@ var mapStateToProps = function mapStateToProps(state) {
     lives: state.lives,
     trivia: state.trivia,
     response: state.response,
-    gifUrl: state.gifUrl
+    gifUrl: state.gif.url
   };
 };
 
@@ -25689,10 +25961,10 @@ exports.default = difficulty;
 
 /***/ }),
 
-/***/ "./src/reducers/gifUrl.js":
-/*!********************************!*\
-  !*** ./src/reducers/gifUrl.js ***!
-  \********************************/
+/***/ "./src/reducers/gif.js":
+/*!*****************************!*\
+  !*** ./src/reducers/gif.js ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25702,19 +25974,56 @@ exports.default = difficulty;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-function gifUrl() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+function gif() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
 
   switch (action.type) {
-    case 'SET_GIF_URL':
-      return action.gifUrl;
+    case 'SET_CORRECT_GIF':
+      return Object.assign({}, state, { correctGif: action.correctGif });
+    case 'SET_INCORRECT_GIF':
+      return Object.assign({}, state, { incorrectGif: action.incorrectGif });
+    case 'USE_CORRECT_GIF':
+      return state.correctGif;
+    case 'USE_INCORRECT_GIF':
+      return state.incorrectGif;
+    case 'RESET_GIF':
+      return {};
     default:
       return state;
   }
 }
 
-exports.default = gifUrl;
+exports.default = gif;
+
+/***/ }),
+
+/***/ "./src/reducers/highScores.js":
+/*!************************************!*\
+  !*** ./src/reducers/highScores.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function highScores() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'SET_HIGH_SCORES':
+      return action.table;
+    default:
+      return state;
+  }
+}
+
+exports.default = highScores;
 
 /***/ }),
 
@@ -25774,13 +26083,21 @@ var _allCategories = __webpack_require__(/*! ./allCategories */ "./src/reducers/
 
 var _allCategories2 = _interopRequireDefault(_allCategories);
 
-var _gifUrl = __webpack_require__(/*! ./gifUrl */ "./src/reducers/gifUrl.js");
+var _gif = __webpack_require__(/*! ./gif */ "./src/reducers/gif.js");
 
-var _gifUrl2 = _interopRequireDefault(_gifUrl);
+var _gif2 = _interopRequireDefault(_gif);
 
 var _user = __webpack_require__(/*! ./user */ "./src/reducers/user.js");
 
 var _user2 = _interopRequireDefault(_user);
+
+var _session = __webpack_require__(/*! ./session */ "./src/reducers/session.js");
+
+var _session2 = _interopRequireDefault(_session);
+
+var _highScores = __webpack_require__(/*! ./highScores */ "./src/reducers/highScores.js");
+
+var _highScores2 = _interopRequireDefault(_highScores);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25795,8 +26112,10 @@ exports.default = (0, _redux.combineReducers)({
   triviaType: _triviaType2.default,
   category: _category2.default,
   allCategories: _allCategories2.default,
-  gifUrl: _gifUrl2.default,
-  user: _user2.default
+  gif: _gif2.default,
+  user: _user2.default,
+  session: _session2.default,
+  highScores: _highScores2.default
 });
 
 /***/ }),
@@ -25925,6 +26244,37 @@ exports.default = score;
 
 /***/ }),
 
+/***/ "./src/reducers/session.js":
+/*!*********************************!*\
+  !*** ./src/reducers/session.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function session() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'SET_SESSION_ID':
+      return Object.assign({}, state, { id: action.id });
+    case 'RESET_SESSION':
+      return {};
+    default:
+      return state;
+  }
+}
+
+exports.default = session;
+
+/***/ }),
+
 /***/ "./src/reducers/stage.js":
 /*!*******************************!*\
   !*** ./src/reducers/stage.js ***!
@@ -26028,7 +26378,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 function user() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { username: '', password: '', loggedIn: false };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { username: '', password: '', loggedIn: false, userType: 'existing', id: '' };
   var action = arguments[1];
 
   switch (action.type) {
@@ -26038,6 +26388,10 @@ function user() {
       return Object.assign({}, state, { password: action.password });
     case 'SET_LOGGED_IN':
       return Object.assign({}, state, { loggedIn: true });
+    case 'SET_USER_TYPE':
+      return Object.assign({}, state, { userType: action.userType });
+    case 'SET_USER_ID':
+      return Object.assign({}, state, { id: action.id });
     default:
       return state;
   }

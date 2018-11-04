@@ -60,13 +60,15 @@ export function resetProgress() {
   };
 }
 
-export function setTrivia(trivia, value) {
+export function setTrivia(trivia) {
   let answers = trivia.incorrect_answers
-    .map(answer => ({ content: he.decode(answer), correct: false, value: 0 }))
-    .concat([{ content: he.decode(trivia.correct_answer), correct: true, value }]);
+    .map(answer => ({ content: he.decode(answer), correct: false }))
+    .concat([{ content: he.decode(trivia.correct_answer), correct: true }]);
 
+  let value = 50;
   if (trivia.type === 'multiple') {
     answers = shuffle(answers);
+    value *= 2;
   } else if (trivia.type === 'boolean') {
     answers.sort((a, b) => {
       if (a.content[0] > b.content[0]) {
@@ -74,6 +76,11 @@ export function setTrivia(trivia, value) {
       }
       return 1;
     });
+  }
+  if (trivia.difficulty === 'medium') {
+    value *= 2;
+  } else if (trivia.difficulty === 'hard') {
+    value *= 3;
   }
 
   const newTrivia = {
@@ -100,32 +107,111 @@ export function setResponse(response) {
   };
 }
 
-export function setGif(gifUrl) {
+export function setCorrectGif(correctGif) {
   return {
-    type: 'SET_GIF_URL',
-    gifUrl,
+    type: 'SET_CORRECT_GIF',
+    correctGif,
+  };
+}
+
+export function setIncorrectGif(incorrectGif) {
+  return {
+    type: 'SET_INCORRECT_GIF',
+    incorrectGif,
+  };
+}
+
+export function setSessionId(id) {
+  return {
+    type: 'SET_SESSION_ID',
+    id,
+  };
+}
+
+export function resetSession() {
+  return {
+    type: 'RESET_SESSION',
+  };
+}
+
+export function setHighScores(table) {
+  return {
+    type: 'SET_HIGH_SCORES',
+    table,
+  };
+}
+
+export function endSession() {
+  return (dispatch, getState) => {
+    const reduxState = getState();
+    const sessionId = reduxState.session.id;
+    const { score } = reduxState;
+    fetch('/api/end-session', {
+      method: 'POST',
+      body: JSON.stringify({ sessionId, score }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(() => {
+        dispatch(resetSession());
+        return fetch('/api/high-scores');
+      })
+      .then(response => response.json())
+      .then(data => dispatch(setHighScores(data)));
+  };
+}
+
+export function resetGif() {
+  return {
+    type: 'RESET_GIF',
+  };
+}
+
+export function fetchGif() {
+  return dispatch => {
+    const correctTags = ['yes', 'correct', 'great', 'amazing', 'fistbump'];
+    const incorrectTags = ['no', 'wrong', 'fail', 'facepalm', 'nope'];
+    const correctTag = correctTags[Math.floor(Math.random() * correctTags.length)];
+    const incorrectTag = incorrectTags[Math.floor(Math.random() * incorrectTags.length)];
+
+    dispatch(resetGif());
+    fetch(`/api/gif/${correctTag}`)
+      .then(response => response.json())
+      .then(result => {
+        dispatch(
+          setCorrectGif({
+            url: result.results[0].media[0].tinygif.url,
+            duration: result.results[0].media[0].nanomp4.duration * 1000,
+          }),
+        );
+      });
+
+    fetch(`/api/gif/${incorrectTag}`)
+      .then(response => response.json())
+      .then(result => {
+        dispatch(
+          setIncorrectGif({
+            url: result.results[0].media[0].tinygif.url,
+            duration: result.results[0].media[0].nanomp4.duration * 1000,
+          }),
+        );
+      });
   };
 }
 
 export function fetchTrivia() {
   return (dispatch, getState) => {
     dispatch(setResponse({}));
+    dispatch(fetchGif());
     const { difficulty, triviaType, category, allCategories } = getState();
     let type = null;
-    let value = 50;
     let categoryId = null;
 
     if (triviaType === 'multiple') {
       type = 'multiple';
-      value *= 2;
     } else if (triviaType === 'true/false') {
       type = 'boolean';
-    }
-
-    if (difficulty === 'medium') {
-      value *= 2;
-    } else if (difficulty === 'hard') {
-      value *= 3;
     }
 
     if (category !== 'any') {
@@ -140,9 +226,26 @@ export function fetchTrivia() {
     )
       .then(response => response.json())
       .then(result => {
-        dispatch(setTrivia(result.results[0], value));
-        dispatch(setGif(''));
+        dispatch(setTrivia(result.results[0]));
         dispatch(setStage('trivia'));
+      });
+  };
+}
+
+export function startSession() {
+  return (dispatch, getState) => {
+    const { difficulty, triviaType, category, user } = getState();
+    fetch('/api/new-session', {
+      method: 'POST',
+      body: JSON.stringify({ userId: user.id, difficulty, triviaType, category }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        dispatch(setSessionId(data.sessionId));
+        dispatch(fetchTrivia());
       });
   };
 }
@@ -153,31 +256,27 @@ export function resetTrivia() {
   };
 }
 
-export function fetchGif(correct) {
-  return dispatch => {
-    let tag;
-    const correctTags = ['yes', 'correct', 'great', 'amazing', 'fistbump'];
-    const incorrectTags = ['no', 'wrong', 'fail', 'facepalm', 'nope'];
-    if (correct) {
-      tag = correctTags[Math.floor(Math.random() * correctTags.length)];
-    } else {
-      tag = incorrectTags[Math.floor(Math.random() * incorrectTags.length)];
-    }
-    fetch(`/api/gif/${tag}`)
-      .then(response => response.json())
-      .then(result => {
-        dispatch(setGif(result.results[0].media[0].tinygif.url));
-      });
+export function chooseGif(correct) {
+  if (correct) {
+    return {
+      type: 'USE_CORRECT_GIF',
+    };
+  }
+  return {
+    type: 'USE_INCORRECT_GIF',
   };
 }
 
 export function analyzeResponse(response) {
   return (dispatch, getState) => {
-    const { progress, difficulty, lives } = getState();
+    const { progress, difficulty, lives, trivia, gif } = getState();
+    const correctGifDuration = gif.correctGif.duration;
+    const incorrectGifDuration = gif.incorrectGif.duration;
+
     dispatch(setResponse(response));
-    dispatch(addToScore(response.value));
-    dispatch(fetchGif(response.correct));
     if (response.correct) {
+      setTimeout(() => dispatch(chooseGif(true)), 1000);
+      dispatch(addToScore(trivia.value));
       if (progress < 9) {
         dispatch(incrementProgress());
       } else {
@@ -191,13 +290,18 @@ export function analyzeResponse(response) {
         dispatch(incrementLives());
         dispatch(resetProgress());
       }
-      setTimeout(() => dispatch(fetchTrivia()), 4000);
+      setTimeout(() => dispatch(fetchTrivia()), Math.max(correctGifDuration * 1.2, 3000));
     } else {
+      setTimeout(() => dispatch(chooseGif(false)), 1000);
       dispatch(decrementLives());
       if (lives > 1) {
-        setTimeout(() => dispatch(fetchTrivia()), 4000);
+        setTimeout(() => dispatch(fetchTrivia()), Math.max(incorrectGifDuration * 1.2, 3000));
       } else {
-        setTimeout(() => dispatch(setStage('gameOver')), 4000);
+        dispatch(endSession());
+        setTimeout(
+          () => dispatch(setStage('gameOver')),
+          Math.max(incorrectGifDuration * 1.2, 3000),
+        );
       }
     }
   };
@@ -271,6 +375,13 @@ export function setLoggedIn() {
   };
 }
 
+export function setUserId(id) {
+  return {
+    type: 'SET_USER_ID',
+    id,
+  };
+}
+
 export function loginUser() {
   return (dispatch, getState) => {
     const { username, password } = getState().user;
@@ -284,9 +395,38 @@ export function loginUser() {
       .then(response => response.json())
       .then(data => {
         if (data.status === 'OK') {
+          dispatch(setUserId(data.id));
           dispatch(setLoggedIn());
           dispatch(setStage('newGame'));
         }
       });
+  };
+}
+
+export function createUser() {
+  return (dispatch, getState) => {
+    const { username, password } = getState().user;
+    fetch('/api/new-user', {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'OK') {
+          dispatch(setUserId(data.id));
+          dispatch(setLoggedIn());
+          dispatch(setStage('newGame'));
+        }
+      });
+  };
+}
+
+export function setUserType(userType) {
+  return {
+    type: 'SET_USER_TYPE',
+    userType,
   };
 }

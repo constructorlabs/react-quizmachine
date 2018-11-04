@@ -36,7 +36,7 @@ Trivia.propTypes = {
   score: PropTypes.number.isRequired,
   difficulty: PropTypes.string.isRequired,
   lives: PropTypes.number.isRequired,
-  gifUrl: PropTypes.string.isRequired,
+  gifUrl: PropTypes.string,
 };
 
 export default Trivia;

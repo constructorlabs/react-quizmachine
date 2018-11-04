@@ -11,6 +11,10 @@ import {
   setResponse,
 } from '../actions';
 
+const mapStateToProps = state => ({
+  highScores: state.highScores,
+});
+
 const mapDispatchToProps = dispatch => ({
   getRestart: () => {
     dispatch(setStage('newGame'));
@@ -25,6 +29,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(GameOver);

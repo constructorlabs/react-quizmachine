@@ -13,6 +13,18 @@
     margin-bottom: 1rem;
   }
 
+  &__scores-title {
+    font-weight: 600;
+  }
+
+  &__high-scores {
+    table-layout: auto;
+    width: 200px;
+    font-size: 0.8rem;
+    margin: 10px;
+    text-align: center;
+  }
+
   &__button {
     background: transparent;
     font-family: $font-family;
@@ -33,6 +45,4 @@
       color: #f1f1f1;
     }
   }
-
-
 }
