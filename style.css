@@ -83,7 +83,9 @@ html, body, ul, ol {
 
 .question__number{
   font-size: 1.5em;
-  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 0;
+  align-self: flex-end;
 }
 
 .question__question__container {
@@ -106,7 +108,7 @@ html, body, ul, ol {
   width: 50vw;
   align-self: center;
   height: 50px;
-  font-size: 1.3em;
+  font-size: 100%;
   margin-top: 10px;
   justify-content: center;
 }
@@ -142,7 +144,24 @@ html, body, ul, ol {
 
 .question__correct__image,
 .question__incorrect__image {
-  max-height: 15vh;
-  max-width: 35vw;
+  max-height: 25vh;
+  max-width: 45vw;
   align-self: center;
+}
+
+.points__container {
+  position: fixed;
+  display: flex;
+  height: 5vh;
+  flex-direction: column;
+  bottom: 0;
+  width: 100vw;
+}
+
+.points__number{
+  align-self: center;
+  margin: 0;
+  color: #F7F7FF;
+  font-family: var(--question-font);
+  font-size: 1.5em;
 }

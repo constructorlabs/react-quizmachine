@@ -3,8 +3,8 @@ import React from 'react';
 function Points({ points }) {
 
     return(
-        <div>
-            <p>POINTS: {points} </p>
+        <div className="points__container">
+            <p className="points__number">POINTS: {points} </p>
         </div>
     )
 }
