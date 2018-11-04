@@ -4,6 +4,7 @@ function questionReducer(
     correctAnswer: "",
     score: 0,
     userAnswer: "",
+    questionCount: 0,
   },
   action
 ) {
@@ -66,13 +67,15 @@ function questionReducer(
 
   switch (action.type) {
     case "RECEIVE_QUESTION":
-      return Object.assign(
-        {},
-        state,
-        { question: action.question.results },
-        { correctAnswer: action.question.results[0].correct_answer },
-        { userAnswer: "" }
-      );
+      if (state.questionCount < 10)
+        return Object.assign(
+          {},
+          state,
+          { question: action.question.results },
+          { correctAnswer: action.question.results[0].correct_answer },
+          { userAnswer: "" },
+          { questionCount: state.questionCount + 1 }
+        );
     case "RECEIVE_ANSWER":
       if (state.question[0].difficulty == "easy") {
         return scoreEasyQuestion(action.answer);

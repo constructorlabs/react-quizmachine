@@ -8,6 +8,7 @@ export const mapStateToProps = state => {
     score: state.question.score,
     correctAnswer: state.question.correctAnswer,
     userAnswer: state.question.userAnswer,
+    questionCount: state.question.questionCount,
   };
 };
 

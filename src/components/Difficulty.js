@@ -3,17 +3,33 @@ import React from "react";
 function Difficulty({ handleClick }) {
   return (
     <div>
-      <p>select a difficulty:</p>
-      <button onClick={event => handleClick(event.target.value)} value="easy">
+      <p>Select a difficulty:</p>
+      <button
+        className="dif-cat-button"
+        onClick={event => handleClick(event.target.value)}
+        value="easy"
+      >
         Easy
       </button>
-      <button onClick={event => handleClick(event.target.value)} value="medium">
+      <button
+        className="dif-cat-button"
+        onClick={event => handleClick(event.target.value)}
+        value="medium"
+      >
         Medium
       </button>
-      <button onClick={event => handleClick(event.target.value)} value="hard">
+      <button
+        className="dif-cat-button"
+        onClick={event => handleClick(event.target.value)}
+        value="hard"
+      >
         Hard
       </button>
-      <button onClick={event => handleClick(event.target.value)} value="">
+      <button
+        className="dif-cat-button"
+        onClick={event => handleClick(event.target.value)}
+        value=""
+      >
         I'm Feeling Lucky
       </button>
     </div>

@@ -1,21 +1,32 @@
 body {
-  background-color: blanchedalmond;
+  background-color: #ffd4ca;
+  font-family: "Noto Serif", serif;
+}
+
+h1 {
+  color: #3c3744;
+}
+
+p {
+  color: #3c3744;
+  font-size: 20px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 1fr 3fr 1fr 1fr;
   text-align: center;
 }
 
 .center {
-  grid-column: 2/3;
+  grid-column: 2/5;
   background-color: lightpink;
 }
 
 .difficulty-div {
   display: block;
   grid-column: 2/3;
+  background-color: #ffe6e8;
 }
 
 .difficulty-div--off {
@@ -25,19 +36,20 @@ body {
 .category-div {
   display: block;
   grid-column: 2/3;
+  background-color: #ffe6e8;
 }
 
 .category-div--off {
   display: none;
 }
 
-.question-div {
-  display: block;
-  grid-column: 2/3;
+.score-div {
+  display: none;
 }
 
-.question-div--off {
-  display: none;
+.score-div--on {
+  display: block;
+  background-color: #ffe6e8;
 }
 
 .true-false-grid {
@@ -46,17 +58,48 @@ body {
 }
 
 .voting-button {
-  color: #550527;
-  font-size: 24px;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-  background-color: white;
-  border: 2px solid #550527;
+  color: #3c3744;
+  background-color: #eafdf8;
+  font-size: 22px;
+  margin: 0px 5px 0px 5px;
+  border-radius: 3px;
+}
+
+.voting-button:hover {
+  cursor: pointer;
+  color: black;
+  background-color: #afc2d5;
 }
 
 .voting-button--selected {
   color: #fff;
   background-color: #550527;
   border: 2px solid white;
+}
+
+.dif-cat-button {
+  color: #3c3744;
+  background-color: #eafdf8;
+  font-size: 22px;
+  margin: 0px 5px 0px 5px;
+  border-radius: 3px;
+}
+
+.dif-cat-button:hover {
+  color: black;
+  background-color: #afc2d5;
+  cursor: pointer;
+}
+
+.pinkspace {
+  background-color: lightpink;
+}
+
+.gif {
+  height: 300px;
+  width: 350px;
+}
+
+.gif-background {
+  background-color: #ffe6e8;
 }
