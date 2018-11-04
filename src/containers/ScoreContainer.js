@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
 import Score from  "../components/Score";
-// import { setQuery, submitQuery } from "../actions"
 import { scoreFetch } from '../actions';
 
-// fetchQuestion={this.props.fetchQuestion}
+// scoreFetch={this.props.scoreFetch}
 
 const mapStateToProps = state => {
     return {

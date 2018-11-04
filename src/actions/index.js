@@ -34,3 +34,28 @@ export function scoreFetch(currentScore){
     //result = result of fetch
   }
 }
+
+export function countDown()
+{
+    counter = counter - 1;
+    window.status = counter;
+    if (counter == 0)
+    {
+         window.clearTimeout( timer );
+         timer = null;
+    }
+    else
+    {
+        timer = window.setTimeout( "countDown()", 1000);
+    }
+}
+
+
+var timer;
+var counter = 10;
+
+export function startCounting()
+{
+    timer = window.setTimeout( "countDown()", 1000 );
+    window.status = counter;    // show the initial value
+}
