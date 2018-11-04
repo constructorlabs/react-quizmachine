@@ -57,7 +57,7 @@ See [https://opentdb.com/api\_config.php](https://opentdb.com/api_config.php) fo
 
 <!-- * Implement a scoring system that gives higher scores for more difficult questions -->
 
-* ------ Create a high score table. When a user finishes the game, for example answers a question incorrectly, allow them to enter their name and add it along with score to a high score table.
+<!-- * Create a high score table. When a user finishes the game, for example answers a question incorrectly, allow them to enter their name and add it along with score to a high score table. -->
 
 * Display statistics about player performance such as total questions played, average score, most popular category, category with highest percentage of correct etc.
 
