@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import LoginContainer from '../containers/LoginContainer';
 import NewGameContainer from '../containers/NewGameContainer';
 import TriviaContainer from '../containers/TriviaContainer';
 import GameOverContainer from '../containers/GameOverContainer';
@@ -38,6 +39,7 @@ class App extends React.Component {
     const { stage } = this.state;
     return (
       <div className="app">
+        {stage === 'login' && <LoginContainer />}
         {stage === 'newGame' && <NewGameContainer />}
         {stage === 'trivia' && <TriviaContainer />}
         {stage === 'gameOver' && <GameOverContainer />}

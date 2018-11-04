@@ -8,9 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getResponse: response => {
-    dispatch(analyzeResponse(response));
-  },
+  getResponse: response => dispatch(analyzeResponse(response)),
 });
 
 export default connect(

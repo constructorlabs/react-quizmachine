@@ -32,6 +32,7 @@
     ]
   },
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
     "dotenv": "^6.1.0",
@@ -41,6 +42,7 @@
     "hbs": "^4.0.1",
     "he": "^1.2.0",
     "node-fetch": "^2.2.0",
+    "pg-promise": "^8.5.1",
     "prop-types": "^15.6.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

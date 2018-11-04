@@ -250,3 +250,43 @@ export function fetchCategories() {
       });
   };
 }
+
+export function setUsername(username) {
+  return {
+    type: 'SET_USERNAME',
+    username,
+  };
+}
+
+export function setPassword(password) {
+  return {
+    type: 'SET_PASSWORD',
+    password,
+  };
+}
+
+export function setLoggedIn() {
+  return {
+    type: 'SET_LOGGED_IN',
+  };
+}
+
+export function loginUser() {
+  return (dispatch, getState) => {
+    const { username, password } = getState().user;
+    fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'OK') {
+          dispatch(setLoggedIn());
+          dispatch(setStage('newGame'));
+        }
+      });
+  };
+}

@@ -205,6 +205,25 @@ exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizi
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./styles/components/Login.scss":
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js!./styles/components/Login.scss ***!
+  \*********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./styles/components/NewGame.scss":
 /*!***********************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js!./styles/components/NewGame.scss ***!
@@ -24302,6 +24321,10 @@ exports.setTriviaType = setTriviaType;
 exports.setCategory = setCategory;
 exports.setAllCategories = setAllCategories;
 exports.fetchCategories = fetchCategories;
+exports.setUsername = setUsername;
+exports.setPassword = setPassword;
+exports.setLoggedIn = setLoggedIn;
+exports.loginUser = loginUser;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -24586,6 +24609,49 @@ function fetchCategories() {
   };
 }
 
+function setUsername(username) {
+  return {
+    type: 'SET_USERNAME',
+    username: username
+  };
+}
+
+function setPassword(password) {
+  return {
+    type: 'SET_PASSWORD',
+    password: password
+  };
+}
+
+function setLoggedIn() {
+  return {
+    type: 'SET_LOGGED_IN'
+  };
+}
+
+function loginUser() {
+  return function (dispatch, getState) {
+    var _getState$user = getState().user,
+        username = _getState$user.username,
+        password = _getState$user.password;
+
+    fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify({ username: username, password: password }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      if (data.status === 'OK') {
+        dispatch(setLoggedIn());
+        dispatch(setStage('newGame'));
+      }
+    });
+  };
+}
+
 /***/ }),
 
 /***/ "./src/components/Answers.js":
@@ -24681,6 +24747,10 @@ var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-type
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _LoginContainer = __webpack_require__(/*! ../containers/LoginContainer */ "./src/containers/LoginContainer.js");
+
+var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
+
 var _NewGameContainer = __webpack_require__(/*! ../containers/NewGameContainer */ "./src/containers/NewGameContainer.js");
 
 var _NewGameContainer2 = _interopRequireDefault(_NewGameContainer);
@@ -24753,6 +24823,7 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'app' },
+        stage === 'login' && _react2.default.createElement(_LoginContainer2.default, null),
         stage === 'newGame' && _react2.default.createElement(_NewGameContainer2.default, null),
         stage === 'trivia' && _react2.default.createElement(_TriviaContainer2.default, null),
         stage === 'gameOver' && _react2.default.createElement(_GameOverContainer2.default, null),
@@ -24828,6 +24899,147 @@ GameOver.propTypes = {
 };
 
 exports.default = GameOver;
+
+/***/ }),
+
+/***/ "./src/components/Login.js":
+/*!*********************************!*\
+  !*** ./src/components/Login.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+__webpack_require__(/*! ../../styles/components/Login.scss */ "./styles/components/Login.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Login(_ref) {
+  var username = _ref.username,
+      password = _ref.password,
+      getUsername = _ref.getUsername,
+      getPassword = _ref.getPassword,
+      getLogin = _ref.getLogin;
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'login' },
+    _react2.default.createElement(
+      'div',
+      { className: 'login__box' },
+      _react2.default.createElement(
+        'form',
+        { className: 'login__existing', onSubmit: getLogin },
+        _react2.default.createElement(
+          'div',
+          { className: 'login__username' },
+          _react2.default.createElement('input', {
+            className: 'login__input',
+            onChange: function onChange(event) {
+              return getUsername(event.target.value);
+            },
+            value: username,
+            placeholder: 'Username'
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'login__password' },
+          _react2.default.createElement('input', {
+            className: 'login__input',
+            onChange: function onChange(event) {
+              return getPassword(event.target.value);
+            },
+            value: password,
+            type: 'password',
+            minLength: '3',
+            placeholder: 'Password'
+          })
+        ),
+        _react2.default.createElement(
+          'button',
+          { type: 'submit', className: 'login__button' },
+          'Log in'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'login__view-switch' },
+          _react2.default.createElement(
+            'p',
+            null,
+            'No Account?'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'login__switch' },
+            'Sign up'
+          )
+        )
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'login__box' },
+      _react2.default.createElement(
+        'form',
+        { className: 'login__new' },
+        _react2.default.createElement(
+          'div',
+          { className: 'login__username' },
+          _react2.default.createElement('input', { className: 'login__input', placeholder: 'Username' })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'login__password' },
+          _react2.default.createElement('input', { className: 'login__input', type: 'password', minLength: '3', placeholder: 'Password' })
+        ),
+        _react2.default.createElement(
+          'button',
+          { type: 'submit', className: 'login__button' },
+          'Create user'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'login__view-switch' },
+          _react2.default.createElement(
+            'p',
+            null,
+            'Already have an account?'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'login__switch' },
+            'Sign in'
+          )
+        )
+      )
+    )
+  );
+}
+
+Login.propTypes = {
+  username: _propTypes2.default.string,
+  password: _propTypes2.default.string,
+  getUsername: _propTypes2.default.func.isRequired,
+  getPassword: _propTypes2.default.func.isRequired,
+  getLogin: _propTypes2.default.func.isRequired
+};
+
+exports.default = Login;
 
 /***/ }),
 
@@ -25149,7 +25361,7 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     getResponse: function getResponse(response) {
-      dispatch((0, _actions.analyzeResponse)(response));
+      return dispatch((0, _actions.analyzeResponse)(response));
     }
   };
 };
@@ -25198,6 +25410,56 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_GameOver2.default);
+
+/***/ }),
+
+/***/ "./src/containers/LoginContainer.js":
+/*!******************************************!*\
+  !*** ./src/containers/LoginContainer.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _Login = __webpack_require__(/*! ../components/Login */ "./src/components/Login.js");
+
+var _Login2 = _interopRequireDefault(_Login);
+
+var _actions = __webpack_require__(/*! ../actions */ "./src/actions/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    username: state.user.username,
+    password: state.user.password
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    getUsername: function getUsername(username) {
+      return dispatch((0, _actions.setUsername)(username));
+    },
+    getPassword: function getPassword(password) {
+      return dispatch((0, _actions.setPassword)(password));
+    },
+    getLogin: function getLogin(event) {
+      event.preventDefault();
+      dispatch((0, _actions.loginUser)());
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Login2.default);
 
 /***/ }),
 
@@ -25516,6 +25778,10 @@ var _gifUrl = __webpack_require__(/*! ./gifUrl */ "./src/reducers/gifUrl.js");
 
 var _gifUrl2 = _interopRequireDefault(_gifUrl);
 
+var _user = __webpack_require__(/*! ./user */ "./src/reducers/user.js");
+
+var _user2 = _interopRequireDefault(_user);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
@@ -25529,7 +25795,8 @@ exports.default = (0, _redux.combineReducers)({
   triviaType: _triviaType2.default,
   category: _category2.default,
   allCategories: _allCategories2.default,
-  gifUrl: _gifUrl2.default
+  gifUrl: _gifUrl2.default,
+  user: _user2.default
 });
 
 /***/ }),
@@ -25672,7 +25939,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 function stage() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'newGame';
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'login';
   var action = arguments[1];
 
   switch (action.type) {
@@ -25747,6 +26014,39 @@ exports.default = triviaType;
 
 /***/ }),
 
+/***/ "./src/reducers/user.js":
+/*!******************************!*\
+  !*** ./src/reducers/user.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function user() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { username: '', password: '', loggedIn: false };
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'SET_USERNAME':
+      return Object.assign({}, state, { username: action.username });
+    case 'SET_PASSWORD':
+      return Object.assign({}, state, { password: action.password });
+    case 'SET_LOGGED_IN':
+      return Object.assign({}, state, { loggedIn: true });
+    default:
+      return state;
+  }
+}
+
+exports.default = user;
+
+/***/ }),
+
 /***/ "./styles/components/Answers.scss":
 /*!****************************************!*\
   !*** ./styles/components/Answers.scss ***!
@@ -25816,6 +26116,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/sass-loader/lib/loader.js!./GameOver.scss */ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./styles/components/GameOver.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./styles/components/Login.scss":
+/*!**************************************!*\
+  !*** ./styles/components/Login.scss ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/sass-loader/lib/loader.js!./Login.scss */ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./styles/components/Login.scss");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 

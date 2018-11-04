@@ -1,4 +1,4 @@
-function stage(state = 'newGame', action) {
+function stage(state = 'login', action) {
   switch (action.type) {
     case 'SET_STAGE':
       return action.stage;
