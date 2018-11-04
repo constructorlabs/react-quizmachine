@@ -1,6 +1,6 @@
 import ScoreTable from '../components/ScoreTable';
 import {connect} from 'react-redux';
-// import {displayScores} from '../actions';
+import {restart} from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -9,10 +9,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     displayScores: ()=> dispatch(displayScores())
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    restart: () => dispatch(restart())
+  }
+}
 
-export default connect(mapStateToProps)(ScoreTable);
+export default connect(mapStateToProps,mapDispatchToProps)(ScoreTable);

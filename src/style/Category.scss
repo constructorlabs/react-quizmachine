@@ -1,0 +1,17 @@
+@import "parameters";
+
+button{
+  @extend %button;
+  padding: $content-padding;
+  margin: 2px;
+
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+.category{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  font-size: $normal-font-size;
+
+}

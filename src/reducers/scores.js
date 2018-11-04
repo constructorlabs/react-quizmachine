@@ -1,4 +1,8 @@
-const initialState = { currentScore: 0, allScores: [], gameOver: false };
+const initialState = {
+  currentScore: 0,
+  allScores: [],
+  gameOver: false
+};
 
 function scores(state = initialState, action) {
   switch (action.type) {
@@ -9,23 +13,25 @@ function scores(state = initialState, action) {
       function compare(a, b) {
         return b.score - a.score;
       }
-      if (state - action.points >= 0) {
-        state.currentScore -= action.points;
-        const allScores = state.allScores.concat([
-          { name: action.name, score: state.currentScore }
-        ]);
-        const sortedAllScores = allScores.sort(compare);
-        state = Object.assign({}, state, { allScores: sortedAllScores }, {gameOver: true});
-        return state;
-      } else {
-        state.currentScore = 0;
-        const allScores = state.allScores.concat([
-          { name: action.name, score: state.currentScore }
-        ]);
-        const sortedAllScores = allScores;
-        state = Object.assign({}, state, { allScores: sortedAllScores },  {gameOver: true});
-        return state;
-      }
+
+      const allScores = state.allScores.concat([
+        { name: action.name, score: state.currentScore }
+      ]);
+      const sortedAllScores = allScores.sort(compare);
+      state = Object.assign({}, state, {
+        allScores: sortedAllScores,
+
+        gameOver: true
+      });
+      return state;
+    case "RESTART":
+      state = Object.assign(
+        {},
+        state,
+        { currentScore: 0 },
+        { gameOver: false }
+      );
+      return state;
     default:
       return state;
   }

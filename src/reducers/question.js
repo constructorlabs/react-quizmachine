@@ -3,7 +3,9 @@ function question(state = {}, action){
     case 'RECEIVE_QUESTION':
 
       console.log('Step 6. setting question in state')
-      return Object.assign({}, state, action.currentQuestion);
+    
+      return action.currentQuestion;
+
     default:
       return state
   }

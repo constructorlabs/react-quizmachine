@@ -7,15 +7,19 @@ function mapStateToProps (state) {
   console.log('Step 1. calling mapStateToProps in QuestionContainer')
 
   return {
-    currentQuestion:state.question
+    currentQuestion:state.question,
+    category: state.category.category,
+      currentScore: state.scores.currentScore,
+      question: state.question
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchQuestion: () => {
+    fetchQuestion: (categoryKey) => {
+
       console.log('Step 3. getting action creator')
-      dispatch(fetchQuestion())
+      dispatch(fetchQuestion(categoryKey))
     },
     selectOption: (selected) => {
       dispatch(selectOption(selected))
