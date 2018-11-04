@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import placeholder from './placeholder';
+import questionsResults from './QuestionsResults';
+import scoreFetch from './ScoreFetch';
+
 
 export default combineReducers({
-  placeholder
+  questionsResults
 });

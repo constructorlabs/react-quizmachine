@@ -7,15 +7,19 @@ import { fetchQuestionAPI } from '../actions';
 
 const mapStateToProps = state => {
     return {
-        // selectedQuery: state.searchInput.selectedQuery
+        questions: state.questionsResults.questions
+
+           //name of prop being passed down(object)  : state:(importedreducercomponent).(key of object)
     };
 }
 
 
+
 const mapDispatchToProps = dispatch => {
     return {
-        fetchQuestion: () => dispatch(fetchQuestionAPI())
+        fetchQuestion: () => dispatch(fetchQuestionAPI()),
         // selectedQuery: state.searchInput.selectedQuery
+        clickHandler: (answer) => dispatch()
     };
 }
 
