@@ -1,8 +1,15 @@
 import { combineReducers } from 'redux';
 import questionsResults from './QuestionsResults';
-import scoreFetch from './ScoreFetch';
+import score from './score';
+import correct_answer from './correct_answer';
+
+
+
 
 
 export default combineReducers({
-  questionsResults
+  questionsResults,
+  score,
+  correct_answer
+  
 });

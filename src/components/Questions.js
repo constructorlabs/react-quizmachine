@@ -12,6 +12,7 @@ class Questions extends React.Component {
         this.props.fetchQuestion()
         // this.mixQuestions()
         }
+    
 
     render() {
         console.log(this.props.questions)
@@ -19,7 +20,7 @@ class Questions extends React.Component {
      ? 
      null : 
      [...this.props.questions.incorrect_answers, this.props.questions.correct_answer].map((answer) =>
-     <button key={answer} onClick={() => this.props.clickHandler(answer)}>{answer}</button>
+     <button key={answer} onClick={() => this.props.clickHandler(this.props.questions.correct_answer === answer)}>{answer}</button>
    );
 
   return (
