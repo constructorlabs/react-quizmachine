@@ -19,10 +19,10 @@ export function fetchQuestion(key) {
             .concat(question.correct_answer)
             .sort()
         });
-        console.log(question.correct_answer)
+        console.log(question.correct_answer);
         dispatch(receiveQuestion(currentQuestion));
       })
-      .catch(error => error.message)
+      .catch(error => error.message);
   };
 }
 
@@ -57,12 +57,14 @@ export function selectOption(selected) {
     if (selected === currentQuestion.correct_answer) {
       dispatch(correctAnswer(pointsAwarded));
       dispatch(fetchQuestion(categoryKey));
+      dispatch(loadImage())
     } else {
-      const name = window.prompt(
+      let name = window.prompt(
         `Sorry! The correct answer is: ${currentQuestion.correct_answer}.
 Please enter your name to see your ranking:`
       );
-
+      name==''? name='Superhero': name
+      dispatch(loadSorryImage())
       dispatch(incorrectAnswer(pointsAwarded, name));
     }
   };
@@ -73,22 +75,34 @@ export function restart() {
     dispatch(receiveQuestion({}));
     dispatch({
       type: "RESTART"
-    });
+    })
+    dispatch(loadImage())
   };
 }
 
-export function selectCategory(category){
-
-  return function(dispatch, getState){
-  const options = getState().category.options
-  const selectedKey = Object.keys(options).find(
+export function selectCategory(category) {
+  return function(dispatch, getState) {
+    const options = getState().category.options;
+    const selectedKey = Object.keys(options).find(
       key => options[key] === category
     );
 
     dispatch({
-      type:'SELECT_CATEGORY',
-      category:{[selectedKey]:category}
+      type: "SELECT_CATEGORY",
+      category: { [selectedKey]: category }
     });
     dispatch(fetchQuestion(selectedKey));
+  };
+}
 
-  }}
+export function loadImage() {
+  return {
+    type:'LOAD_IMAGE'
+  }
+}
+
+export function loadSorryImage() {
+  return {
+    type:'LOAD_SORRY_IMAGE'
+  }
+}

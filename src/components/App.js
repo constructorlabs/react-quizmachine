@@ -5,12 +5,26 @@ import CategoryContainer from '../containers/CategoryContainer';
 import '../style/App.scss';
 
 class App extends React.Component {
+
   render(){
+
     return (
       <div className='wrapper'>
+
+      {!this.props.scores.gameOver ?
+        <div>
         <CategoryContainer/>
-      {!this.props.scores.gameOver ?  <QuestionContainer/>
-      :<ScoreTableContainer/>}
+        <QuestionContainer/>
+        <img src={this.props.image}/>
+        </div>
+
+      :
+      <div>
+
+      <ScoreTableContainer/>
+      <img src={this.props.image}/>
+      </div>
+    }
       </div>
     )
   }
