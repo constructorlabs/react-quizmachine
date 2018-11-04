@@ -198,7 +198,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #f6f7eb;\n  font-family: \"Roboto\";\n  color: #403d39;\n  display: flex;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100vh; }\n\n.game-over {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center; }\n  .game-over__title {\n    font-size: 3rem;\n    font-family: 'Permanent Marker', cursive;\n    margin-bottom: 1rem; }\n  .game-over__scores-title {\n    font-weight: 600; }\n  .game-over__high-scores {\n    table-layout: auto;\n    width: 200px;\n    font-size: 0.8rem;\n    margin: 10px;\n    text-align: center; }\n  .game-over__button {\n    background: transparent;\n    font-family: \"Roboto\";\n    border: 1px solid #403d39;\n    border-radius: 5px;\n    color: #403d39;\n    padding: 5px 32px;\n    text-align: center;\n    display: inline-block;\n    font-size: 1rem;\n    margin: 4px 10px;\n    -webkit-transition-duration: 0.2s;\n    transition-duration: 0.2s;\n    text-transform: uppercase; }\n    .game-over__button:hover {\n      background-color: #403d39;\n      color: #f1f1f1; }\n", ""]);
+exports.push([module.i, "* {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box; }\n\nbody {\n  background-color: #f6f7eb;\n  font-family: \"Roboto\";\n  color: #403d39;\n  display: flex;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100vh; }\n\n.game-over {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center; }\n  .game-over__title {\n    font-size: 3rem;\n    font-family: 'Permanent Marker', cursive;\n    margin-bottom: 1rem; }\n  .game-over__scores-title {\n    font-weight: 600; }\n  .game-over__high-scores {\n    table-layout: auto;\n    width: 200px;\n    font-size: 0.8rem;\n    margin: 10px;\n    text-align: center; }\n  .game-over__button {\n    background: transparent;\n    font-family: \"Roboto\";\n    border: 1px solid #403d39;\n    border-radius: 5px;\n    color: #403d39;\n    padding: 5px 32px;\n    text-align: center;\n    display: inline-block;\n    font-size: 1rem;\n    margin: 4px 10px;\n    -webkit-transition-duration: 0.2s;\n    transition-duration: 0.2s;\n    text-transform: uppercase; }\n    .game-over__button:hover {\n      background-color: #403d39;\n      color: #f1f1f1; }\n\n.row--highlighted {\n  background-color: #403d39;\n  color: #f1f1f1; }\n", ""]);
 
 // exports
 
@@ -24303,9 +24303,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setDifficulty = setDifficulty;
 exports.setStage = setStage;
-exports.setScore = setScore;
 exports.addToScore = addToScore;
-exports.setLives = setLives;
 exports.incrementLives = incrementLives;
 exports.decrementLives = decrementLives;
 exports.incrementProgress = incrementProgress;
@@ -24356,24 +24354,10 @@ function setStage(stage) {
   };
 }
 
-function setScore(score) {
-  return {
-    type: 'SET_SCORE',
-    score: score
-  };
-}
-
 function addToScore(score) {
   return {
     type: 'ADD_TO_SCORE',
     score: score
-  };
-}
-
-function setLives(lives) {
-  return {
-    type: 'SET_LIVES',
-    lives: lives
   };
 }
 
@@ -24484,18 +24468,19 @@ function setHighScores(table) {
 
 function endSession() {
   return function (dispatch, getState) {
-    var reduxState = getState();
-    var sessionId = reduxState.session.id;
-    var score = reduxState.score;
+    var _getState = getState(),
+        session = _getState.session;
+
+    var id = session.id,
+        score = session.score;
 
     fetch('/api/end-session', {
       method: 'POST',
-      body: JSON.stringify({ sessionId: sessionId, score: score }),
+      body: JSON.stringify({ id: id, score: score }),
       headers: {
         'Content-Type': 'application/json'
       }
     }).then(function () {
-      dispatch(resetSession());
       return fetch('/api/high-scores');
     }).then(function (response) {
       return response.json();
@@ -24542,32 +24527,27 @@ function fetchGif() {
 function fetchTrivia() {
   return function (dispatch, getState) {
     dispatch(setResponse({}));
-    dispatch(fetchGif());
 
-    var _getState = getState(),
-        difficulty = _getState.difficulty,
-        triviaType = _getState.triviaType,
-        category = _getState.category,
-        allCategories = _getState.allCategories;
+    var _getState2 = getState(),
+        session = _getState2.session,
+        allCategories = _getState2.allCategories;
 
-    var type = null;
+    var difficulty = session.difficulty,
+        triviaType = session.triviaType,
+        category = session.category;
+
     var categoryId = null;
-
-    if (triviaType === 'multiple') {
-      type = 'multiple';
-    } else if (triviaType === 'true/false') {
-      type = 'boolean';
-    }
 
     if (category !== 'any') {
       var idArray = allCategories[category];
       categoryId = idArray[Math.floor(Math.random() * idArray.length)];
     }
 
-    fetch('https://opentdb.com/api.php?amount=1&difficulty=' + difficulty + (type ? '&type=' + type : '') + (categoryId ? '&category=' + categoryId : '')).then(function (response) {
+    fetch('https://opentdb.com/api.php?amount=1&difficulty=' + difficulty + (triviaType !== 'any' ? '&type=' + triviaType : '') + (categoryId ? '&category=' + categoryId : '')).then(function (response) {
       return response.json();
     }).then(function (result) {
       dispatch(setTrivia(result.results[0]));
+      dispatch(fetchGif());
       dispatch(setStage('trivia'));
     });
   };
@@ -24575,11 +24555,13 @@ function fetchTrivia() {
 
 function startSession() {
   return function (dispatch, getState) {
-    var _getState2 = getState(),
-        difficulty = _getState2.difficulty,
-        triviaType = _getState2.triviaType,
-        category = _getState2.category,
-        user = _getState2.user;
+    var _getState3 = getState(),
+        session = _getState3.session,
+        user = _getState3.user;
+
+    var difficulty = session.difficulty,
+        triviaType = session.triviaType,
+        category = session.category;
 
     fetch('/api/new-session', {
       method: 'POST',
@@ -24615,12 +24597,14 @@ function chooseGif(correct) {
 
 function analyzeResponse(response) {
   return function (dispatch, getState) {
-    var _getState3 = getState(),
-        progress = _getState3.progress,
-        difficulty = _getState3.difficulty,
-        lives = _getState3.lives,
-        trivia = _getState3.trivia,
-        gif = _getState3.gif;
+    var _getState4 = getState(),
+        session = _getState4.session,
+        trivia = _getState4.trivia,
+        gif = _getState4.gif;
+
+    var difficulty = session.difficulty,
+        lives = session.lives,
+        progress = session.progress;
 
     var correctGifDuration = gif.correctGif.duration;
     var incorrectGifDuration = gif.incorrectGif.duration;
@@ -25029,12 +25013,17 @@ var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-type
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 __webpack_require__(/*! ../../styles/components/GameOver.scss */ "./styles/components/GameOver.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function GameOver(_ref) {
-  var highScores = _ref.highScores,
+  var sessionId = _ref.sessionId,
+      highScores = _ref.highScores,
       getRestart = _ref.getRestart;
 
   return _react2.default.createElement(
@@ -25075,9 +25064,10 @@ function GameOver(_ref) {
         'tbody',
         null,
         highScores.map(function (item) {
+          var classes = (0, _classnames2.default)('row', { 'row--highlighted': item.id === sessionId });
           return _react2.default.createElement(
             'tr',
-            { key: item.end_date },
+            { className: classes, key: item.end_date },
             _react2.default.createElement(
               'td',
               null,
@@ -25103,6 +25093,7 @@ function GameOver(_ref) {
 }
 
 GameOver.propTypes = {
+  sessionId: _propTypes2.default.number.isRequired,
   highScores: _propTypes2.default.array.isRequired,
   getRestart: _propTypes2.default.func.isRequired
 };
@@ -25403,7 +25394,7 @@ function NewGame(_ref) {
         _react2.default.createElement(
           'div',
           { className: 'new-game__buttons' },
-          ['any', 'multiple', 'true/false'].map(function (item) {
+          ['any', 'multiple', 'boolean'].map(function (item) {
             var classes = (0, _classnames2.default)('new-game__button', {
               'new-game__button--selected': triviaType === item
             });
@@ -25417,7 +25408,7 @@ function NewGame(_ref) {
                   return getTriviaType(item);
                 }
               },
-              item
+              item === 'boolean' ? 'true/false' : item
             );
           })
         )
@@ -25660,7 +25651,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    highScores: state.highScores
+    highScores: state.highScores,
+    sessionId: state.session.id
   };
 };
 
@@ -25668,13 +25660,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     getRestart: function getRestart() {
       dispatch((0, _actions.setStage)('newGame'));
-      dispatch((0, _actions.setLives)(3));
-      dispatch((0, _actions.setScore)(0));
-      dispatch((0, _actions.resetProgress)(0));
-      dispatch((0, _actions.setTriviaType)('any'));
-      dispatch((0, _actions.setDifficulty)('easy'));
       dispatch((0, _actions.setResponse)({}));
       dispatch((0, _actions.resetTrivia)());
+      dispatch((0, _actions.setHighScores)([]));
+      dispatch((0, _actions.resetSession)());
     }
   };
 };
@@ -25769,9 +25758,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    difficulty: state.difficulty,
-    triviaType: state.triviaType,
-    category: state.category
+    difficulty: state.session.difficulty,
+    triviaType: state.session.triviaType,
+    category: state.session.category
   };
 };
 
@@ -25820,9 +25809,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    score: state.score,
-    difficulty: state.difficulty,
-    lives: state.lives,
+    score: state.session.score,
+    difficulty: state.session.difficulty,
+    lives: state.session.lives,
     trivia: state.trivia,
     response: state.response,
     gifUrl: state.gif.url
@@ -25911,64 +25900,6 @@ exports.default = allCategories;
 
 /***/ }),
 
-/***/ "./src/reducers/category.js":
-/*!**********************************!*\
-  !*** ./src/reducers/category.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function category() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'any';
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'SET_CATEGORY':
-      return action.category;
-    default:
-      return state;
-  }
-}
-
-exports.default = category;
-
-/***/ }),
-
-/***/ "./src/reducers/difficulty.js":
-/*!************************************!*\
-  !*** ./src/reducers/difficulty.js ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function difficulty() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'easy';
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'SET_DIFFICULTY':
-      return action.difficulty;
-    default:
-      return state;
-  }
-}
-
-exports.default = difficulty;
-
-/***/ }),
-
 /***/ "./src/reducers/gif.js":
 /*!*****************************!*\
   !*** ./src/reducers/gif.js ***!
@@ -26020,7 +25951,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 function highScores() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments[1];
 
   switch (action.type) {
@@ -26051,10 +25982,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
-var _difficulty = __webpack_require__(/*! ./difficulty */ "./src/reducers/difficulty.js");
-
-var _difficulty2 = _interopRequireDefault(_difficulty);
-
 var _stage = __webpack_require__(/*! ./stage */ "./src/reducers/stage.js");
 
 var _stage2 = _interopRequireDefault(_stage);
@@ -26066,26 +25993,6 @@ var _trivia2 = _interopRequireDefault(_trivia);
 var _response = __webpack_require__(/*! ./response */ "./src/reducers/response.js");
 
 var _response2 = _interopRequireDefault(_response);
-
-var _score = __webpack_require__(/*! ./score */ "./src/reducers/score.js");
-
-var _score2 = _interopRequireDefault(_score);
-
-var _lives = __webpack_require__(/*! ./lives */ "./src/reducers/lives.js");
-
-var _lives2 = _interopRequireDefault(_lives);
-
-var _progress = __webpack_require__(/*! ./progress */ "./src/reducers/progress.js");
-
-var _progress2 = _interopRequireDefault(_progress);
-
-var _triviaType = __webpack_require__(/*! ./triviaType */ "./src/reducers/triviaType.js");
-
-var _triviaType2 = _interopRequireDefault(_triviaType);
-
-var _category = __webpack_require__(/*! ./category */ "./src/reducers/category.js");
-
-var _category2 = _interopRequireDefault(_category);
 
 var _allCategories = __webpack_require__(/*! ./allCategories */ "./src/reducers/allCategories.js");
 
@@ -26110,85 +26017,15 @@ var _highScores2 = _interopRequireDefault(_highScores);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
-  difficulty: _difficulty2.default,
   stage: _stage2.default,
   trivia: _trivia2.default,
   response: _response2.default,
-  score: _score2.default,
-  lives: _lives2.default,
-  progress: _progress2.default,
-  triviaType: _triviaType2.default,
-  category: _category2.default,
   allCategories: _allCategories2.default,
   gif: _gif2.default,
   user: _user2.default,
   session: _session2.default,
   highScores: _highScores2.default
 });
-
-/***/ }),
-
-/***/ "./src/reducers/lives.js":
-/*!*******************************!*\
-  !*** ./src/reducers/lives.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function lives() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'SET_LIVES':
-      return action.lives;
-    case 'INCREMENT_LIVES':
-      return state + 1;
-    case 'DECREMENT_LIVES':
-      return state - 1;
-    default:
-      return state;
-  }
-}
-
-exports.default = lives;
-
-/***/ }),
-
-/***/ "./src/reducers/progress.js":
-/*!**********************************!*\
-  !*** ./src/reducers/progress.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function progress() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'INCREMENT_PROGRESS':
-      return state + 1;
-    case 'RESET_PROGRESS':
-      return 0;
-    default:
-      return state;
-  }
-}
-
-exports.default = progress;
 
 /***/ }),
 
@@ -26221,37 +26058,6 @@ exports.default = response;
 
 /***/ }),
 
-/***/ "./src/reducers/score.js":
-/*!*******************************!*\
-  !*** ./src/reducers/score.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function score() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'SET_SCORE':
-      return action.score;
-    case 'ADD_TO_SCORE':
-      return state + action.score;
-    default:
-      return state;
-  }
-}
-
-exports.default = score;
-
-/***/ }),
-
 /***/ "./src/reducers/session.js":
 /*!*********************************!*\
   !*** ./src/reducers/session.js ***!
@@ -26265,15 +26071,40 @@ exports.default = score;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var initialState = {
+  difficulty: 'easy',
+  triviaType: 'any',
+  category: 'any',
+  score: 0,
+  progress: 0,
+  lives: 3
+};
+
 function session() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
 
   switch (action.type) {
     case 'SET_SESSION_ID':
       return Object.assign({}, state, { id: action.id });
+    case 'SET_DIFFICULTY':
+      return Object.assign({}, state, { difficulty: action.difficulty });
+    case 'SET_TRIVIA_TYPE':
+      return Object.assign({}, state, { triviaType: action.triviaType });
+    case 'SET_CATEGORY':
+      return Object.assign({}, state, { category: action.category });
+    case 'ADD_TO_SCORE':
+      return Object.assign({}, state, { score: state.score + action.score });
+    case 'INCREMENT_LIVES':
+      return Object.assign({}, state, { lives: state.lives + 1 });
+    case 'DECREMENT_LIVES':
+      return Object.assign({}, state, { lives: state.lives - 1 });
+    case 'INCREMENT_PROGRESS':
+      return Object.assign({}, state, { progress: state.progress + 1 });
+    case 'RESET_PROGRESS':
+      return Object.assign({}, state, { progress: 0 });
     case 'RESET_SESSION':
-      return {};
+      return initialState;
     default:
       return state;
   }
@@ -26343,35 +26174,6 @@ exports.default = trivia;
 
 /***/ }),
 
-/***/ "./src/reducers/triviaType.js":
-/*!************************************!*\
-  !*** ./src/reducers/triviaType.js ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function triviaType() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'any';
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'SET_TRIVIA_TYPE':
-      return action.triviaType;
-    default:
-      return state;
-  }
-}
-
-exports.default = triviaType;
-
-/***/ }),
-
 /***/ "./src/reducers/user.js":
 /*!******************************!*\
   !*** ./src/reducers/user.js ***!
@@ -26385,8 +26187,16 @@ exports.default = triviaType;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var initialState = {
+  username: '',
+  password: '',
+  loggedIn: false,
+  userType: 'existing',
+  id: ''
+};
+
 function user() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { username: '', password: '', loggedIn: false, userType: 'existing', id: '' };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
 
   switch (action.type) {

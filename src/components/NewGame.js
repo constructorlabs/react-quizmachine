@@ -42,7 +42,7 @@ function NewGame({
         <div className="new-game__type">
           <div className="new-game__header">Question type</div>
           <div className="new-game__buttons">
-            {['any', 'multiple', 'true/false'].map(item => {
+            {['any', 'multiple', 'boolean'].map(item => {
               const classes = cx('new-game__button', {
                 'new-game__button--selected': triviaType === item,
               });
@@ -53,7 +53,7 @@ function NewGame({
                   key={item}
                   onClick={() => getTriviaType(item)}
                 >
-                  {item}
+                  {item === 'boolean' ? 'true/false' : item}
                 </button>
               );
             })}

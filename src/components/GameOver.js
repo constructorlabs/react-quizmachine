@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import '../../styles/components/GameOver.scss';
 
-function GameOver({ highScores, getRestart }) {
+function GameOver({ sessionId, highScores, getRestart }) {
   return (
     <div className="game-over">
       <div className="game-over__title">Game Over!</div>
@@ -15,12 +16,15 @@ function GameOver({ highScores, getRestart }) {
           </tr>
         </thead>
         <tbody>
-          {highScores.map(item => (
-            <tr key={item.end_date}>
-              <td>{item.username}</td>
-              <td>{item.score}</td>
-            </tr>
-          ))}
+          {highScores.map(item => {
+            const classes = cx('row', { 'row--highlighted': item.id === sessionId });
+            return (
+              <tr className={classes} key={item.end_date}>
+                <td>{item.username}</td>
+                <td>{item.score}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <button type="button" className="game-over__button" onClick={() => getRestart()}>
@@ -31,6 +35,7 @@ function GameOver({ highScores, getRestart }) {
 }
 
 GameOver.propTypes = {
+  sessionId: PropTypes.number.isRequired,
   highScores: PropTypes.array.isRequired,
   getRestart: PropTypes.func.isRequired,
 };

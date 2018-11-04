@@ -15,24 +15,10 @@ export function setStage(stage) {
   };
 }
 
-export function setScore(score) {
-  return {
-    type: 'SET_SCORE',
-    score,
-  };
-}
-
 export function addToScore(score) {
   return {
     type: 'ADD_TO_SCORE',
     score,
-  };
-}
-
-export function setLives(lives) {
-  return {
-    type: 'SET_LIVES',
-    lives,
   };
 }
 
@@ -143,20 +129,16 @@ export function setHighScores(table) {
 
 export function endSession() {
   return (dispatch, getState) => {
-    const reduxState = getState();
-    const sessionId = reduxState.session.id;
-    const { score } = reduxState;
+    const { session } = getState();
+    const { id, score } = session;
     fetch('/api/end-session', {
       method: 'POST',
-      body: JSON.stringify({ sessionId, score }),
+      body: JSON.stringify({ id, score }),
       headers: {
         'Content-Type': 'application/json',
       },
     })
-      .then(() => {
-        dispatch(resetSession());
-        return fetch('/api/high-scores');
-      })
+      .then(() => fetch('/api/high-scores'))
       .then(response => response.json())
       .then(data => dispatch(setHighScores(data)));
   };
@@ -203,16 +185,9 @@ export function fetchGif() {
 export function fetchTrivia() {
   return (dispatch, getState) => {
     dispatch(setResponse({}));
-    dispatch(fetchGif());
-    const { difficulty, triviaType, category, allCategories } = getState();
-    let type = null;
+    const { session, allCategories } = getState();
+    const { difficulty, triviaType, category } = session;
     let categoryId = null;
-
-    if (triviaType === 'multiple') {
-      type = 'multiple';
-    } else if (triviaType === 'true/false') {
-      type = 'boolean';
-    }
 
     if (category !== 'any') {
       const idArray = allCategories[category];
@@ -220,13 +195,14 @@ export function fetchTrivia() {
     }
 
     fetch(
-      `https://opentdb.com/api.php?amount=1&difficulty=${difficulty}${type ? `&type=${type}` : ''}${
-        categoryId ? `&category=${categoryId}` : ''
-      }`,
+      `https://opentdb.com/api.php?amount=1&difficulty=${difficulty}${
+        triviaType !== 'any' ? `&type=${triviaType}` : ''
+      }${categoryId ? `&category=${categoryId}` : ''}`,
     )
       .then(response => response.json())
       .then(result => {
         dispatch(setTrivia(result.results[0]));
+        dispatch(fetchGif());
         dispatch(setStage('trivia'));
       });
   };
@@ -234,7 +210,8 @@ export function fetchTrivia() {
 
 export function startSession() {
   return (dispatch, getState) => {
-    const { difficulty, triviaType, category, user } = getState();
+    const { session, user } = getState();
+    const { difficulty, triviaType, category } = session;
     fetch('/api/new-session', {
       method: 'POST',
       body: JSON.stringify({ userId: user.id, difficulty, triviaType, category }),
@@ -269,7 +246,8 @@ export function chooseGif(correct) {
 
 export function analyzeResponse(response) {
   return (dispatch, getState) => {
-    const { progress, difficulty, lives, trivia, gif } = getState();
+    const { session, trivia, gif } = getState();
+    const { difficulty, lives, progress } = session;
     const correctGifDuration = gif.correctGif.duration;
     const incorrectGifDuration = gif.incorrectGif.duration;
 

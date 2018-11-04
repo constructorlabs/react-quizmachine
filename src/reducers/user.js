@@ -1,7 +1,12 @@
-function user(
-  state = { username: '', password: '', loggedIn: false, userType: 'existing', id: '' },
-  action,
-) {
+const initialState = {
+  username: '',
+  password: '',
+  loggedIn: false,
+  userType: 'existing',
+  id: '',
+};
+
+function user(state = initialState, action) {
   switch (action.type) {
     case 'SET_USERNAME':
       return Object.assign({}, state, { username: action.username });

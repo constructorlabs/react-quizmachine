@@ -93,13 +93,13 @@ app.post('/api/new-session', (req, res) => {
 });
 
 app.post('/api/end-session', (req, res) => {
-  const { sessionId, score } = req.body;
+  const { id, score } = req.body;
   db.one(
     `UPDATE session
       SET score = $1, end_date = now()
       WHERE id = $2
       RETURNING id`,
-    [score, sessionId],
+    [score, id],
   )
     .then(response => res.json({ status: 'OK', sessionId: response.id }))
     .catch(error => console.log(error));

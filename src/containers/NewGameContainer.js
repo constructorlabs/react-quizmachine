@@ -3,9 +3,9 @@ import NewGame from '../components/NewGame';
 import { setDifficulty, setTriviaType, setCategory, startSession } from '../actions';
 
 const mapStateToProps = state => ({
-  difficulty: state.difficulty,
-  triviaType: state.triviaType,
-  category: state.category,
+  difficulty: state.session.difficulty,
+  triviaType: state.session.triviaType,
+  category: state.session.category,
 });
 
 const mapDispatchToProps = dispatch => ({
