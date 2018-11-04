@@ -165,3 +165,45 @@ html, body, ul, ol {
   font-family: var(--question-font);
   font-size: 1.5em;
 }
+
+.scoreboard__container {
+  font-family: var(--question-font);
+  color: #F7F7FF;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.7em;
+  margin-left: 10px;
+}
+
+.scoreboard__form{
+  display: flex;
+  flex-direction: column;
+}
+
+.scoreboard__form__input{
+  height: 5vh;
+  font-size: 100%;
+}
+
+.scoreboard__form__button{
+  margin-top: 15px;
+  width: 50vw;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  height: 50px;
+  border-radius: 5px;
+  border: 2px solid #F7F7FF;
+  font-size: 1.3em;
+  font-family: var(--question-font);
+  background-color: #DE541E;
+  color: #F7F7FF
+}
+
+.scoreboard__form__button:hover{
+  background-color: #F7F7FF;
+  color: #DE541E;
+  border: 2px solid #DE541E;
+}

@@ -9,19 +9,27 @@ class Scoreboard extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Well done, you scored {this.props.points} points!</h2>
-        <ol>
+      <div className="scoreboard__container">
+        <h2 className="scoreboard__title">
+          Well done, you scored {this.props.points} points!
+        </h2>
+        <ol className="scoreboard__list">
           {this.props.scoreboard.map(score => (
-            <li key={score.name + score.points + Math.random()}>
+            <li
+              className="scoreboard__list__item"
+              key={score.name + score.points + Math.random()}
+            >
               {" "}
               {score.name}: {score.points}{" "}
             </li>
           ))}
         </ol>
-        <p>Enter your name below to add your score to the scoreboard</p>
+        <p className="scoreboard__form__label">
+          Enter your name below to add your score to the scoreboard
+        </p>
         {this.props.formVisible == "yes" && (
           <form
+            className="scoreboard__form"
             onSubmit={event => {
               event.preventDefault();
               this.props.submitScore(
@@ -32,12 +40,15 @@ class Scoreboard extends React.Component {
             }}
           >
             <input
+              className="scoreboard__form__input"
               onChange={event =>
                 this.props.receivePlayerName(event.target.value)
               }
               placeholder="Please enter your name here"
             />
-            <button type="submit">Add score</button>
+            <button className="scoreboard__form__button" type="submit">
+              Add score
+            </button>
           </form>
         )}
       </div>

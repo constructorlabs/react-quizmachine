@@ -13,7 +13,7 @@ function Content({ view }) {
           <QuestionContainer /> <PointsContainer />
         </React.Fragment>
       )}
-      {view === 'scoreboard' && <ScoreboardContainer />}
+      {view === "scoreboard" && <ScoreboardContainer />}
     </div>
   );
 }

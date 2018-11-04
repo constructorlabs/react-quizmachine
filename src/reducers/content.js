@@ -1,4 +1,4 @@
-function content(state = {view: "quiz"}, action){
+function content(state = {view: "menu"}, action){
     switch(action.type) {
         case 'RECEIVE_VIEW':
             return {
