@@ -33,7 +33,7 @@ See [https://opentdb.com/api\_config.php](https://opentdb.com/api_config.php) fo
 
 ## Instructions
 
-* Fork and clone this repo. Run `npm install` to get all dependencies.
+<!-- * Fork and clone this repo. Run `npm install` to get all dependencies.
 
 * Load the first question automatically at the beginning using `componentDidMount` and display it to the user. Alongside buttons for the answers.
 
@@ -41,23 +41,23 @@ See [https://opentdb.com/api\_config.php](https://opentdb.com/api_config.php) fo
 
 * If the user answers the question correctly load the next question.
 
-* Each correct answer should increment the score. It's up to you how you want to score answers. You could apply a different score for different difficulty grades. After each correct answer display the next question
+* Each correct answer should increment the score. It's up to you how you want to score answers. You could apply a different score for different difficulty grades. After each correct answer display the next question -->
 
-* Make the app responsive and look good at all screen sizes.
+<!-- * ------ Make the app responsive and look good at all screen sizes. -->
 
 ## Stretch goals - feel free to pick
 
-* Show the user a 'happy' animated gif on a correct answer and a 'sad' gif on incorrect answer.
+<!-- * Show the user a 'happy' animated gif on a correct answer and a 'sad' gif on incorrect answer. -->
 
 * Allow user to select question category
 
-* Allow user to select difficulty level
+<!-- * Allow user to select difficulty level -->
 
 * Add some unit tests
 
-* Implement a scoring system that gives higher scores for more difficult questions
+<!-- * Implement a scoring system that gives higher scores for more difficult questions -->
 
-* Create a high score table. When a user finishes the game, for example answers a question incorrectly, allow them to enter their name and add it along with score to a high score table.
+<!-- * Create a high score table. When a user finishes the game, for example answers a question incorrectly, allow them to enter their name and add it along with score to a high score table. -->
 
 * Display statistics about player performance such as total questions played, average score, most popular category, category with highest percentage of correct etc.
 
@@ -71,7 +71,7 @@ See [https://opentdb.com/api\_config.php](https://opentdb.com/api_config.php) fo
 * Make frequent commits
 * Create a pull request at the end
 
-## Redux getting started guide
+<!-- ## Redux getting started guide
 
 ![](/redux.png)
 
@@ -100,4 +100,4 @@ If you are using planning to use Redux, use the steps below to help you get star
 
 - Implement `mapStateToProps` in `QuestionContainer` which should take the `question` from reducer state and pass it as a `question` prop to the `Question` component. Add a console.log to `mapStateToProps` which outputs `Step 6 - calling mapStateToProps in QuestionContainer`.
 
-- Add some conditional rendering that checks if the question object received as `props` is not just an empty object to ensure it can be rendered without errors.
+- Add some conditional rendering that checks if the question object received as `props` is not just an empty object to ensure it can be rendered without errors. -->
