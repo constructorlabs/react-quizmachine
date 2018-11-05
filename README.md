@@ -43,13 +43,13 @@ See [https://opentdb.com/api\_config.php](https://opentdb.com/api_config.php) fo
 
 * Each correct answer should increment the score. It's up to you how you want to score answers. You could apply a different score for different difficulty grades. After each correct answer display the next question -->
 
-* ------ Make the app responsive and look good at all screen sizes.
+<!-- * ------ Make the app responsive and look good at all screen sizes. -->
 
 ## Stretch goals - feel free to pick
 
 <!-- * Show the user a 'happy' animated gif on a correct answer and a 'sad' gif on incorrect answer. -->
 
-* ------ Allow user to select question category
+* Allow user to select question category
 
 <!-- * Allow user to select difficulty level -->
 
