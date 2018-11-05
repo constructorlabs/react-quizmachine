@@ -39,7 +39,7 @@ html, body, ul, ol {
   align-self: center;
   margin-top: 10px;
   font-family: var(--question-font);
-  font-size: 1.5em
+  font-size: 1.5em;
 }
 
 .menu__select__description{
@@ -59,7 +59,7 @@ html, body, ul, ol {
   height: 50px;
   border-radius: 5px;
   border: 2px solid #F7F7FF;
-  font-size: 1.3em;
+  font-size: 100%;
   font-family: var(--question-font);
   background-color: #DE541E;
   color: #F7F7FF
