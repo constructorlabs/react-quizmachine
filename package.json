@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "heroku-postbuild":"npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -41,5 +42,8 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.9"
+  },
+  "engines": {
+    "node": "10.9.0"
   }
 }
