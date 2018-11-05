@@ -6,13 +6,10 @@ class Nav extends React.Component {
         super();
     }
 
-
-
-
     render() {
         return (
 <div className="Nav">
-QUIZ
+ <h1>THIS IS A QUIZ</h1>
 </div>
         )
 }

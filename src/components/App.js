@@ -7,12 +7,9 @@ import Nav from '../components/Nav';
 class App extends React.Component {
 
 
- 
-
-
   render(){
     return (
-      <div>
+      <div >
         <Nav />     
         <QuestionsContainer />
         <ScoreContainer/>

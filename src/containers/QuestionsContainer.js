@@ -1,14 +1,16 @@
 import { connect } from "react-redux";
 import Questions from  "../components/Questions";
 // import { setQuery, submitQuery } from "../actions"
-import { fetchQuestionAPI, score } from '../actions';
+import { fetchQuestionAPI, score, image } from '../actions';
+
 
 
 // fetchQuestion={this.props.fetchQuestion}
 
 const mapStateToProps = state => {
     return {
-        questions: state.questionsResults.questions
+        questions: state.questionsResults.questions,
+        image: state.image        
 
            //name of prop being passed down(object)  : state:(importedreducercomponent).(key of object)
     };
@@ -19,8 +21,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchQuestion: () => dispatch(fetchQuestionAPI()),
-        // selectedQuery: state.searchInput.selectedQuery
-        clickHandler: (isCorrect) => dispatch(score(isCorrect))
+        clickHandler: (isCorrect) => {
+            dispatch(score(isCorrect)),
+            dispatch(fetchQuestionAPI())
+        }
     };
 }
 

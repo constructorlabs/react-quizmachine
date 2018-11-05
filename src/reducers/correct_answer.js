@@ -10,7 +10,7 @@ function correct_answer(state = {
         
         const newAnswer = Object.assign({}, state, { correct_answer: action.correct_answer});
         return newAnswer
-      
+
           //return = action of returning the value of 'questions' in the action object.
     
         default:

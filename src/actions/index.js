@@ -8,7 +8,9 @@ export function fetchQuestionAPI(){
       .then(result => {
         dispatch(receiveQuestions(result))
         dispatch(correct_answer(result))
-        // console.log(result.results[0])
+        dispatch(fetchPhoto(result.results[0].category))
+        // dispatch(receiveSearch(result.results[0].category))
+        // console.log('hi')
       })
       .catch(function(error) {
         // something went wrong. let's sort it out
@@ -29,11 +31,35 @@ export function score(isCorrect){
     
     type: 'SCORE_ADD',
     answerIsCorrect: isCorrect
+
   }
- 
+
 }
 
+function fetchPhoto(category){
+  console.log('hi')
+  return function(dispatch, getState){
+      // const {reduxState} = getState();
+      fetch(`https://api.unsplash.com/search/photos?page=1&query=${category}&client_id=d1463f432cce4150640ff56ee13c1f94ec0b2993db4395bcb8913f34daeb0d48`)
+      .then(response => response.json())
+      .then(result => {
+        dispatch(savePhoto(result))
+      })
+      .catch(function(error) {
+        // something went wrong. let's sort it out
+      });
+  }
+};
 
+
+export function savePhoto(result){
+  // console.log(result.results[0].urls.regular)
+  return {
+    type: 'SAVE_PHOTO_URL',
+    image: result.results[0].urls.regular
+
+  }
+}
 
 
 export function receiveQuestions(result){
@@ -46,15 +72,6 @@ export function receiveQuestions(result){
   }
 }
 
-// export function score(currentScore){
-//   return {
-//     type: 'SCORE_FETCH',
-//     score: currentScore //to complete
-
-//     //questions refers to a variable
-//     //result = result of fetch
-//   }
-// }
 
 export function countDown()
 {
