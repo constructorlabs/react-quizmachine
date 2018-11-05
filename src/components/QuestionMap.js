@@ -13,7 +13,7 @@ class QuestionMap extends React.Component {
       displayDiff: true,
       displayCat: true,
       displayScore: false,
-      potentialScore: 0,
+      potentialScore: 30,
     };
 
     this.difficultyHandleClick = this.difficultyHandleClick.bind(this);
@@ -72,7 +72,7 @@ class QuestionMap extends React.Component {
 
     console.log("props", this.props);
 
-    if (this.props.questionCount < 10) {
+    if (this.props.questionCount <= 10) {
       return (
         <div className="grid">
           <div className="center">

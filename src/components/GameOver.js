@@ -91,6 +91,33 @@ function GameOver({ score, potentialScore }) {
         </div>
       </div>
     );
+  } else if (score == potentialScore) {
+    <div className="grid">
+      <div className="center">
+        <h1>Game Over</h1>
+        <p>
+          You scored: {score}/{potentialScore}
+        </p>
+        <div className="gif-background">
+          <iframe
+            src="https://giphy.com/embed/fKW11LAa5UE6s"
+            width="480"
+            height="313"
+            frameBorder="0"
+            class="gif"
+            allowFullScreen
+          />
+        </div>
+
+        <button
+          className="dif-cat-button"
+          type="button"
+          onClick={() => refreshPage()}
+        >
+          Play Again
+        </button>
+      </div>
+    </div>;
   }
 }
 

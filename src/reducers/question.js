@@ -67,7 +67,7 @@ function questionReducer(
 
   switch (action.type) {
     case "RECEIVE_QUESTION":
-      if (state.questionCount < 10)
+      if (state.questionCount <= 10)
         return Object.assign(
           {},
           state,
