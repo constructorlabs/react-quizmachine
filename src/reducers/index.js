@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux';
-import placeholder from './placeholder';
+import question from './question';
+import scores from './scores';
+import category from './category';
+import image from './image';
 
 export default combineReducers({
-  placeholder
+  question,
+  scores,
+  category,
+  image
 });
