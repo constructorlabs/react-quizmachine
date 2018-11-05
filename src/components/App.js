@@ -1,10 +1,18 @@
 import React from 'react';
+import QuestionsContainer from '../containers/QuestionsContainer';
+import ScoreContainer from '../containers/ScoreContainer';
+import Nav from '../components/Nav';
+
 
 class App extends React.Component {
+
+
   render(){
     return (
-      <div>
-        App contents go here
+      <div >
+        <Nav />     
+        <QuestionsContainer />
+        <ScoreContainer/>
       </div>
     )
   }
