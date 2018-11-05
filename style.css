@@ -180,6 +180,7 @@ html, body, ul, ol {
 .scoreboard__form{
   display: flex;
   flex-direction: column;
+  width: 80vw;
 }
 
 .scoreboard__form__input{

@@ -24,9 +24,6 @@ class Scoreboard extends React.Component {
             </li>
           ))}
         </ol>
-        <p className="scoreboard__form__label">
-          Enter your name below to add your score to the scoreboard
-        </p>
         {this.props.formVisible == "yes" && (
           <form
             className="scoreboard__form"
@@ -39,6 +36,9 @@ class Scoreboard extends React.Component {
               );
             }}
           >
+            <p className="scoreboard__form__label">
+              Enter your name below to add your score to the scoreboard
+            </p>
             <input
               className="scoreboard__form__input"
               onChange={event =>

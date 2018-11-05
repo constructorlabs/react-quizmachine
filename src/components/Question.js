@@ -13,11 +13,11 @@ class Question extends React.Component {
   }
 
   fetchNextQuestion() {
-    setTimeout(() => this.props.fetchQuestion(this.props.difficulty), 1500);
+    setTimeout(() => this.props.fetchQuestion(this.props.difficulty), 3000);
   }
 
   goToScoreboard() {
-    setTimeout(() => this.props.receiveView("scoreboard"), 2000);
+    setTimeout(() => this.props.receiveView("scoreboard"), 3000);
   }
 
   render() {
@@ -54,7 +54,7 @@ class Question extends React.Component {
                     this.props.question,
                     this.props.difficulty
                   );
-                  this.props.numberOfQuestions >= 1
+                  this.props.numberOfQuestions >= 5
                     ? this.goToScoreboard()
                     : this.fetchNextQuestion();
                 }}
