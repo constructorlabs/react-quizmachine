@@ -30,7 +30,7 @@ function Login({
           <div className="login__username">
             <input
               className="login__input"
-              onChange={event => getUsername(event.target.value)}
+              onChange={(event) => getUsername(event.target.value)}
               value={username}
               placeholder="Username"
             />
@@ -38,7 +38,7 @@ function Login({
           <div className="login__password">
             <input
               className="login__input"
-              onChange={event => getPassword(event.target.value)}
+              onChange={(event) => getPassword(event.target.value)}
               value={password}
               type="password"
               minLength="3"
@@ -63,7 +63,7 @@ function Login({
           <div className="login__username">
             <input
               className="login__input"
-              onChange={event => getUsername(event.target.value)}
+              onChange={(event) => getUsername(event.target.value)}
               value={username}
               placeholder="Username"
             />
@@ -71,7 +71,7 @@ function Login({
           <div className="login__password">
             <input
               className="login__input"
-              onChange={event => getPassword(event.target.value)}
+              onChange={(event) => getPassword(event.target.value)}
               value={password}
               type="password"
               minLength="3"
