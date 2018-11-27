@@ -6,7 +6,7 @@ import '../../styles/components/Answers.scss';
 function Answers({ answers, response, getResponse }) {
   return (
     <div className="answers">
-      {answers.map(answer => {
+      {answers.map((answer) => {
         const classes = cx('answer', {
           'answer--green': response && response.content === answer.content && answer.correct,
           'answer--red': response && response.content === answer.content && !answer.correct,
