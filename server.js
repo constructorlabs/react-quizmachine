@@ -12,8 +12,8 @@ app.set('view engine', 'hbs');
 const saltRounds = 10;
 
 const db = pgp({
-  host: 'localhost',
-  port: 5432,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
   database: process.env.DB_NAME,
   user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
