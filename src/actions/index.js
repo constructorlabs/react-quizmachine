@@ -78,8 +78,6 @@ export function setTrivia(trivia) {
     value,
   };
 
-  console.log(newTrivia.answers);
-
   return {
     type: 'SET_TRIVIA',
     trivia: newTrivia,
