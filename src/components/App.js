@@ -1,10 +1,14 @@
 import React from 'react';
+import QuestionContainer from '../containers/QuestionContainer';
+
 
 class App extends React.Component {
-  render(){
+  render() {
     return (
-      <div>
-        App contents go here
+      <div className="app">
+
+        <QuestionContainer />
+
       </div>
     )
   }
