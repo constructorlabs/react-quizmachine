@@ -1,6 +1,20 @@
 import { combineReducers } from 'redux';
-import placeholder from './placeholder';
+import stage from './stage';
+import trivia from './trivia';
+import response from './response';
+import allCategories from './allCategories';
+import gif from './gif';
+import user from './user';
+import session from './session';
+import highScores from './highScores';
 
 export default combineReducers({
-  placeholder
+  stage,
+  trivia,
+  response,
+  allCategories,
+  gif,
+  user,
+  session,
+  highScores,
 });
